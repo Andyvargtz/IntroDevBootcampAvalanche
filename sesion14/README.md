@@ -2,5 +2,5 @@
 icon: flask-vial
 ---
 
-# Sesión 14: Testing de Contratos Inteligentes con Foundry
+# Session 14: Smart Contract Testing with Foundry
 

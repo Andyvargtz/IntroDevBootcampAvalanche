@@ -13,26 +13,26 @@ layout:
     visible: true
 ---
 
-# Valores por Defecto
+# Default Values
 
-En Solidity, cada tipo de dato tiene un **valor por defecto** cuando declaras una variable pero no la inicializas. Es como cuando compras una camiseta online y viene en "talla única" por defecto (aunque a veces eso no le queda a nadie).
+In Solidity, each data type has a **default value** when you declare a variable but don't initialize it. It's like when you buy a t-shirt online and it comes in "one size fits all" by default (although sometimes that doesn't fit anyone).
 
-Los **valores por defecto** te garantizan que tus variables no estarán vacías o "rotas" cuando las declares pero olvides inicializarlas. Solidity siempre les asignará un valor seguro para que tu contrato no se caiga por falta de datos. Así que, si no te molestaste en darle un valor inicial a algo, ¡Solidity lo hará por ti!
+**Default values** ensure that your variables won't be empty or "broken" when you declare them but forget to initialize them. Solidity will always assign them a safe value so your contract doesn't crash due to missing data. So, if you didn't bother to give something an initial value, Solidity will do it for you!
 
-### ¿Cuáles son esos valores por defecto?
+### What are these default values?
 
-Aquí te va la lista rápida para que siempre sepas qué esperar cuando una variable no tiene un valor asignado:
+Here's the quick list so you always know what to expect when a variable doesn't have an assigned value:
 
-* **uint (números enteros sin signo)**: El valor por defecto es 0. No hay números negativos, así que siempre empieza desde 0.
-* **int (números enteros con signo)**: También empiezan en 0, pero aquí puedes tener tanto números positivos como negativos, aunque de inicio tendrás un 0 neutral.
-* **bool (booleanos)**: Aquí el valor por defecto es `false`. Así que si no dices nada, una variable booleana siempre arranca como "mentira".
-* **address (direcciones)**: Las direcciones no inicializadas serán `0x0000000000000000000000000000000000000000`. Sí, toda esa serie de ceros es el valor por defecto.
-* **bytes y strings**: Estos tipos son un poco más raros. Los `bytes` y `string` vacíos tienen valores por defecto que equivalen a secuencias vacías (como un string vacío `""` o `0x` para `bytes`).
+* **uint (unsigned integers)**: The default value is 0. There are no negative numbers, so it always starts from 0.
+* **int (signed integers)**: They also start at 0, but here you can have both positive and negative numbers, although initially you'll have a neutral 0.
+* **bool (booleans)**: Here the default value is `false`. So if you don't say anything, a boolean variable always starts as "false".
+* **address (addresses)**: Uninitialized addresses will be `0x0000000000000000000000000000000000000000`. Yes, that whole series of zeros is the default value.
+* **bytes and strings**: These types are a bit more unusual. Empty `bytes` and `string` have default values that are equivalent to empty sequences (like an empty string `""` or `0x` for `bytes`).
 
 ```solidity
-uint256 public numero; // Por defecto será 0
-bool public estado;    // Por defecto será false
-address public direccion; // Por defecto será 0x0000000000000000000000000000000000000000
-string public nombre; // Por defecto será ""
-bytes public data; // Por defecto será 0x
+uint256 public number; // By default will be 0
+bool public state;    // By default will be false
+address public address; // By default will be 0x0000000000000000000000000000000000000000
+string public name; // By default will be ""
+bytes public data; // By default will be 0x
 ```

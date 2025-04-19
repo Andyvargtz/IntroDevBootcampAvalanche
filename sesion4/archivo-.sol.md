@@ -13,14 +13,12 @@ layout:
     visible: true
 ---
 
-# Archivo .sol
+# .sol File
 
-Ahora que ya tienes tu **workspace** listo, es hora de crear y trabajar con un archivo clave, el **archivo `.sol`**. Si alguna vez has oído hablar de contratos inteligentes en Ethereum, entonces sabes que se escriben en **Solidity**, y estos contratos se guardan en archivos con la extensión `.sol`. Vamos a ver cómo funciona.
+Now that you have your **workspace** ready, it's time to create and work with a key file, the **`.sol` file**. If you've ever heard of smart contracts in Ethereum, then you know they are written in **Solidity**, and these contracts are saved in files with the `.sol` extension. Let's see how it works.
 
-Un archivo `.sol` es simplemente un archivo que contiene **código en Solidity**, el lenguaje de programación utilizado para escribir contratos inteligentes en la blockchain de Ethereum. Piensa en este archivo como el "contenedor" de tus contratos inteligentes. Todo el código que necesitas para definir cómo funciona tu contrato, desde las variables hasta las funciones, va dentro de este archivo.
+A `.sol` file is simply a file that contains **Solidity code**, the programming language used to write smart contracts on the Ethereum blockchain. Think of this file as the "container" of your smart contracts. All the code you need to define how your contract works, from variables to functions, goes inside this file.
 
-
-
-**Crear un nuevo archivo**: Primero, asegúrate de estar dentro de tu workspace en Remix. En la barra lateral izquierda, haz clic en el ícono de "crear nuevo archivo". Luego, nómbralo con la extensión `.sol`, por ejemplo, `MiPrimerContrato.sol`.
+**Create a new file**: First, make sure you're inside your workspace in Remix. In the left sidebar, click on the "create new file" icon. Then, name it with the `.sol` extension, for example, `MiPrimerContrato.sol`.
 
 <figure><img src="../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>

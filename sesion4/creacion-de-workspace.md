@@ -13,24 +13,22 @@ layout:
     visible: true
 ---
 
-# Creación de Workspace
+# Workspace Creation
 
-Un **workspace** en Remix es básicamente tu área de trabajo personalizada donde guardas los contratos, configuraciones y dependencias de tu proyecto. Piensa en él como la carpeta de un proyecto donde puedes estructurar y organizar todo tu código. Crear un workspace te da la posibilidad de mantener múltiples proyectos en un solo lugar y alternar entre ellos sin perder configuraciones ni archivos importantes.
+A **workspace** in Remix is basically your customized work area where you save your contracts, configurations, and project dependencies. Think of it as a project folder where you can structure and organize all your code. Creating a workspace gives you the possibility to maintain multiple projects in one place and switch between them without losing configurations or important files.
 
+#### Steps to create a Workspace in Remix
 
-
-#### Pasos para crear un Workspace en Remix
-
-1.  **Abrir Remix**: Lo primero que necesitas hacer es abrir **Remix IDE** en tu navegador. No necesitas descargar nada, simplemente accede a remix.ethereum.org y estarás listo para empezar.
+1.  **Open Remix**: The first thing you need to do is open **Remix IDE** in your browser. You don't need to download anything, just go to remix.ethereum.org and you'll be ready to start.
 
     <figure><img src="../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
-2.  **Crear un nuevo Workspace**: Una vez en Remix, verás una barra lateral izquierda. Ahí, haz clic en el menú desplegable donde dice "default\_workspace" y selecciona la opción que dice **"Create a New Workspace"**. Te pedirá un nombre para tu nuevo espacio de trabajo. Colócale un nombre relevante al proyecto que estés creando.&#x20;
+2.  **Create a new Workspace**: Once in Remix, you'll see a left sidebar. There, click on the dropdown menu where it says "default_workspace" and select the option that says **"Create a New Workspace"**. It will ask you for a name for your new workspace. Give it a name relevant to the project you're creating.
 
     <figure><img src="../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
-3.  **Elegir plantilla:** Al crear un Workspace, Remix nos va a pedir que elijamos una plantilla. En este caso escogeremos un proyecto en blanco para empezar desde cero. Luego te pedirá un nombre para tu nuevo espacio de trabajo. Colócale un nombre relevante al proyecto que estés creando, en este caso yo lo llamaré "Remix Basico".
+3.  **Choose a template:** When creating a Workspace, Remix will ask us to choose a template. In this case, we will choose a blank project to start from scratch. Then it will ask you for a name for your new workspace. Give it a name relevant to the project you're creating, in this case, I'll call it "Remix Basic".
 
     <figure><img src="../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
 
-Remix guarda automáticamente todos los cambios que realices, por lo que no tienes que preocuparte por perder tu trabajo. También puedes descargar tu workspace a tu computadora para hacer una copia de seguridad o compartirlo con otros. Para esto, da clic en las 3 lineas horizontales que están a la izquierda de "WORKSPACES".
+Remix automatically saves all the changes you make, so you don't have to worry about losing your work. You can also download your workspace to your computer to make a backup or share it with others. To do this, click on the 3 horizontal lines that are to the left of "WORKSPACES".
 
 <figure><img src="../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>

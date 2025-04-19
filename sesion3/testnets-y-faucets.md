@@ -13,41 +13,96 @@ layout:
     visible: true
 ---
 
-# Testnets y Faucets
+# Testnets and Faucets
 
-Llegamos a un punto clave en el camino de cualquier desarrollador blockchain, las **Testnets y Faucets**. Si alguna vez te has lanzado a interactuar con contratos inteligentes o simplemente enviar crypto a otra wallet, sabrás lo importante que es practicar y experimentar **sin arriesgar tu dinero real**. Aquí es donde las **Testnets** y las **Faucets** entran en acción, permitiéndote hacer pruebas en un entorno seguro antes de desplegar cualquier cosa en la red principal.
+Testnets and faucets are essential tools for blockchain development, allowing developers to test their applications without using real cryptocurrency.
 
-### ¿Qué es una Testnet?
+## Testnets
 
-Las **Testnets** son versiones de prueba de las blockchains. Piensa en ellas como entornos de simulación donde puedes experimentar con cualquier cosa sin consecuencias reales. En lugar de usar **tokens reales** (como ETH o AVAX en sus redes principales), las Testnets utilizan versiones "falsas" o de prueba de estos tokens, que no tienen valor en el mundo real. Esto te permite hacer todas las pruebas que quieras sin temor a perder dinero.
+### Purpose
+- Safe testing environment
+- No real value at stake
+- Simulates mainnet conditions
+- Free to use
 
-Existen varias **Testnets** populares según la blockchain que estés utilizando. Algunas de las más conocidas son:
+### Popular Testnets
 
-* **Sepolia** para Ethereum.
-* **Fuji** para Avalanche.
-* **Amoy** para Polygon.
+1. **Ethereum Testnets**
+   - Goerli
+   - Sepolia
+   - Rinkeby (deprecated)
+   - Kovan (deprecated)
 
-Cada una de estas redes simula cómo funcionan sus respectivas mainnets, lo que significa que puedes probar tus contratos inteligentes, transacciones y cualquier otra funcionalidad, sabiendo que si algo falla no perderás nada real.
+2. **Avalanche Testnets**
+   - Fuji
+   - C-Chain Testnet
 
-### ¿Qué es un Faucet?
+### Benefits
+- Test smart contracts
+- Debug applications
+- Test network interactions
+- Experiment with new features
 
-Ahora bien, para interactuar en una Testnet necesitas estos **tokens de prueba**, ¿verdad? Aquí es donde entran en juego los **Faucets**. Un **faucet** es básicamente un servicio que te da pequeñas cantidades de estos tokens de prueba, para que puedas utilizarlos en la Testnet.
+## Faucets
 
-Es súper sencillo, vas a un faucet, introduces la dirección de tu wallet, y automáticamente recibes tokens de prueba. Estos tokens te permiten realizar todas las operaciones que harías en la red principal, como desplegar contratos inteligentes o hacer transacciones, pero sin gastar dinero real.
+### What are Faucets?
+- Free token distribution services
+- Provide testnet tokens
+- Help developers get started
+- Prevent testnet spam
 
-Consigamos AVAX de prueba en la red de Fuji:
+### How to Use
+1. Connect your wallet
+2. Request test tokens
+3. Wait for confirmation
+4. Start testing
 
-{% embed url="https://faucets.chain.link/" %}
+### Popular Faucets
+- Goerli Faucet
+- Sepolia Faucet
+- Fuji Faucet
+- Rinkeby Faucet
 
-Asegurate de elegir la opción "Avalanche Fuji Drips 0.1 Avax". Introduce la dirección de tu wallet y conecta con tu cuenta de GitHub
+## Getting Test AVAX on Fuji Network
 
-{% embed url="https://core.app/es/tools/testnet-faucet/" %}
+There are two main ways to get test AVAX on the Fuji network:
 
-**Asegurate de tener conectada tu wallet de Core en la Testnet**, para eso abre la extensión de Core, da clic en el menú desplegable arriba a la izquierda. Entra en "Advanced" y activa la opción Testnet Mode.
+### 1. Chainlink Faucet
+1. Visit [Chainlink Faucet](https://faucets.chain.link/)
+2. Select "Avalanche Fuji Drips 0.1 Avax"
+3. Enter your wallet address
+4. Connect with your GitHub account
 
-Ahora, conecta tu wallet de Core en la web e ingresar el siguiente código de cupón: **AVAXGUILD**
+### 2. Core Faucet
+1. Visit [Core Testnet Faucet](https://core.app/es/tools/testnet-faucet/)
+2. Make sure your Core wallet is connected to the Testnet:
+   - Open Core extension
+   - Click the dropdown menu in the top left
+   - Go to "Advanced"
+   - Enable "Testnet Mode"
+3. Connect your Core wallet to the website
+4. Enter the coupon code: **AVAXGUILD**
+5. Check your wallet balance - it should increase
 
+## Best Practices
 
+### Development
+- Always test on testnet first
+- Use multiple testnets
+- Monitor gas usage
+- Test edge cases
 
-Revisa tu wallet y verás que tu balance ha aumentado. ¡Felicitaciones! Ya tienes todo lo necesario para que en la próxima sesión nos centremos en lo que tanto has estado esperando... CODIGO.
+### Security
+- Don't use real private keys
+- Be careful with testnet tokens
+- Don't share testnet credentials
+- Use separate wallets
+
+## Resources
+
+### Documentation
+- Ethereum Testnet Guide
+- Avalanche Testnet Docs
+- Faucet Usage Instructions
+- Development Best Practices
 

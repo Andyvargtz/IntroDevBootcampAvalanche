@@ -2,5 +2,5 @@
 icon: unicorn
 ---
 
-# Sesión 11: DeFi
+# Session 11: DeFi
 

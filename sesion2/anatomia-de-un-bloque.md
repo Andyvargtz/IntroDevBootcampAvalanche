@@ -13,34 +13,30 @@ layout:
     visible: true
 ---
 
-# Anatomía de un Bloque
+# Anatomy of a Block
 
-Ahora que ya sabemos cómo se realiza una transacción y cómo seguirla en la blockchain, es momento de entender **qué es un bloque** y qué información contiene. Después de todo, la blockchain se llama así porque está formada por una cadena de bloques. Pero, ¿qué hay dentro de esos bloques?
+Now that we know how a transaction is made and how to track it on the blockchain, it's time to understand **what a block is** and what information it contains. After all, the blockchain is called that because it's made up of a chain of blocks. But what's inside those blocks?
 
+A block contains several important parts:
 
-
-Un bloque contiene varias partes importantes:
-
-1. **Encabezado del Bloque:**
-   * **Hash del Bloque Anterior:** Es como un sello que conecta cada bloque con el anterior, formando una cadena inquebrantable. Esto asegura que no se puedan alterar los bloques anteriores sin cambiar todos los que vienen después. Sin embargo, en el caso del **Bloque Génesis**, que es el primer bloque de la cadena, este campo está lleno de ceros, ya que no existe un bloque anterior. Esto indica que es el punto de inicio de la blockchain.
-   * **Marca de Tiempo (Timestamp):** Indica la fecha y hora en que se creó el bloque. Así sabemos cuándo ocurrió cada cosa.
-   * **Nonce:** Es un número que los mineros tienen que encontrar para poder agregar el bloque a la cadena. En **Proof of Work** los mineros compiten por descubrir este número resolviendo problemas matemáticos.
-   * **Raíz de Merkle (Merkle Root):** Es como un resumen de todas las transacciones en el bloque. Permite verificar rápidamente si una transacción está incluida sin tener que revisar una por una.
-2. **Cuerpo del Bloque:**
-   * **Transacciones:** Aquí es donde se registran todas las transacciones que se incluyen en el bloque. Cada una tiene detalles como quién envía, quién recibe y cuánto se transfiere.
+1. **Block Header:**
+   * **Previous Block Hash:** It's like a seal that connects each block with the previous one, forming an unbreakable chain. This ensures that previous blocks cannot be altered without changing all the ones that come after. However, in the case of the **Genesis Block**, which is the first block in the chain, this field is filled with zeros, since there is no previous block. This indicates that it is the starting point of the blockchain.
+   * **Timestamp:** Indicates the date and time when the block was created. This way we know when everything happened.
+   * **Nonce:** It's a number that miners have to find in order to add the block to the chain. In **Proof of Work**, miners compete to discover this number by solving mathematical problems.
+   * **Merkle Root:** It's like a summary of all transactions in the block. It allows quick verification if a transaction is included without having to check them one by one.
+2. **Block Body:**
+   * **Transactions:** This is where all the transactions included in the block are recorded. Each one has details such as who sends, who receives, and how much is transferred.
 
 <figure><img src="../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
-Prácticamente un bloque vendría siendo como una caja que contiene muchas transacciones y tiene etiquetas importantes que lo conectan con el bloque anterior y resumen su contenido.
+Essentially, a block would be like a box that contains many transactions and has important labels that connect it to the previous block and summarize its content.
 
-Al estar todos los bloques conectados, si alguien intentara cambiar una transacción en un bloque anterior tendría que modificar todos los bloques siguientes, lo cual es prácticamente imposible en una red grande.
+With all blocks connected, if someone tried to change a transaction in a previous block, they would have to modify all subsequent blocks, which is practically impossible in a large network.
 
-### Bloque Génesis
+### Genesis Block
 
-Hablando de bloques, no podemos olvidar el famoso **Bloque Génesis**. Este es el primer bloque de una blockchain, el punto de partida de todo. En el caso de Bitcoin, el Bloque Génesis fue creado por Satoshi Nakamoto el 3 de enero de 2009. Este bloque es especial porque no hace referencia a ningún bloque anterior (porque simplemente no existía). Además Satoshi incluyó en él un mensaje oculto: _"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"_, que era el titular de un periódico británico de ese día. Muchos ven esto como una crítica al sistema financiero tradicional y una declaración de intenciones sobre por qué nació Bitcoin.
+Speaking of blocks, we can't forget the famous **Genesis Block**. This is the first block of a blockchain, the starting point of everything. In Bitcoin's case, the Genesis Block was created by Satoshi Nakamoto on January 3, 2009. This block is special because it doesn't reference any previous block (because there simply wasn't one). Additionally, Satoshi included a hidden message in it: _"The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"_, which was the headline of a British newspaper that day. Many see this as a criticism of the traditional financial system and a statement of intent about why Bitcoin was born.
 
-El Bloque Génesis es fundamental porque establece las reglas iniciales y la estructura de la blockchain. Sin él no habría cadena que seguir. Cada bloque que se añade después se basa en el anterior, creando esa cadena de bloques que conocemos.
+The Genesis Block is fundamental because it establishes the initial rules and structure of the blockchain. Without it, there would be no chain to follow. Each block added afterward is based on the previous one, creating that blockchain we know.
 
-
-
-Ahora cuando escuches hablar de mineros resolviendo problemas matemáticos o de bloques siendo añadidos a la cadena, sabrás exactamente qué significa y por qué es tan importante. La blockchain es más que una simple lista de transacciones, es un sistema cuidadosamente diseñado para ser seguro, transparente y resistente a manipulaciones.
+Now when you hear about miners solving mathematical problems or blocks being added to the chain, you'll know exactly what it means and why it's so important. The blockchain is more than just a list of transactions, it's a carefully designed system to be secure, transparent, and resistant to manipulation.

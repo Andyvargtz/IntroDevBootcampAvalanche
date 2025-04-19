@@ -13,48 +13,48 @@ layout:
     visible: true
 ---
 
-# Unidades de Medida del Ether
+# Ether Units of Measurement
 
-En la EVM no todo se mide en Ether como tal. Existen diferentes unidades para representar cantidades de esta criptomoneda, un poco como cuando usamos gramos, kilogramos y toneladas para medir peso. Entender estas unidades es clave para no perderse en la inmensidad de ceros y decimales que a veces acompañan las transacciones en la red. ¡Vamos a conocerlas!
+In the EVM, not everything is measured in Ether as such. There are different units to represent amounts of this cryptocurrency, similar to how we use grams, kilograms, and tons to measure weight. Understanding these units is key to not getting lost in the vastness of zeros and decimals that sometimes accompany network transactions. Let's get to know them!
 
-### ¿Qué es Ether y por qué tiene tantas unidades?
+### What is Ether and why does it have so many units?
 
-Ether (ETH) es la criptomoneda nativa de la red Ethereum y se utiliza para pagar comisiones de gas, desplegar contratos inteligentes y mucho más. Pero como manejar cantidades muy pequeñas o muy grandes de Ether puede volverse incómodo, se crearon diferentes unidades para facilitar su uso. Cada una de estas unidades representa una fracción específica del Ether, similar a cómo un dólar tiene centavos.
+Ether (ETH) is the native cryptocurrency of the Ethereum network and is used to pay gas fees, deploy smart contracts, and much more. But since handling very small or very large amounts of Ether can become cumbersome, different units were created to facilitate its use. Each of these units represents a specific fraction of Ether, similar to how a dollar has cents.
 
 {% hint style="info" %}
-Aunque estemos trabajando en otra red diferente a Ethereum, como Avalanche, Polygon, o Binance Smart Chain, las cuales tienen su propio token nativo, de igual manera se sigue usando el termino Ether o ETH para referirse a las unidades de medidas.
+Even though we're working on a different network than Ethereum, like Avalanche, Polygon, or Binance Smart Chain, which have their own native token, the term Ether or ETH is still used to refer to the units of measurement.
 {% endhint %}
 
-### Principales Unidades de Medida del Ether
+### Main Ether Units of Measurement
 
-1.  **Wei**: Es la unidad más pequeña de Ether, como el átomo del universo blockchain. Piensa en `wei` como el "centavo" del Ether, pero en lugar de ser una centésima parte, ¡es una dieciochoava parte! Un Ether tiene exactamente `1,000,000,000,000,000,000` (un quintillón) de Wei. Básicamente, si ves un número enorme con muchos ceros, probablemente estés viendo Wei.
+1.  **Wei**: It's the smallest unit of Ether, like the atom of the blockchain universe. Think of `wei` as the "penny" of Ether, but instead of being a hundredth part, it's an eighteenth part! One Ether has exactly `1,000,000,000,000,000,000` (one quintillion) Wei. Basically, if you see a huge number with many zeros, you're probably looking at Wei.
 
-    **Ejemplo**: 1 ETH = 1,000,000,000,000,000,000 Wei
-2.  **Gwei**: También conocido como "shannon", es la unidad más común cuando hablamos de tarifas de gas en Ethereum. 1 Gwei es igual a `1,000,000,000` Wei (mil millones). Si alguna vez has visto una tarifa de transacción en Gwei, es porque es la forma más práctica de expresar las tarifas sin usar tantos ceros.
+    **Example**: 1 ETH = 1,000,000,000,000,000,000 Wei
+2.  **Gwei**: Also known as "shannon", it's the most common unit when talking about gas fees in Ethereum. 1 Gwei is equal to `1,000,000,000` Wei (one billion). If you've ever seen a transaction fee in Gwei, it's because it's the most practical way to express fees without using so many zeros.
 
-    **Ejemplo**: 1 Gwei = 1,000,000,000 Wei
-3.  **Ether**: Es la unidad principal y más conocida, utilizada para representar balances y transacciones mayores. Si alguien te dice que tiene 5 ETH, eso es 5 Ethers completos, sin ninguna subdivisión.
+    **Example**: 1 Gwei = 1,000,000,000 Wei
+3.  **Ether**: It's the main and most well-known unit, used to represent balances and larger transactions. If someone tells you they have 5 ETH, that's 5 complete Ethers, without any subdivision.
 
-    **Ejemplo**: 1 Ether = 1,000,000,000,000,000,000 Wei
+    **Example**: 1 Ether = 1,000,000,000,000,000,000 Wei
 
-### Tabla Comparativa de Unidades
+### Comparative Table of Units
 
-| **Unidad** | **Símbolo** | **Valor en Wei**          | **Descripción**       |
-| ---------- | ----------- | ------------------------- | --------------------- |
-| Wei        | wei         | 1                         | Unidad más pequeña    |
-| Kwei       | babbage     | 1,000                     | 1,000 Wei             |
-| Mwei       | lovelace    | 1,000,000                 | 1 millón de Wei       |
-| Gwei       | shannon     | 1,000,000,000             | 1 mil millones de Wei |
-| Microether | szabo       | 1,000,000,000,000         | 1 billón de Wei       |
-| Milliether | finney      | 1,000,000,000,000,000     | 1 cuatrillón de Wei   |
-| Ether      | eth         | 1,000,000,000,000,000,000 | 1 quintillón de Wei   |
+| **Unit**    | **Symbol** | **Value in Wei**          | **Description**       |
+| ----------- | ---------- | ------------------------- | --------------------- |
+| Wei         | wei        | 1                         | Smallest unit         |
+| Kwei        | babbage    | 1,000                     | 1,000 Wei             |
+| Mwei        | lovelace   | 1,000,000                 | 1 million Wei         |
+| Gwei        | shannon    | 1,000,000,000             | 1 billion Wei         |
+| Microether  | szabo      | 1,000,000,000,000         | 1 trillion Wei        |
+| Milliether  | finney     | 1,000,000,000,000,000     | 1 quadrillion Wei     |
+| Ether       | eth        | 1,000,000,000,000,000,000 | 1 quintillion Wei     |
 
-### ¿Por qué tantas unidades?
+### Why so many units?
 
-Las distintas unidades son útiles para representar diferentes cantidades de Ether sin lidiar con montones de ceros. Imagina tener que expresar una transacción de 0.000000001 ETH en Wei: sería un número gigante y complicado de manejar. En su lugar, decimos 1 Gwei, y listo. Las unidades también ayudan a evitar errores, es fácil confundirse cuando estás lidiando con números como `1000000000000000000` (1 Ether en Wei).
+The different units are useful for representing different amounts of Ether without dealing with heaps of zeros. Imagine having to express a transaction of 0.000000001 ETH in Wei: it would be a huge and complicated number to handle. Instead, we say 1 Gwei, and that's it. The units also help avoid errors, as it's easy to get confused when dealing with numbers like `1000000000000000000` (1 Ether in Wei).
 
-### ¿Cuándo usar cada unidad?
+### When to use each unit?
 
-1. **Wei**: Ideal para cálculos precisos y pequeños, como dividir Ether en partes extremadamente pequeñas.
-2. **Gwei**: La opción más usada para tarifas de gas. Si ves tarifas como 30 Gwei, significa que cada unidad de gas cuesta 30 Gwei.
-3. **Ether**: Se usa para representar cantidades completas de la moneda, como balances de cuentas o transacciones mayores.
+1. **Wei**: Ideal for precise and small calculations, like dividing Ether into extremely small parts.
+2. **Gwei**: The most used option for gas fees. If you see fees like 30 Gwei, it means each unit of gas costs 30 Gwei.
+3. **Ether**: Used to represent complete amounts of the currency, like account balances or larger transactions.

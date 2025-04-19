@@ -2,5 +2,5 @@
 icon: hexagon-vertical-nft
 ---
 
-# Sesión 10: Tokens ERC721, ERC1155 y otras variables
+# Session 10: ERC721, ERC1155 Tokens and Other Variables
 

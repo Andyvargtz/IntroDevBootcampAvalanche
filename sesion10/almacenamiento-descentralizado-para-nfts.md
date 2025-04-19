@@ -13,36 +13,36 @@ layout:
     visible: true
 ---
 
-# Almacenamiento Descentralizado para NFTs
+# Decentralized Storage for NFTs
 
-En el mundo de los NFTs, cada token suele tener información única, como imágenes, nombres o descripciones, que forman sus **metadatos**. Sin embargo, esta información no se guarda directamente en la blockchain, ya que almacenar grandes cantidades de datos en la cadena puede ser caro y poco práctico. En su lugar, se usa **almacenamiento descentralizado** y una **URI** (Uniform Resource Identifier) para manejar estos datos de manera eficiente.
+In the world of NFTs, each token typically has unique information, such as images, names, or descriptions, that form its **metadata**. However, this information is not stored directly on the blockchain, as storing large amounts of data on the chain can be expensive and impractical. Instead, **decentralized storage** and a **URI** (Uniform Resource Identifier) are used to manage this data efficiently.
 
 <figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-### **¿Qué es IPFS?**
+### **What is IPFS?**
 
-**IPFS** (InterPlanetary File System) es un sistema de almacenamiento descentralizado que permite guardar y compartir archivos de forma segura y sin depender de un servidor central. En lugar de almacenar archivos en una ubicación específica (como un servidor), IPFS guarda los datos en una red de nodos (computadoras) distribuidos. Esto significa que:
+**IPFS** (InterPlanetary File System) is a decentralized storage system that allows files to be stored and shared securely without depending on a central server. Instead of storing files in a specific location (like a server), IPFS stores data in a network of distributed nodes (computers). This means that:
 
-* Los archivos subidos a IPFS obtienen un **CID** (Content Identifier), que es un identificador único basado en el contenido del archivo.
-* Este **CID** sirve como una dirección permanente para el archivo, incluso si una copia del archivo se pierde en un nodo, IPFS encontrará otra copia en la red.
-* IPFS garantiza que los datos sean inmutables: si el archivo cambia, también cambia su CID.
+* Files uploaded to IPFS receive a **CID** (Content Identifier), which is a unique identifier based on the file's content.
+* This **CID** serves as a permanent address for the file, even if a copy of the file is lost on one node, IPFS will find another copy in the network.
+* IPFS ensures that data is immutable: if the file changes, its CID also changes.
 
-En el caso de los NFTs, se usa IPFS para almacenar las imágenes y metadatos de los tokens. Así, cada NFT puede apuntar a un archivo específico en IPFS que contiene su información única.
+In the case of NFTs, IPFS is used to store token images and metadata. Thus, each NFT can point to a specific file in IPFS that contains its unique information.
 
-### **¿Qué es Base URI?**
+### **What is Base URI?**
 
-El **Base URI** es una dirección base que se utiliza en el contrato ERC721 para construir el enlace a los metadatos de cada NFT. En lugar de guardar un enlace completo para cada token, se define un **Base URI** general y luego cada token utiliza su `tokenId` para acceder a sus datos específicos.
+The **Base URI** is a base address used in the ERC721 contract to build the link to each NFT's metadata. Instead of storing a complete link for each token, a general **Base URI** is defined, and then each token uses its `tokenId` to access its specific data.
 
-Por ejemplo, si configuramos el Base URI como:
+For example, if we set the Base URI as:
 
 ```arduino
 ipfs://QmXyZ.../collection/
 ```
 
-Para el token con `tokenId` 1, el enlace completo a sus metadatos será:
+For the token with `tokenId` 1, the complete link to its metadata will be:
 
 ```arduino
 ipfs://QmXyZ.../collection/1
 ```
 
-Este enfoque permite gestionar de forma eficiente los enlaces a los metadatos, haciendo que todos los NFTs de una colección compartan el mismo URI base pero tengan direcciones únicas según su `tokenId`.
+This approach allows efficient management of metadata links, making all NFTs in a collection share the same base URI but have unique addresses based on their `tokenId`.

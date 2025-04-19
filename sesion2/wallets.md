@@ -15,52 +15,52 @@ layout:
 
 # Wallets
 
-Ahora ya tenemos un breve contexto sobre cómo interactuamos con la blockchain a través de claves criptográficas, el siguiente paso natural es hablar sobre las wallets. Estas herramientas juegan un papel importantisimo en la gestión y protección de nuestras criptomonedas y activos digitales, actuando como la interfaz entre usuarios y la blockchain. Pero, ¿qué es exactamente una wallet y cómo funciona?
+Now that we have a brief context about how we interact with the blockchain through cryptographic keys, the next natural step is to talk about wallets. These tools play a very important role in managing and protecting our cryptocurrencies and digital assets, acting as the interface between users and the blockchain. But what exactly is a wallet and how does it work?
 
-### ¿Qué es una Wallet?
+### What is a Wallet?
 
-A pesar de su nombre, una wallet (**billetera digital**) no almacena criptomonedas de la misma manera que una biletera física almacena dinero. En lugar de tener los activos directamente, la wallet almacena la clave privada que te permite acceder a tus criptomonedas en la blockchain. Cada vez que realizas una transacción, tu wallet utiliza esta clave para firmar y autorizar el movimiento de los activos.
+Despite its name, a wallet (**digital wallet**) does not store cryptocurrencies in the same way that a physical wallet stores money. Instead of having the assets directly, the wallet stores the private key that allows you to access your cryptocurrencies on the blockchain. Every time you make a transaction, your wallet uses this key to sign and authorize the movement of assets.
 
-De hecho, las criptomonedas no se "guardan" en la wallet como tal, sino que residen en la blockchain. Lo que hace la wallet es permitirte acceder a esas criptomonedas asociadas a una **clave pública** mediante el uso de la **clave privada** correspondiente. Es decir, la wallet actúa como un control remoto que te permite gestionar tus fondos que están siempre en la blockchain.
+In fact, cryptocurrencies are not "stored" in the wallet as such, but rather reside on the blockchain. What the wallet does is allow you to access those cryptocurrencies associated with a **public key** by using the corresponding **private key**. That is, the wallet acts as a remote control that allows you to manage your funds that are always on the blockchain.
 
-### Tipos de Wallets
+### Types of Wallets
 
-Existen varios tipos de wallets, cada una con diferentes niveles de seguridad y accesibilidad, lo que permite a los usuarios elegir la que mejor se adapte a sus necesidades. Estos son los tipos más comunes:
+There are several types of wallets, each with different levels of security and accessibility, allowing users to choose the one that best suits their needs. These are the most common types:
 
-1. **Wallets de Software:** También conocida como **billeteras calientes**, son aplicaciones que instalas en tu computador o celular. Estas wallets son accesibles y convenientes, permitiéndote realizar transacciones desde cualquier lugar donde tengas acceso a internet. Los ejemplos más populares incluyen **MetaMask**, **Trust Wallet** y **Core**.
-2. **Wallets de Hardware:** También conocida como **billeteras frías**, son dispositivos físicos, como **Ledger** o **Trezor**, que almacenan las claves privadas de forma offline. Estas son consideradas una de las formas más seguras de almacenamiento de criptomonedas porque mantienen tus claves fuera del alcance de internet, lo que las protege de posibles hackeos.
-3. **Wallets de papel:** Es una forma completamente offline de almacenar claves privadas y públicas. Estas son simplemente impresiones físicas que contienen la clave privada y la clave pública en formato alfanumérico o QR. Si se generan correctamente, estas wallets no tienen ninguna conexión digital, lo que las hace inmunes a hackeos en línea.&#x20;
-4. **Wallets custodiales:** Es aquella en la que una tercera parte, generalmente una plataforma de intercambio (exchange) como **Binance** o **Coinbase**, almacena tus claves privadas en tu nombre. Esto significa que confías en dicha entidad para custodiar y proteger tus fondos.
+1. **Software Wallets:** Also known as **hot wallets**, they are applications that you install on your computer or phone. These wallets are accessible and convenient, allowing you to make transactions from anywhere where you have internet access. The most popular examples include **MetaMask**, **Trust Wallet**, and **Core**.
+2. **Hardware Wallets:** Also known as **cold wallets**, they are physical devices, such as **Ledger** or **Trezor**, that store private keys offline. These are considered one of the most secure forms of cryptocurrency storage because they keep your keys out of reach of the internet, protecting them from possible hacks.
+3. **Paper Wallets:** This is a completely offline way to store private and public keys. These are simply physical prints containing the private key and public key in alphanumeric or QR format. If generated correctly, these wallets have no digital connection, making them immune to online hacks.
+4. **Custodial Wallets:** This is one where a third party, generally an exchange platform like **Binance** or **Coinbase**, stores your private keys on your behalf. This means you trust said entity to custody and protect your funds.
 
-### ¿Cómo funcionan las Wallets?
+### How do Wallets Work?
 
-El funcionamiento de una wallet se basa en el uso de **claves criptográficas**. Cuando generas una wallet, se crea un par de **clave privada** y **clave pública**. Como ya explicamos, la clave privada es lo que permite acceder a tus fondos, mientras que la clave pública es como una dirección que puedes compartir para recibir pagos.
+The operation of a wallet is based on the use of **cryptographic keys**. When you generate a wallet, a pair of **private key** and **public key** is created. As we already explained, the private key is what allows access to your funds, while the public key is like an address that you can share to receive payments.
 
-Cada vez que envías criptomonedas, la wallet utiliza la clave privada para **firmar** digitalmente la transacción. Este proceso confirma que eres el propietario de los fondos y autoriza su transferencia. Después de la firma, la transacción es transmitida a la red blockchain donde los **nodos** la validan y la registran en el siguiente bloque.
+Every time you send cryptocurrencies, the wallet uses the private key to **sign** the transaction digitally. This process confirms that you are the owner of the funds and authorizes their transfer. After signing, the transaction is transmitted to the blockchain network where **nodes** validate it and record it in the next block.
 
-En wallets como **MetaMask** y **Core**, las claves privadas y la frase semilla se gestionan localmente en el dispositivo del usuario, lo que significa que tienes control completo sobre tus fondos, pero también recae en ti la responsabilidad de proteger las claves privadas.
+In wallets like **MetaMask** and **Core**, private keys and the seed phrase are managed locally on the user's device, which means you have complete control over your funds, but you also bear the responsibility of protecting the private keys.
 
-### Abriendo tu Wallet de Core
+### Opening your Core Wallet
 
-Core es una plataforma de blockchain desarrollada por **Avalanche**, que permite a los usuarios interactuar con la red Avalanche y otras blockchains compatibles con **EVM** (Ethereum Virtual Machine) de una manera eficiente y segura. Es importante aprendas a cómo obtener y configurar tu wallet de **Core** para que puedas comenzar a interactuar con el ecosistema de Avalanche.
+Core is a blockchain platform developed by **Avalanche**, which allows users to interact with the Avalanche network and other **EVM** (Ethereum Virtual Machine) compatible blockchains in an efficient and secure manner. It is important that you learn how to obtain and configure your **Core** wallet so you can start interacting with the Avalanche ecosystem.
 
-1. **Descarga Core:** Puedes descargar la extensión web o la aplicación oficial de **Core**:
+1. **Download Core:** You can download the web extension or the official **Core** application:
 
 {% embed url="https://chromewebstore.google.com/detail/core-crypto-wallet-nft-ex/agoakfejjabomempkjlepdflaleeobhb" %}
 
 {% embed url="https://core.app/es/?downloadCoreMobile=1" %}
 
-2. **Crear una nueva wallet:** Una vez que hayas instalado la extensión o la aplicación de Core, sigue estos pasos para crear tu wallet:&#x20;
-   * Abre la aplicación o la extensión y selecciona la opción **"Crear nueva wallet"**.
-   * Core generará una **frase semilla** de 24 palabras para ti. Esta frase es esencial para recuperar tu wallet en caso de que pierdas el acceso a tu dispositivo, así que asegúrate de anotarla en un lugar seguro y no compartirla con nadie.
-   * Confirma la frase semilla en el siguiente paso, te pedirá que selecciones algunas palabras en el orden correcto para verificar que la has guardado correctamente.
-3. **Configurar tu wallet:** Después de crear tu wallet, Core te pedirá que configures un nombre y una **contraseña**. Esta contraseña es necesaria para acceder a la wallet en tu dispositivo y realizar transacciones.
-4. **Conectar con Avalanche y otras redes:** Una vez que hayas configurado tu wallet, estarás listo para interactuar con la **blockchain de Avalanche** y otras redes compatibles con **EVM**. Core se conecta automáticamente a la red principal de Avalanche (Avalanche C-Chain), pero también puedes agregar otras redes manualmente.
+2. **Create a new wallet:** Once you have installed the extension or the **Core** application, follow these steps to create your wallet:
+   * Open the application or extension and select the option **"Create new wallet"**.
+   * Core will generate a **seed phrase** of 24 words for you. This phrase is essential for recovering your wallet if you lose access to your device, so make sure to write it down in a safe place and do not share it with anyone.
+   * Confirm the seed phrase in the next step, you will be asked to select some words in the correct order to verify that you have saved it correctly.
+3. **Configure your wallet:** After creating your wallet, Core will ask you to set a **password**. This password is necessary to access your wallet on your device and perform transactions.
+4. **Connect with Avalanche and other networks:** Once you have configured your wallet, you will be ready to interact with the **Avalanche blockchain** and other networks compatible with **EVM**. Core automatically connects to the main Avalanche network (Avalanche C-Chain), but you can also add other networks manually.
 
-### Seguridad en las Wallets
+### Security in Wallets
 
-Uno de los aspectos más importantes a considerar al usar wallets es la **seguridad**. Aquí hay algunos puntos clave para garantizar que tus criptomonedas estén siempre protegidas:
+One of the most important aspects to consider when using wallets is **security**. Here are some key points to ensure that your cryptocurrencies are always protected:
 
-* **Nunca compartas tu clave privada o frase semilla**: La clave privada es la única forma de acceder a tus fondos. Si alguien obtiene tu clave privada o frase semilla, puede robar todas tus criptomonedas sin que tengas posibilidad de recuperarlas.
-* **Utiliza contraseñas fuertes y autentificación de dos factores (2FA)**: Si usas una wallet de software (caliente) o custodial, siempre habilita medidas de seguridad adicionales como 2FA para proteger tu cuenta.
-* **Haz respaldos regulares de tu frase semilla**: Guarda la frase semilla en un lugar seguro, preferiblemente offline, como una hoja de papel o un dispositivo de almacenamiento en frío.
+* **Never share your private key or seed phrase**: The private key is the only way to access your funds. If someone gets your private key or seed phrase, they can steal all your cryptocurrencies without you having a chance to recover them.
+* **Use strong passwords and two-factor authentication (2FA)**: If you use a software wallet (hot) or custodial, always enable additional security measures like 2FA to protect your account.
+* **Regularly back up your seed phrase**: Save the seed phrase in a safe place, preferably offline, like a piece of paper or a cold storage device.

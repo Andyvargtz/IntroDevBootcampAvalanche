@@ -13,17 +13,17 @@ layout:
     visible: true
 ---
 
-# Qué es Blockchain
+# What is Blockchain
 
-Una blockchain es un **registro digital distribuido** donde las **transacciones** se almacenan en **bloques enlazados y cifrados** para asegurar su **seguridad e inmutabilidad**.
+A blockchain is a **distributed digital ledger** where **transactions** are stored in **linked and encrypted blocks** to ensure their **security and immutability**.
 
-Puede ser un poco dificil entenderlo al principio, así de desglosemos aún más esta definición.
+It can be a bit difficult to understand at first, so let's break down this definition further.
 
-* **Registro digital distribuido:** La blockchain funciona como un libro de contabilidad digital que está distribuido entre todos los participantes de la red. Esto significa que cada participante tiene una copia completa del registro, que se actualiza de forma colectiva y automática. Al no haber una autoridad central, se reduce el riesgo de manipulación y aumenta la transparencia.
-* **Transacciones**: Son las acciones registradas en la blockchain. Pueden ser transferencias de criptomonedas, ejecución de contratos inteligentes, votaciones, entre otros. Cada transacción es verificada por los nodos de la red antes de ser añadida a un bloque.
-* **Bloques enlazados y cifrados**: Las transacciones verificadas se agrupan en “bloques”. Cada bloque está protegido mediante técnicas criptográficas y contiene un enlace al bloque anterior, formando así una cadena continua y segura. La criptografía asegura que la información contenida en los bloques no pueda ser alterada sin que se detecte.
-* **Seguridad e inmutabilidad**: Gracias al uso de la criptografía y al modo en que los bloques están enlazados, una vez que una transacción es añadida a la blockchain, no puede ser modificada ni eliminada. Esto hace que el sistema sea altamente seguro y que los registros sean inmutables, o sea, permanentes y no alterables, lo que genera confianza entre los usuarios.
+* **Distributed digital ledger:** The blockchain functions as a digital accounting book that is distributed among all participants in the network. This means that each participant has a complete copy of the ledger, which is updated collectively and automatically. By not having a central authority, the risk of manipulation is reduced and transparency is increased.
+* **Transactions**: These are the actions recorded in the blockchain. They can be cryptocurrency transfers, smart contract executions, votes, among others. Each transaction is verified by the network nodes before being added to a block.
+* **Linked and encrypted blocks**: Verified transactions are grouped into "blocks". Each block is protected through cryptographic techniques and contains a link to the previous block, thus forming a continuous and secure chain. Cryptography ensures that the information contained in the blocks cannot be altered without being detected.
+* **Security and immutability**: Thanks to the use of cryptography and the way blocks are linked, once a transaction is added to the blockchain, it cannot be modified or deleted. This makes the system highly secure and the records immutable, that is, permanent and unalterable, which generates trust among users.
 
 <figure><img src="../.gitbook/assets/loTCUY.gif" alt=""><figcaption></figcaption></figure>
 
-En pocas palabras, una blockchain es un libro digital compartido entre muchas personas donde se guardan transacciones. Estas transacciones se agrupan en bloques que están conectados entre sí de manera segura. Una vez que algo se registra, no se puede cambiar, lo que garantiza su seguridad y permanencia.
+In short, a blockchain is a digital book shared among many people where transactions are stored. These transactions are grouped into blocks that are securely connected to each other. Once something is recorded, it cannot be changed, which guarantees its security and permanence.

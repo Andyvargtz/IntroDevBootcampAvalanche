@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Inmutables
+# Immutables
 

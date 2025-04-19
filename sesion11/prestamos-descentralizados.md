@@ -13,44 +13,44 @@ layout:
     visible: true
 ---
 
-# Prestamos Descentralizados
+# Decentralized Loans
 
-Uno de los usos más populares de las finanzas descentralizadas (DeFi) es el sistema de **préstamos y empréstitos**, que permite a los usuarios pedir o prestar criptoactivos sin intermediarios. En lugar de acudir a una entidad bancaria, en DeFi estos servicios son facilitados por **contratos inteligentes** que ejecutan y gestionan las transacciones automáticamente. Este sistema ha transformado la forma en que las personas acceden al crédito y obtienen ingresos pasivos en el ecosistema blockchain.
+One of the most popular uses of decentralized finance (DeFi) is the **lending and borrowing** system, which allows users to borrow or lend crypto assets without intermediaries. Instead of going to a banking entity, in DeFi these services are facilitated by **smart contracts** that execute and manage transactions automatically. This system has transformed how people access credit and earn passive income in the blockchain ecosystem.
 
-### **¿Cómo Funcionan los Préstamos Descentralizados?**
+### **How Do Decentralized Loans Work?**
 
-Los préstamos en DeFi se basan en contratos inteligentes que **automáticamente aseguran, ejecutan y liquidan las transacciones** entre prestamistas y prestatarios sin necesidad de intermediarios. Los prestatarios depositan **garantías en criptoactivos** (como ETH o DAI) en el contrato inteligente, que retiene estos fondos hasta que el préstamo sea pagado en su totalidad.
+Loans in DeFi are based on smart contracts that **automatically secure, execute, and liquidate transactions** between lenders and borrowers without the need for intermediaries. Borrowers deposit **crypto asset collateral** (such as ETH or DAI) in the smart contract, which holds these funds until the loan is fully repaid.
 
-Este proceso, conocido como **sobrecolateralización**, garantiza que los préstamos sean seguros y evita riesgos de impago. Si el valor de la garantía cae por debajo de un umbral específico, el contrato inteligente puede liquidar automáticamente la garantía para proteger los intereses del prestamista.
+This process, known as **overcollateralization**, ensures that loans are secure and prevents default risks. If the value of the collateral falls below a specific threshold, the smart contract can automatically liquidate the collateral to protect the lender's interests.
 
-### **Protocolos Populares de Préstamos**
+### **Popular Lending Protocols**
 
-Dos de los protocolos más representativos en el espacio DeFi para préstamos y empréstitos son **Compound** y **Aave**. Ambos protocolos permiten a los usuarios tanto prestar sus activos como pedir préstamos, generando un ecosistema de flujo de capital descentralizado.
+Two of the most representative protocols in the DeFi space for lending and borrowing are **Compound** and **Aave**. Both protocols allow users to both lend their assets and borrow, creating a decentralized capital flow ecosystem.
 
-*   **Compound**: Este protocolo permite a los usuarios depositar criptoactivos en pools de liquidez y ganar intereses. Los prestatarios pueden pedir prestado utilizando sus depósitos como garantía. Compound ajusta las tasas de interés de acuerdo con la oferta y la demanda de cada activo en tiempo real.
+*   **Compound**: This protocol allows users to deposit crypto assets in liquidity pools and earn interest. Borrowers can take out loans using their deposits as collateral. Compound adjusts interest rates according to the supply and demand of each asset in real-time.
 
     <figure><img src="../.gitbook/assets/image (3).png" alt="" width="188"><figcaption></figcaption></figure>
-*   **Aave**: Similar a Compound, Aave permite a los usuarios prestar y pedir prestado, pero ofrece características únicas como **préstamos flash** y **tasas de interés flexibles o fijas**. Los préstamos flash permiten a los usuarios tomar prestado sin garantía, siempre que el préstamo se devuelva en la misma transacción, una función ideal para arbitrajes y estrategias de trading avanzadas.
+*   **Aave**: Similar to Compound, Aave allows users to lend and borrow, but offers unique features such as **flash loans** and **flexible or fixed interest rates**. Flash loans allow users to borrow without collateral, as long as the loan is repaid in the same transaction, a feature ideal for arbitrage and advanced trading strategies.
 
     <figure><img src="../.gitbook/assets/image (4).png" alt="" width="188"><figcaption></figcaption></figure>
 
-### **Principios Fundamentales de DeFi**
+### **Fundamental Principles of DeFi**
 
-Los principios fundamentales de DeFi giran en torno a la **transparencia, seguridad y accesibilidad**:
+The fundamental principles of DeFi revolve around **transparency, security, and accessibility**:
 
-* **Descentralización**: DeFi se basa en la premisa de que no debería existir una autoridad central que controle el dinero o los activos. Los contratos inteligentes reemplazan a los intermediarios, y las operaciones se realizan de forma automática y sin permisos.
-* **Transparencia**: Toda transacción realizada en un protocolo DeFi se registra en la blockchain, donde cualquiera puede verificarla. Esto reduce la opacidad que existe en las finanzas tradicionales y fortalece la confianza.
-* **Sin permisos y accesibilidad global**: En el mundo DeFi, cualquier persona con acceso a Internet puede participar, sin importar su ubicación geográfica o estado financiero. Esto hace que DeFi sea accesible para quienes tradicionalmente han estado excluidos del sistema financiero.
-* **Control de los activos**: A diferencia de los bancos, que actúan como custodios de los fondos de los usuarios, en DeFi cada individuo conserva el control total de sus activos mediante el uso de wallets no custodiadas.
+* **Decentralization**: DeFi is based on the premise that there should not be a central authority controlling money or assets. Smart contracts replace intermediaries, and operations are performed automatically and without permission.
+* **Transparency**: Every transaction performed on a DeFi protocol is recorded on the blockchain, where anyone can verify it. This reduces the opacity that exists in traditional finance and strengthens trust.
+* **Permissionless and global accessibility**: In the DeFi world, anyone with internet access can participate, regardless of their geographic location or financial status. This makes DeFi accessible to those who have traditionally been excluded from the financial system.
+* **Asset control**: Unlike banks, which act as custodians of users' funds, in DeFi each individual retains total control of their assets through the use of non-custodial wallets.
 
-### **Oráculos y la Importancia de los Precios en Tiempo Real**
+### **Oracles and the Importance of Real-Time Prices**
 
-Para asegurar la estabilidad de los préstamos y evitar liquidaciones injustas, los protocolos de préstamos DeFi suelen integrar **oráculos de precios** como Chainlink. Estos oráculos proporcionan precios en tiempo real para los criptoactivos que se utilizan como garantía, ayudando a que los contratos inteligentes mantengan las condiciones de los préstamos sin intervención humana.
+To ensure loan stability and prevent unfair liquidations, DeFi lending protocols often integrate **price oracles** like Chainlink. These oracles provide real-time prices for the crypto assets used as collateral, helping smart contracts maintain loan conditions without human intervention.
 
-### **Ventajas de los Préstamos Descentralizados**
+### **Advantages of Decentralized Loans**
 
-Los préstamos descentralizados ofrecen varias ventajas sobre los sistemas tradicionales de crédito:
+Decentralized loans offer several advantages over traditional credit systems:
 
-* **Accesibilidad Global**: Cualquier persona con acceso a Internet puede participar, independientemente de su historial crediticio o ubicación geográfica.
-* **Intereses Pasivos**: Los prestamistas pueden ganar intereses sobre sus criptoactivos sin necesidad de involucrarse en el proceso manualmente.
-* **Control Total**: Los usuarios mantienen el control sobre sus activos y deciden cuánto y cuándo pedir prestado o prestar.
+* **Global Accessibility**: Anyone with internet access can participate, regardless of their credit history or geographic location.
+* **Passive Interest**: Lenders can earn interest on their crypto assets without needing to be involved in the process manually.
+* **Total Control**: Users maintain control over their assets and decide how much and when to borrow or lend.

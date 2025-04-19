@@ -2,5 +2,5 @@
 icon: github
 ---
 
-# Sesión 15: Introducción a Git, Github, Open Source
+# Session 15: Introduction to Git, Github, Open Source
 

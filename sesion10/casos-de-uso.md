@@ -13,48 +13,48 @@ layout:
     visible: true
 ---
 
-# Casos de Uso
+# Use Cases
 
-Los NFTs no solo son obras de arte digital, están encontrando aplicaciones en sectores que enfrentan desafíos importantes, como el registro de propiedad, la verificación de identidad y la transparencia en cadenas de suministro. A continuación, algunos casos de uso que demuestran cómo los NFTs pueden ofrecer soluciones prácticas a problemas del mundo real.
+NFTs are not just digital artworks; they are finding applications in sectors facing significant challenges, such as property registration, identity verification, and supply chain transparency. Below are some use cases that demonstrate how NFTs can offer practical solutions to real-world problems.
 
-### 1. Propiedad de Bienes Raíces
+### 1. Real Estate Ownership
 
-Convertir propiedades físicas en NFTs permite tokenizar el título de propiedad. Al registrar la propiedad en la blockchain, cualquier transacción queda registrada y es transparente, reduciendo la necesidad de intermediarios y agilizando la transferencia de propiedad.
+Converting physical properties into NFTs allows tokenizing the property title. By registering the property on the blockchain, any transaction is recorded and transparent, reducing the need for intermediaries and streamlining property transfers.
 
-* **Problema que resuelven:** Los procesos de compra y venta de bienes raíces son lentos y dependen de intermediarios para verificar títulos, lo cual aumenta costos y complejidad.
-* **Ejemplo:** **RealT** tokeniza bienes raíces residenciales, permitiendo que múltiples personas sean copropietarias de una propiedad, cada una con su NFT.
+* **Problem they solve:** Real estate buying and selling processes are slow and depend on intermediaries to verify titles, which increases costs and complexity.
+* **Example:** **RealT** tokenizes residential real estate, allowing multiple people to be co-owners of a property, each with their NFT.
 
-### 2. Certificación de Documentos Académicos y Profesionales
+### 2. Academic and Professional Certification
 
-Los certificados académicos pueden emitirse como NFTs, almacenándose en una blockchain. Cada título NFT es verificable, permitiendo que los empleadores confirmen la autenticidad de los logros académicos de un candidato, sin necesidad de intermediarios.
+Academic certificates can be issued as NFTs, stored on a blockchain. Each degree NFT is verifiable, allowing employers to confirm the authenticity of a candidate's academic achievements without intermediaries.
 
-* **Problema que resuelven:** La verificación de títulos académicos y certificaciones puede ser costosa y lenta, y se presta para fraudes o falsificaciones.
-* **Ejemplo:** **Sony Global Education** colabora con universidades para almacenar diplomas como NFTs, brindando a estudiantes y empleadores acceso directo a credenciales verificadas.
+* **Problem they solve:** Verification of academic degrees and certifications can be costly and slow, and is prone to fraud or counterfeiting.
+* **Example:** **Sony Global Education** collaborates with universities to store diplomas as NFTs, providing students and employers with direct access to verified credentials.
 
-### 3. Cadena de Suministro y Trazabilidad de Productos
+### 3. Supply Chain and Product Traceability
 
-Crear un NFT para cada producto permite registrar cada etapa de su producción y distribución en la blockchain. Los consumidores pueden escanear el NFT y obtener un historial detallado del producto, garantizando que los artículos son auténticos y se han producido de manera ética.
+Creating an NFT for each product allows recording each stage of its production and distribution on the blockchain. Consumers can scan the NFT and obtain a detailed history of the product, ensuring items are authentic and produced ethically.
 
-* **Problema que resuelven:** La cadena de suministro enfrenta problemas de transparencia y autenticidad. Los consumidores quieren saber el origen y las condiciones de fabricación de los productos.
-* **Ejemplo:** **IBM Food Trust** utiliza NFTs para monitorear el recorrido de alimentos desde la granja hasta la mesa, asegurando la autenticidad y seguridad alimentaria.
+* **Problem they solve:** The supply chain faces transparency and authenticity issues. Consumers want to know the origin and manufacturing conditions of products.
+* **Example:** **IBM Food Trust** uses NFTs to monitor food's journey from farm to table, ensuring authenticity and food safety.
 
-### 4. Derechos de Autor y Regalías en la Industria Creativa
+### 4. Copyright and Royalties in the Creative Industry
 
-Los creadores pueden tokenizar su trabajo en la blockchain, programando contratos inteligentes que reparten automáticamente las regalías cada vez que se vende o usa su contenido. Esto garantiza que los artistas reciban ingresos justos y regulares, reduciendo la dependencia de intermediarios.
+Creators can tokenize their work on the blockchain, programming smart contracts that automatically distribute royalties each time their content is sold or used. This ensures artists receive fair and regular income, reducing dependence on intermediaries.
 
-* **Problema que resuelven:**&#x41;rtistas, músicos y creadores suelen enfrentar dificultades para recibir compensación justa por su trabajo y para controlar cómo se utiliza su contenido.
-* **Ejemplo:** **Audius**, una plataforma de música descentralizada, utiliza NFTs para permitir que los artistas moneticen sus canciones sin depender de intermediarios tradicionales.
+* **Problem they solve:** Artists, musicians, and creators often face difficulties in receiving fair compensation for their work and controlling how their content is used.
+* **Example:** **Audius**, a decentralized music platform, uses NFTs to allow artists to monetize their songs without depending on traditional intermediaries.
 
-### 5. Identidad Digital y Control de Datos Personales
+### 5. Digital Identity and Personal Data Control
 
-Los NFTs pueden representar identidades digitales verificables y controladas por el usuario, permitiendo que las personas compartan sus datos de forma segura y solo cuando lo deseen. Esto otorga mayor control sobre la información personal y reduce el riesgo de robo de identidad.
+NFTs can represent verifiable and user-controlled digital identities, allowing people to share their data securely and only when desired. This provides greater control over personal information and reduces the risk of identity theft.
 
-* **Problema que resuelven:** La verificación de identidad y la protección de datos personales en línea es un desafío en la era digital, con riesgos de robo de identidad y control limitado sobre los datos.
-* **Ejemplo:** **Civic** ofrece una plataforma de verificación de identidad mediante NFTs que permite a los usuarios verificar su identidad de forma segura y privada.
+* **Problem they solve:** Identity verification and personal data protection online is a challenge in the digital age, with risks of identity theft and limited control over data.
+* **Example:** **Civic** offers an identity verification platform using NFTs that allows users to verify their identity securely and privately.
 
-### 6. Recaudación de Fondos y Beneficios en Comunidades
+### 6. Fundraising and Community Benefits
 
-Al crear NFTs que representen membresías o tokens de participación, estas organizaciones pueden dar beneficios exclusivos a los donantes y permitirles verificar en tiempo real cómo se utilizan los fondos recaudados, incentivando la confianza y el apoyo continuo.
+By creating NFTs that represent memberships or participation tokens, these organizations can provide exclusive benefits to donors and allow them to verify in real-time how the raised funds are used, encouraging trust and continued support.
 
-* **Problema que resuelven:** Las organizaciones que dependen de donaciones o membresías a menudo tienen dificultades para recompensar a sus seguidores o demostrar transparencia en el uso de fondos.
-* **Ejemplo:** Algunas iniciativas ambientales usan NFTs para representar contribuciones a proyectos de carbono, permitiendo que los donantes rastreen el impacto de su aporte en la mitigación del cambio climático.
+* **Problem they solve:** Organizations relying on donations or memberships often struggle to reward their followers or demonstrate transparency in fund usage.
+* **Example:** Some environmental initiatives use NFTs to represent contributions to carbon projects, allowing donors to track the impact of their contribution on climate change mitigation.

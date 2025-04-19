@@ -15,84 +15,84 @@ layout:
 
 # DelegateCall
 
-El método `delegatecall` en Solidity es como permitir que alguien use tu identidad para realizar acciones en tu nombre. Básicamente, ejecuta el código de otro contrato, pero utilizando el contexto de tu propio contrato, lo que significa que puede cambiar el estado y las variables de tu contrato como si fuera propio. Es una herramienta poderosa, pero también arriesgada si no se usa correctamente, ya que da control sobre tu contrato a código externo.
+The `delegatecall` method in Solidity is like allowing someone to use your identity to perform actions on your behalf. Basically, it executes another contract's code but using your own contract's context, which means it can change your contract's state and variables as if they were its own. It's a powerful tool, but also risky if not used correctly, as it gives control over your contract to external code.
 
-### ¿Qué es `delegatecall`?
+### What is `delegatecall`?
 
-`delegatecall` es una función de bajo nivel que permite que un contrato ejecute el código de otro contrato como si fuera suyo. Esto significa que las variables de estado, balances de ether y demás propiedades del contrato que realiza el `delegatecall` se ven afectadas, no las del contrato que contiene el código.
+`delegatecall` is a low-level function that allows a contract to execute another contract's code as if it were its own. This means that the state variables, ether balances, and other properties of the contract making the `delegatecall` are affected, not those of the contract containing the code.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-(bool exito, bytes memory data) = direccion.delegatecall(abi.encodeWithSignature("nombreFuncion(parametros)"));
+(bool success, bytes memory data) = address.delegatecall(abi.encodeWithSignature("functionName(parameters)"));
 ```
 
-* `exito` es un booleano que indica si la llamada fue exitosa.
-* `data` contiene los datos devueltos por la función llamada.
-* `direccion` es la dirección del contrato al que estás llamando.
-* `abi.encodeWithSignature` codifica la firma de la función y sus parámetros.
+* `success` is a boolean indicating if the call was successful.
+* `data` contains the data returned by the called function.
+* `address` is the address of the contract you're calling.
+* `abi.encodeWithSignature` encodes the function signature and its parameters.
 
-### ¿Cómo funciona `delegatecall`?
+### How does `delegatecall` work?
 
-Imaginemos que tienes dos contratos, un contrato principal (`Principal`) y un contrato de lógica (`Logica`). El contrato `Principal` delega la ejecución de ciertas funciones al contrato `Logica`. Esto es útil cuando quieres actualizar la lógica de tu contrato sin cambiar su estado, como si estuvieras cambiando el “cerebro” de tu contrato pero manteniendo el mismo cuerpo.
+Let's imagine you have two contracts, a main contract (`Main`) and a logic contract (`Logic`). The `Main` contract delegates the execution of certain functions to the `Logic` contract. This is useful when you want to update your contract's logic without changing its state, like changing your contract's "brain" while keeping the same body.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-// Contrato de lógica que contiene las funciones que queremos ejecutar
-contract Logica {
-    uint public numero;
+// Logic contract containing the functions we want to execute
+contract Logic {
+    uint public number;
 
-    // Función para establecer el número, pero utilizando el almacenamiento del contrato que llama
-    function establecerNumero(uint _numero) public {
-        numero = _numero;
+    // Function to set the number, but using the storage of the calling contract
+    function setNumber(uint _number) public {
+        number = _number;
     }
 }
 
-// Contrato principal que usa `delegatecall` para ejecutar funciones del contrato de lógica
-contract Principal {
-    uint public numero;
+// Main contract that uses `delegatecall` to execute functions from the logic contract
+contract Main {
+    uint public number;
 
-    // Dirección del contrato de lógica
-    address public direccionLogica;
+    // Address of the logic contract
+    address public logicAddress;
 
-    // Constructor para inicializar la dirección del contrato de lógica
-    constructor(address _direccionLogica) {
-        direccionLogica = _direccionLogica;
+    // Constructor to initialize the logic contract address
+    constructor(address _logicAddress) {
+        logicAddress = _logicAddress;
     }
 
-    // Función que usa `delegatecall` para llamar a `establecerNumero` en el contrato de lógica
-    function ejecutarDelegatecall(uint _numero) public {
-        (bool exito, ) = direccionLogica.delegatecall(
-            abi.encodeWithSignature("establecerNumero(uint256)", _numero)
+    // Function that uses `delegatecall` to call `setNumber` in the logic contract
+    function executeDelegatecall(uint _number) public {
+        (bool success, ) = logicAddress.delegatecall(
+            abi.encodeWithSignature("setNumber(uint256)", _number)
         );
-        require(exito, "Delegatecall fallida");
+        require(success, "Delegatecall failed");
     }
 }
 ```
 
-1. **Contrato `Logica`**: Contiene una función `establecerNumero` que modifica el valor de `numero`.
-2. **Contrato `Principal`**: Usa `delegatecall` para llamar a la función `establecerNumero` en el contrato `Logica`.
-3. **Ejecución en el contexto del contrato `Principal`**: Aunque `establecerNumero` es una función del contrato `Logica`, `delegatecall` hace que la variable `numero` que se modifica sea la del contrato `Principal`, no la del contrato `Logica`.
+1. **`Logic` Contract**: Contains a `setNumber` function that modifies the value of `number`.
+2. **`Main` Contract**: Uses `delegatecall` to call the `setNumber` function in the `Logic` contract.
+3. **Execution in the `Main` contract's context**: Although `setNumber` is a function of the `Logic` contract, `delegatecall` makes the `number` variable that gets modified be the one in the `Main` contract, not the one in the `Logic` contract.
 
-### ¿Por qué usar `delegatecall`?
+### Why use `delegatecall`?
 
-El `delegatecall` es extremadamente útil cuando quieres actualizar la lógica de tu contrato sin cambiar su dirección ni su estado. Esto es muy común en patrones de diseño como **proxy patterns**, donde un contrato proxy delega todas las llamadas a otro contrato que contiene la lógica. Si necesitas cambiar la lógica, simplemente apuntas el proxy a un nuevo contrato de lógica, y listo.
+`delegatecall` is extremely useful when you want to update your contract's logic without changing its address or state. This is very common in design patterns like **proxy patterns**, where a proxy contract delegates all calls to another contract that contains the logic. If you need to change the logic, you simply point the proxy to a new logic contract, and that's it.
 
-### Ventajas y desventajas de `delegatecall`
+### Advantages and disadvantages of `delegatecall`
 
-**Ventajas:**
+**Advantages:**
 
-1. **Actualización de lógica**: Puedes cambiar la lógica del contrato sin cambiar su dirección o estado.
-2. **Reutilización de código**: Usa el mismo contrato de lógica para varios contratos, reduciendo la duplicación de código.
-3. **Mantenimiento simplificado**: Si necesitas arreglar o mejorar la lógica, solo necesitas actualizar el contrato de lógica, no el principal.
+1. **Logic updates**: You can change the contract's logic without changing its address or state.
+2. **Code reuse**: Use the same logic contract for multiple contracts, reducing code duplication.
+3. **Simplified maintenance**: If you need to fix or improve the logic, you only need to update the logic contract, not the main one.
 
-**Desventajas:**
+**Disadvantages:**
 
-1. **Riesgo de seguridad**: Si el contrato de lógica tiene fallos de seguridad, estos se trasladan al contrato principal. Además, si alguien puede cambiar la dirección del contrato de lógica en el principal, puede apuntar a un contrato malicioso.
-2. **Confusión de almacenamiento**: `delegatecall` usa el almacenamiento del contrato principal, lo que puede llevar a errores si no tienes cuidado con la organización de las variables.
+1. **Security risk**: If the logic contract has security flaws, these are transferred to the main contract. Also, if someone can change the logic contract's address in the main contract, they can point to a malicious contract.
+2. **Storage confusion**: `delegatecall` uses the main contract's storage, which can lead to errors if you're not careful with variable organization.
 
-### Consideraciones de seguridad
+### Security considerations
 
-Cuando uses `delegatecall`, asegúrate de que el contrato al que estás llamando sea de confianza y que su código esté bien auditado. Cambiar la dirección del contrato de lógica en el contrato principal debe estar muy bien protegido, ya que de lo contrario alguien podría redirigir todas las llamadas a un contrato malicioso.
+When using `delegatecall`, make sure that the contract you're calling is trustworthy and its code is well-audited. Changing the logic contract's address in the main contract must be very well protected, as otherwise someone could redirect all calls to a malicious contract.

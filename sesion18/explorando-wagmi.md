@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Explorando Wagmi
+# Exploring Wagmi
 

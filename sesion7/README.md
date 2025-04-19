@@ -2,5 +2,5 @@
 icon: comment-code
 ---
 
-# Sesión 7: Explorando Solidity III
+# Session 7: Exploring Solidity III
 

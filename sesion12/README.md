@@ -2,5 +2,5 @@
 icon: house-circle-check
 ---
 
-# Sesión 12: Tokenización de Activos del Mundo Real
+# Session 12: Real World Asset Tokenization
 

@@ -13,56 +13,56 @@ layout:
     visible: true
 ---
 
-# Función Payable
+# Payable Function
 
-Las **funciones `payable`** en Solidity son las puertas de entrada para que un contrato reciba Ether. Imagina que tienes una hucha digital y quieres permitir que cualquiera pueda meterle monedas (Ether). Bueno, con una función `payable` haces justo eso, le das a tu contrato la capacidad de aceptar pagos.
+**`payable` functions** in Solidity are the entry points for a contract to receive Ether. Imagine you have a digital piggy bank and want to allow anyone to put coins (Ether) in it. Well, with a `payable` function you do just that, you give your contract the ability to accept payments.
 
-### ¿Qué es una función `payable`?
+### What is a `payable` function?
 
-Una función `payable` es una función especial en Solidity que permite al contrato recibir Ether. Sin este modificador, cualquier intento de enviar Ether a la función fallará, así que es esencial para cualquier operación que involucre pagos.
+A `payable` function is a special function in Solidity that allows the contract to receive Ether. Without this modifier, any attempt to send Ether to the function will fail, so it's essential for any operation involving payments.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-function recibirPago() public payable {
-    // Código de la función que puede recibir Ether
+function receivePayment() public payable {
+    // Function code that can receive Ether
 }
 ```
 
-Aquí, la función `recibirPago` puede aceptar Ether porque lleva el modificador `payable`. Puedes llamarla enviando Ether junto con la transacción, y el contrato almacenará esos fondos.
+Here, the `receivePayment` function can accept Ether because it has the `payable` modifier. You can call it by sending Ether along with the transaction, and the contract will store those funds.
 
-Cada vez que se llama a una función `payable`, el Ether enviado se almacena en el contrato, y el saldo del contrato aumenta en consecuencia. Esto es útil para aplicaciones como contratos de crowdfunding, tiendas descentralizadas o cualquier caso donde quieras aceptar pagos en tu contrato.
+Every time a `payable` function is called, the sent Ether is stored in the contract, and the contract's balance increases accordingly. This is useful for applications like crowdfunding contracts, decentralized stores, or any case where you want to accept payments in your contract.
 
-### **Ejemplo práctico: Donaciones a un contrato:**
+### **Practical example: Donations to a contract:**
 
 ```solidity
-contract Donaciones {
-    // Evento para registrar las donaciones recibidas
-    event DonacionRecibida(address donante, uint cantidad);
+contract Donations {
+    // Event to record received donations
+    event DonationReceived(address donor, uint amount);
 
-    // Función payable para recibir donaciones
-    function donar() public payable {
-        require(msg.value > 0, "Debe enviar algo de Ether");
-        emit DonacionRecibida(msg.sender, msg.value);
+    // Payable function to receive donations
+    function donate() public payable {
+        require(msg.value > 0, "You must send some Ether");
+        emit DonationReceived(msg.sender, msg.value);
     }
 
-    // Función para consultar el balance del contrato
-    function consultarBalance() public view returns (uint) {
+    // Function to check the contract's balance
+    function checkBalance() public view returns (uint) {
         return address(this).balance;
     }
 }
 ```
 
-¿Cómo usar este contrato?
+How to use this contract?
 
-1. **Donar Ether:** Puedes llamar a la función `donar` enviando Ether junto con la transacción. Por ejemplo, si donas 1 ETH, el contrato almacenará ese valor y emitirá un evento `DonacionRecibida` con los detalles de la donación.
-2. **Consultar el balance:** La función `consultarBalance` devuelve el saldo total del contrato. Así puedes saber cuánto ha recaudado en donaciones.
+1. **Donate Ether:** You can call the `donate` function by sending Ether along with the transaction. For example, if you donate 1 ETH, the contract will store that value and emit a `DonationReceived` event with the donation details.
+2. **Check the balance:** The `checkBalance` function returns the total balance of the contract. This way you can know how much it has raised in donations.
 
-### Cosas a tener en cuenta con `payable`:
+### Things to keep in mind with `payable`:
 
-1. **No todas las funciones aceptan Ether:** Si olvidas poner el modificador `payable`, tu función no podrá recibir Ether, y la transacción fallará.
-2. **Uso de `msg.value`:** Dentro de una función `payable`, `msg.value` representa la cantidad de Ether enviada a la función. Es útil para realizar cálculos o condiciones basadas en el monto recibido.
-3. **Enviar Ether a otros:** Las funciones `payable` también te permiten enviar Ether a otras direcciones desde el contrato usando `address(beneficiario).transfer(cantidad)`. Eso sí, cuidado con los ataques de reentrancia cuando envíes fondos.
+1. **Not all functions accept Ether:** If you forget to add the `payable` modifier, your function won't be able to receive Ether, and the transaction will fail.
+2. **Use of `msg.value`:** Inside a `payable` function, `msg.value` represents the amount of Ether sent to the function. It's useful for performing calculations or conditions based on the received amount.
+3. **Sending Ether to others:** `payable` functions also allow you to send Ether to other addresses from the contract using `address(beneficiary).transfer(amount)`. Eso sí, cuidado con los ataques de reentrancia cuando envíes fondos.
 
 ### Ejemplo avanzado: Tienda Descentralizada
 

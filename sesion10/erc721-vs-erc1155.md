@@ -15,31 +15,29 @@ layout:
 
 # ERC721 vs ERC1155
 
-Los estándares **ERC721** y **ERC1155** son protocolos en Ethereum para crear y gestionar NFTs, pero cada uno ofrece características específicas para diferentes tipos de activos y necesidades. La diferencia principal entre ellos está en cómo manejan la propiedad y la transferibilidad de los tokens no fungibles.
+The **ERC721** and **ERC1155** standards are protocols in Ethereum for creating and managing NFTs, but each offers specific features for different types of assets and needs. The main difference between them lies in how they handle ownership and transferability of non-fungible tokens.
 
 ### ERC721
 
-Fue el primer estándar ampliamente adoptado para NFTs. Cada token ERC721 es único e indivisible, lo cual lo convierte en una opción ideal para activos digitales como obras de arte o coleccionables, donde cada unidad debe mantenerse individual e irrepetible. Cada ERC721 tiene un identificador único (token ID) que lo distingue de cualquier otro token dentro del mismo contrato.
+It was the first widely adopted standard for NFTs. Each ERC721 token is unique and indivisible, making it an ideal choice for digital assets like artwork or collectibles, where each unit must remain individual and unrepeatable. Each ERC721 has a unique identifier (token ID) that distinguishes it from any other token within the same contract.
 
-* **Ejemplo de uso:** Los **CryptoKitties**, una de las primeras aplicaciones populares de NFTs, utilizan el estándar ERC721, donde cada gato digital tiene características únicas y es completamente distinto de los demás.
-* **Limitaciones:** Debido a su diseño, el ERC721 requiere una transacción para cada token individual que se quiera transferir, lo que puede resultar costoso y lento si se manejan muchos NFTs a la vez.
+* **Usage example:** **CryptoKitties**, one of the first popular NFT applications, uses the ERC721 standard, where each digital cat has unique characteristics and is completely distinct from others.
+* **Limitations:** Due to its design, ERC721 requires one transaction for each individual token to be transferred, which can be costly and slow when handling many NFTs at once.
 
 ### ERC1155
 
-**ERC1155** es una evolución del estándar ERC721 que permite gestionar tanto tokens fungibles como no fungibles en un solo contrato. A diferencia del ERC721, el ERC1155 permite transferir varios tokens en una única transacción, lo cual resulta en una mayor eficiencia y menores costos. Además, permite que un mismo contrato contenga varios tipos de activos, ideal para videojuegos o aplicaciones con múltiples elementos.
+**ERC1155** is an evolution of the ERC721 standard that allows managing both fungible and non-fungible tokens in a single contract. Unlike ERC721, ERC1155 allows transferring multiple tokens in a single transaction, resulting in greater efficiency and lower costs. Additionally, it allows a single contract to contain multiple types of assets, ideal for video games or applications with multiple elements.
 
-* **Ejemplo de uso:** En **Gods Unchained**, un juego de cartas digital, se utiliza ERC1155 para permitir a los jugadores poseer múltiples cartas en una sola transacción, ahorrando en costos de gas y tiempo.
-* **Ventaja clave:** ERC1155 puede manejar tanto activos únicos (no fungibles) como activos intercambiables (fungibles), permitiendo, por ejemplo, que en un juego existan armas únicas (NFTs) y monedas intercambiables (tokens fungibles) bajo el mismo contrato.
+* **Usage example:** In **Gods Unchained**, a digital card game, ERC1155 is used to allow players to own multiple cards in a single transaction, saving on gas costs and time.
+* **Key advantage:** ERC1155 can handle both unique assets (non-fungible) and interchangeable assets (fungible), allowing, for example, a game to have unique weapons (NFTs) and interchangeable coins (fungible tokens) under the same contract.
 
-
-
-| Característica   | ERC721                                  | ERC1155                                     |
+| Feature         | ERC721                                  | ERC1155                                     |
 | ---------------- | --------------------------------------- | ------------------------------------------- |
-| **Unicidad**     | Solo NFTs únicos                        | NFTs y tokens fungibles                     |
-| **Eficiencia**   | Una transacción por token               | Varias transferencias en una transacción    |
-| **Aplicaciones** | Arte digital, coleccionables exclusivos | Videojuegos, sistemas con múltiples activos |
-| **Costo de Gas** | Más alto en grandes cantidades          | Más bajo, ideal para múltiples tokens       |
+| **Uniqueness**   | Only unique NFTs                        | NFTs and fungible tokens                     |
+| **Efficiency**   | One transaction per token               | Multiple transfers in one transaction       |
+| **Applications** | Digital art, exclusive collectibles     | Video games, systems with multiple assets   |
+| **Gas Cost**     | Higher in large quantities              | Lower, ideal for multiple tokens            |
 
-Ambos estándares tienen fortalezas particulares. **ERC721** es perfecto para aquellos casos donde cada token debe ser único y completamente individual. **ERC1155**, en cambio, es ideal para aplicaciones que requieren manejar varios tipos de activos en un solo contrato y con menor consumo de gas, como en los videojuegos o en plataformas de comercio de múltiples ítems.
+Both standards have particular strengths. **ERC721** is perfect for cases where each token must be unique and completely individual. **ERC1155**, on the other hand, is ideal for applications that require handling multiple types of assets in a single contract and with lower gas consumption, such as in video games or platforms for trading multiple items.
 
-Ambos estándares son componentes clave en el ecosistema de los NFTs, y cada uno se adapta mejor según la necesidad de unicidad o eficiencia en la administración de activos.
+Both standards are key components in the NFT ecosystem, and each adapts better depending on the need for uniqueness or efficiency in asset management.

@@ -15,25 +15,42 @@ layout:
 
 # Slippage Tolerance
 
-Cuando se realizan intercambios en Uniswap o en otros AMM, uno de los factores importantes a considerar es la **tolerancia al deslizamiento** (slippage tolerance). Esta es la variación en el precio aceptable para el usuario entre el momento en que se inicia la transacción y el momento en que se ejecuta. Debido a la naturaleza dinámica de los AMM, donde los precios cambian continuamente con cada transacción, la **tolerancia al deslizamiento** permite definir el máximo de diferencia de precio que un usuario está dispuesto a aceptar.
+**Slippage Tolerance** is a crucial concept in decentralized exchanges (DEX) and automated market makers (AMM). It refers to the maximum percentage difference between the expected price of a trade and the actual execution price that a user is willing to accept. Understanding and setting an appropriate slippage tolerance is essential for successful trading in the DeFi space.
 
-### **¿Por Qué Ocurre el Slippage?**
+### **What is Slippage?**
 
-En un AMM, cada intercambio afecta la relación de los tokens en el pool, lo que puede modificar el precio de forma continua. Si un usuario realiza un intercambio de un token muy volátil o un intercambio grande en comparación con el tamaño del pool, es probable que experimente un cambio de precio, o **slippage**. Cuanto más grande sea el intercambio en relación con el pool de liquidez, mayor será el impacto en el precio.
+Slippage occurs when the execution price of a trade differs from the expected price at the time the trade was initiated. This difference can be due to various factors, including market volatility, liquidity depth, and the size of the trade relative to the available liquidity in the pool.
 
-Por ejemplo, si alguien quiere intercambiar **ETH por DAI** en Uniswap, cada ETH adicional que se intercambie reducirá la cantidad de DAI en el pool y aumentará su precio, haciendo que el valor recibido disminuya para el usuario.
+### **How Slippage Tolerance Works**
 
-### **¿Cómo Funciona la Tolerancia al Deslizamiento?**
+When you place a trade on a DEX, you can set a slippage tolerance percentage. This percentage represents the maximum amount by which the execution price can differ from the expected price before the trade is automatically canceled. For example, if you set a slippage tolerance of 1%, and the price moves more than 1% between the time you submit the trade and when it is executed, the trade will not go through.
 
-La **tolerancia al deslizamiento** se define como un porcentaje de variación en el precio. Si por ejemplo un usuario establece una tolerancia del 1%, acepta recibir hasta un 1% menos de tokens de lo que el precio actual indica. Si el precio cambia más de ese 1% durante la transacción, el intercambio se cancela automáticamente para proteger al usuario de recibir menos de lo esperado. Este ajuste es fundamental en mercados con alta volatilidad o en intercambios grandes.
+### **Setting Slippage Tolerance**
 
-### **Ejemplo Práctico en Uniswap**
+Setting the right slippage tolerance is a balance between ensuring your trade executes and protecting yourself from unfavorable price movements. Here are some considerations:
 
-Imagina que un usuario desea intercambiar 10 AVAX por USDC, y la tasa actual es de 10 USDC por AVAX. Si establece una tolerancia al deslizamiento del 0.5%, eso significa que acepta recibir un mínimo de 99.5 USDC. Sin embargo, si durante la ejecución del intercambio el precio cae y la cantidad de USDC que recibiría baja a 99 USDC, el intercambio no se completará debido a que excede la tolerancia al deslizamiento establecida.
+* **Low Slippage Tolerance (e.g., 0.1% - 0.5%)**: Suitable for highly liquid pairs with stable prices. This setting minimizes the risk of significant price changes but may result in failed trades if the market is volatile.
+* **Medium Slippage Tolerance (e.g., 1% - 2%)**: A common setting for most trades, offering a good balance between execution success and price protection.
+* **High Slippage Tolerance (e.g., 3% or more)**: Used for less liquid pairs or during periods of high volatility. This increases the chance of trade execution but also the risk of receiving a less favorable price.
 
-### **La Importancia de Ajustar la Tolerancia Correctamente**
+### **Factors Affecting Slippage**
 
-Establecer la **tolerancia al deslizamiento** es un balance entre evitar pérdidas y asegurar que la transacción se ejecute:
+Several factors can influence the amount of slippage you experience:
 
-* **Tolerancia Baja**: Protege al usuario de recibir menos de lo deseado, pero si la volatilidad es alta, la transacción podría no ejecutarse.
-* **Tolerancia Alta**: Aumenta la probabilidad de que la transacción se complete, aunque con el riesgo de recibir significativamente menos de lo estimado.
+* **Liquidity Depth**: Pools with more liquidity generally have lower slippage because larger trades can be executed without significantly affecting the price.
+* **Trade Size**: Larger trades relative to the pool's liquidity will cause more slippage.
+* **Market Volatility**: High volatility can lead to rapid price changes, increasing the likelihood of slippage.
+* **Network Congestion**: During times of high network activity, transactions may take longer to process, increasing the chance of price changes between submission and execution.
+
+### **Example of Slippage**
+
+Suppose you want to swap 1 ETH for USDC on a DEX. The current price is 1 ETH = 3,000 USDC, and you set a slippage tolerance of 1%. If the price moves to 1 ETH = 2,970 USDC (a 1% decrease) by the time your trade executes, it will still go through. However, if the price drops to 1 ETH = 2,940 USDC (a 2% decrease), your trade would be canceled if your slippage tolerance is set to 1%.
+
+### **Managing Slippage in Your Trades**
+
+To minimize slippage and improve your trading experience, consider the following tips:
+
+* **Use Limit Orders**: Some DEXs offer limit orders, allowing you to set a specific price at which you want your trade to execute.
+* **Split Large Trades**: For large trades, consider splitting them into smaller orders to reduce the impact on the market price.
+* **Monitor Market Conditions**: Be aware of current market conditions and adjust your slippage tolerance accordingly.
+* **Choose High-Liquidity Pools**: Trading in pools with higher liquidity can help reduce slippage.

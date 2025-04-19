@@ -13,67 +13,67 @@ layout:
     visible: true
 ---
 
-# &#x20;Automated Market Makers (AMM)
+# Automated Market Makers (AMM)
 
-Para entender cómo llegamos a los **Automated Market Makers (AMM)** y los **pools de liquidez** en las finanzas descentralizadas, es útil comenzar con un paralelo que todos conocemos, los mercados tradicionales de acciones y divisas, donde la oferta y la demanda determinan el precio de cada activo.
+To understand how we arrived at **Automated Market Makers (AMM)** and **liquidity pools** in decentralized finance, it's helpful to start with a parallel we all know, traditional stock and currency markets, where supply and demand determine the price of each asset.
 
-### Una breve historia
+### A Brief History
 
-En un lugar aislado y escondido entre las montañas, existía una pequeña aldea llamada **Aldea de las Colinas**. Esta aldea era famosa porque sus habitantes, los **Hidros** y los **Orios**, usaban monedas distintas, los Hidros empleaban **hidromonedas** y los Orios, **oriomonedas**. Aunque ambos vivían en paz, las monedas no eran compatibles y el intercambio entre ambos grupos era un desafío que complicaba la vida de la aldea. Por años los aldeanos dependieron de un sistema de trueque informal, donde debían encontrar a alguien que necesitara justo lo que ofrecían en el momento adecuado.
+In an isolated and hidden place among the mountains, there was a small village called **Hills Village**. This village was famous because its inhabitants, the **Hydros** and the **Orios**, used different coins, the Hydros used **hydrocoins** and the Orios, **oriocoins**. Although both lived in peace, the coins were not compatible and exchange between the two groups was a challenge that complicated village life. For years, the villagers relied on an informal barter system, where they had to find someone who needed exactly what they offered at the right time.
 
-**La Llegada del Puente del Mercado**
+**The Arrival of the Market Bridge**
 
-Un día, un comerciante viajero llamado **Arturo** llegó a la aldea y notó las dificultades de los aldeanos para intercambiar hidromonedas y oriomonedas. Decidido a ayudar, Arturo propuso construir un **puente del mercado** entre ambas partes de la aldea, donde los aldeanos pudieran encontrarse y comerciar con facilidad. El puente permitiría a los aldeanos realizar intercambios sin tener que buscar una contraparte exacta, utilizando un libro de órdenes para dejar constancia de sus ofertas y demandas.
+One day, a traveling merchant named **Arthur** arrived in the village and noticed the villagers' difficulties in exchanging hydrocoins and oriocoins. Determined to help, Arthur proposed building a **market bridge** between both parts of the village, where villagers could meet and trade easily. The bridge would allow villagers to make exchanges without having to find an exact counterpart, using an order book to record their offers and demands.
 
-Sin embargo, Arturo pronto se dio cuenta de que este sistema tenía sus problemas: encontrar coincidencias en el libro de órdenes no era fácil, y las largas filas y los retrasos hacían que los aldeanos se impacientaran. El sistema de trueque era lento y, aunque mejor que antes, la aldea todavía enfrentaba muchas limitaciones.
+However, Arthur soon realized that this system had its problems: finding matches in the order book wasn't easy, and long lines and delays made the villagers impatient. The barter system was slow and, although better than before, the village still faced many limitations.
 
-**La Innovación del Pozo de Liquidez**
+**The Innovation of the Liquidity Pool**
 
-Inspirado por el problema, Arturo tuvo una idea revolucionaria, ¿qué pasaría si él mismo creara un "pozo" donde los aldeanos pudieran **depositar sus hidromonedas y oriomonedas** para que cualquiera pudiera realizar intercambios sin necesidad de coincidencias exactas? Este sería el **Pozo de Liquidez**. Arturo explicó su idea a los aldeanos, ellos podrían dejar sus monedas en el pozo y a cambio recibirían un porcentaje de las tarifas generadas cada vez que alguien usara el pozo para hacer un intercambio.
+Inspired by the problem, Arthur had a revolutionary idea, what if he created a "pool" where villagers could **deposit their hydrocoins and oriocoins** so that anyone could make exchanges without needing exact matches? This would be the **Liquidity Pool**. Arthur explained his idea to the villagers, they could leave their coins in the pool and in return receive a percentage of the fees generated each time someone used the pool to make an exchange.
 
-Este sistema resultó ser un éxito. Los aldeanos comenzaron a depositar sus monedas en el pozo, y cada vez que alguien necesitaba intercambiar hidromonedas por oriomonedas, simplemente tomaba lo necesario, pagando una pequeña tarifa que se distribuía entre los proveedores de liquidez. Ahora, cualquier aldeano podía cambiar sus monedas sin esperar una coincidencia perfecta, y el puente del mercado se transformó en un lugar dinámico y eficiente.
+This system turned out to be a success. The villagers began depositing their coins in the pool, and whenever someone needed to exchange hydrocoins for oriocoins, they simply took what they needed, paying a small fee that was distributed among the liquidity providers. Now, any villager could change their coins without waiting for a perfect match, and the market bridge transformed into a dynamic and efficient place.
 
-**El Problema de la Escasez**
+**The Scarcity Problem**
 
-Todo parecía funcionar bien hasta que un día surgió un problema: **los hidros** empezaron a cruzar más al territorio de los Orios para intercambiar, y el pozo de hidromonedas comenzó a agotarse rápidamente. Los aldeanos se dieron cuenta de que, si una moneda escaseaba, los intercambios se volvían muy caros y el equilibrio se rompía. Arturo entendió que necesitaba un mecanismo que mantuviera el pozo balanceado automáticamente sin agotar una de las monedas.
+Everything seemed to work well until one day a problem arose: **the Hydros** started crossing more into the Orios' territory to exchange, and the hydrocoin pool began to deplete quickly. The villagers realized that if one coin became scarce, exchanges became very expensive and the balance was broken. Arthur understood that he needed a mechanism that would keep the pool automatically balanced without depleting one of the coins.
 
-Fue entonces cuando se le ocurrió un enfoque basado en un **producto constante** en lugar de una suma constante. En este sistema, conocido como **x \* y = k**, la cantidad de hidromonedas y oriomonedas siempre se multiplicaba para mantener el balance. Esto significaba que a medida que una moneda se volvía escasa, su precio aumentaba, incentivando a los aldeanos a hacer intercambios en sentido opuesto y manteniendo el equilibrio de ambos lados del pozo.
+It was then that he came up with an approach based on a **constant product** instead of a constant sum. In this system, known as **x * y = k**, the amount of hydrocoins and oriocoins was always multiplied to maintain balance. This meant that as one coin became scarce, its price increased, incentivizing villagers to make exchanges in the opposite direction and maintaining the balance on both sides of the pool.
 
-**La Aparición de los Proveedores de Liquidez**
+**The Emergence of Liquidity Providers**
 
-Con el éxito del sistema de Arturo, más aldeanos querían depositar sus monedas en el pozo y ganar una parte de las tarifas. Arturo empezó a emitir **certificados de participación** a cada proveedor de liquidez, de modo que cada uno tuviera una proporción del pozo acorde con su contribución. Ahora, los aldeanos no solo intercambiaban monedas con facilidad, sino que también podían ganar un ingreso pasivo con sus depósitos.
+With the success of Arthur's system, more villagers wanted to deposit their coins in the pool and earn a share of the fees. Arthur began issuing **participation certificates** to each liquidity provider, so that each one had a proportion of the pool according to their contribution. Now, villagers not only exchanged coins easily, but could also earn passive income from their deposits.
 
-Sin embargo, algunos aldeanos comenzaron a notar que cuando el precio de una moneda variaba demasiado rápido, su participación en el pozo se veía afectada por algo llamado **pérdida impermanente**. Aunque este fenómeno podía causar cierta desventaja, la mayoría de los aldeanos consideraba que los beneficios del pozo superaban los riesgos, y continuaron utilizando el sistema para facilitar la vida en la aldea.
+However, some villagers began to notice that when the price of a coin varied too quickly, their participation in the pool was affected by something called **impermanent loss**. Although this phenomenon could cause some disadvantage, most villagers considered that the benefits of the pool outweighed the risks, and continued using the system to facilitate life in the village.
 
-**El Legado del Puente de Arturo**
+**The Legacy of Arthur's Bridge**
 
-Gracias a la creatividad de Arturo, el puente del mercado transformó la economía de la Aldea de las Colinas. El sistema de AMM y los liquidity pools impulsaron el comercio de hidromonedas y oriomonedas, y con el tiempo, aldeanos de otras regiones comenzaron a llegar para ver esta maravilla. Arturo había creado no solo un sistema de intercambio eficiente, sino un modelo para el futuro de los mercados descentralizados.
+Thanks to Arthur's creativity, the market bridge transformed the economy of Hills Village. The AMM system and liquidity pools boosted the trade of hydrocoins and oriocoins, and over time, villagers from other regions began to arrive to see this wonder. Arthur had created not only an efficient exchange system, but a model for the future of decentralized markets.
 
-### ¿Qué es un Automated Market Maker (AMM)?
+### What is an Automated Market Maker (AMM)?
 
-Los **Automated Market Makers (AMM)** son contratos inteligentes que permiten el intercambio de activos en un mercado sin depender de un libro de órdenes tradicional, como el que Arturo había creado inicialmente en la aldea. En lugar de buscar una coincidencia directa entre compradores y vendedores, los AMM utilizan **pools de liquidez** (o pozos de liquidez) donde los usuarios depositan pares de tokens. Este sistema asegura que siempre haya liquidez disponible y permite que cualquier usuario realice intercambios de manera fluida y automática.
+**Automated Market Makers (AMM)** are smart contracts that allow the exchange of assets in a market without depending on a traditional order book, like the one Arthur had initially created in the village. Instead of looking for a direct match between buyers and sellers, AMMs use **liquidity pools** where users deposit token pairs. This system ensures that there is always liquidity available and allows any user to perform exchanges smoothly and automatically.
 
-**La Fórmula de Producto Constante: x \* y = k**
+**The Constant Product Formula: x * y = k**
 
-Para mantener el equilibrio entre dos monedas en el pool de liquidez, los AMM aplican la fórmula **x \* y = k**, donde "x" y "y" representan la cantidad de cada token en el pool y "k" es una constante. Esta fórmula garantiza que, a medida que la cantidad de una moneda disminuye, su precio sube, incentivando el comercio en la dirección opuesta y evitando que se agote por completo, similar a cómo Arturo ajustó los precios en el pozo de liquidez de la aldea.
+To maintain the balance between two coins in the liquidity pool, AMMs apply the formula **x * y = k**, where "x" and "y" represent the amount of each token in the pool and "k" is a constant. This formula ensures that as the amount of one coin decreases, its price rises, incentivizing trade in the opposite direction and preventing it from being completely depleted, similar to how Arthur adjusted prices in the village's liquidity pool.
 
-**Incentivos para los Proveedores de Liquidez (LP)**
+**Incentives for Liquidity Providers (LP)**
 
-En un AMM los usuarios pueden convertirse en **proveedores de liquidez (LP)**, depositando pares de tokens en el pool a cambio de una participación en las tarifas generadas por el intercambio de esos tokens. Así como en la historia los aldeanos recibían una recompensa por sus depósitos, en los AMM los LP obtienen ingresos pasivos, lo que motiva la participación y asegura la disponibilidad constante de activos en el pool.
+In an AMM, users can become **liquidity providers (LP)**, depositing token pairs in the pool in exchange for a share of the fees generated by the exchange of those tokens. Just as in the story the villagers received a reward for their deposits, in AMMs LPs obtain passive income, which motivates participation and ensures the constant availability of assets in the pool.
 
-### Ejemplo de Intercambio AVAX/USDC
+### AVAX/USDC Exchange Example
 
-Para entender cómo funcionan los AMM en la práctica, tomemos el ejemplo de un **pool de liquidez entre AVAX y USDC**. Imagina que estamos usando un AMM en un DEX como **Pangolin** (un intercambio descentralizado que opera en la red Avalanche), donde los usuarios pueden intercambiar AVAX por USDC y viceversa.
+To understand how AMMs work in practice, let's take the example of a **liquidity pool between AVAX and USDC**. Imagine we're using an AMM on a DEX like **Pangolin** (a decentralized exchange operating on the Avalanche network), where users can exchange AVAX for USDC and vice versa.
 
-Supongamos que alguien quiere cambiar 1 AVAX por USDC. En este caso, el DEX consulta el pool de liquidez entre AVAX y USDC, que ya tiene una cantidad de cada token depositada, por ejemplo, 1,000 AVAX y 10,000 USDC. La fórmula del AMM asegura que la relación de ambos tokens se mantenga balanceada, en este caso bajo la ecuación _**x \* y = k**_, donde _**x**_ es la cantidad de AVAX en el pool, _**y**_ es la cantidad de USDC, y _**k**_ es una constante fija. Esto significa que al agregar o retirar AVAX o USDC, el precio de cada uno cambia para mantener el equilibrio.
+Suppose someone wants to exchange 1 AVAX for USDC. In this case, the DEX consults the liquidity pool between AVAX and USDC, which already has an amount of each token deposited, for example, 1,000 AVAX and 10,000 USDC. The AMM formula ensures that the ratio of both tokens remains balanced, in this case under the equation _**x * y = k**_, where _**x**_ is the amount of AVAX in the pool, _**y**_ is the amount of USDC, and _**k**_ is a fixed constant. This means that when adding or removing AVAX or USDC, the price of each changes to maintain balance.
 
-* **Estado Inicial**:
-  * El pool contiene 1,000 AVAX y 10,000 USDC, con una constante _**k = 1,000,000**_.
-  * Esto significa que el precio de 1 AVAX es 10 USDC (porque el balance actual del pool es 1,000 AVAX por 10,000 USDC).
-* **Intercambio**:
-  * Un usuario deposita 1 AVAX en el pool y retira una cantidad de USDC.
-  * Como ahora hay 1,001 AVAX en el pool, el AMM ajusta la cantidad de USDC disponible para mantener la constante _**k**_.
-  * El AMM retira una cantidad de USDC, digamos 9.90 USDC, que es menos de 10 debido a la fluctuación causada por el cambio en la relación de ambos tokens en el pool.
-* **Nuevo Balance**:
-  * Después del intercambio, el pool tiene 1,001 AVAX y 9,990.1 USDC.
-  * Esto significa que el precio de AVAX en términos de USDC ha aumentado ligeramente, incentivando a otros usuarios a intercambiar en dirección opuesta (USDC a AVAX) para equilibrar el pool.
+* **Initial State**:
+  * The pool contains 1,000 AVAX and 10,000 USDC, with a constant _**k = 1,000,000**_.
+  * This means that the price of 1 AVAX is 10 USDC (because the current pool balance is 1,000 AVAX per 10,000 USDC).
+* **Exchange**:
+  * A user deposits 1 AVAX in the pool and withdraws an amount of USDC.
+  * Since there are now 1,001 AVAX in the pool, the AMM adjusts the amount of USDC available to maintain the constant _**k**_.
+  * The AMM withdraws an amount of USDC, say 9.90 USDC, which is less than 10 due to the fluctuation caused by the change in the ratio of both tokens in the pool.
+* **New Balance**:
+  * After the exchange, the pool has 1,001 AVAX and 9,990.1 USDC.
+  * This means that the price of AVAX in terms of USDC has increased slightly, incentivizing other users to exchange in the opposite direction (USDC to AVAX) to balance the pool.

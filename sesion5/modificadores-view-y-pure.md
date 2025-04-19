@@ -13,63 +13,63 @@ layout:
     visible: true
 ---
 
-# Modificadores View y Pure
+# View and Pure Modifiers
 
-En Solidity, los modificadores **`view`** y **`pure`** son como las etiquetas “no tocar” y “solo mirar” en un museo. Te dicen qué tipo de interacciones puedes hacer con las funciones y si pueden o no modificar el estado del contrato. Vamos a ver de qué se trata cada uno y cuándo deberías usarlos.
+In Solidity, the **`view`** and **`pure`** modifiers are like "do not touch" and "look only" labels in a museum. They tell you what kind of interactions you can have with functions and whether they can modify the contract's state or not. Let's see what each one is about and when you should use them.
 
-### `view`: Solo mirar, no tocar
+### `view`: Look only, don't touch
 
-Cuando una función tiene el modificador `view`, significa que esta función **puede leer datos del contrato**, pero no puede modificarlos. Es útil para hacer consultas sin cambiar el estado del contrato. Imagina que es como cuando le preguntas a alguien cuál es su color favorito, no estás cambiando su respuesta, solo estás obteniendo información.
+When a function has the `view` modifier, it means that this function **can read data from the contract**, but cannot modify it. It's useful for making queries without changing the contract's state. Imagine it's like when you ask someone what their favorite color is, you're not changing their answer, you're just getting information.
 
 ```solidity
-function obtenerBalance() public view returns (uint256) {
+function getBalance() public view returns (uint256) {
     return balance;
 }
 ```
 
-Aquí, la función `obtenerBalance` solo devuelve el valor de la variable `balance` sin modificar nada. ¿Ventaja? ¡No necesitas gastar gas para usarla cuando la llamas desde fuera del contrato!
+Here, the `getBalance` function only returns the value of the `balance` variable without modifying anything. Advantage? You don't need to spend gas to use it when calling it from outside the contract!
 
-### `pure`: Ni tocar, ni mirar
+### `pure`: Neither touch nor look
 
-El modificador `pure` lleva las cosas un paso más allá. Indica que la función **no puede leer ni modificar el estado del contrato**. Solo se utiliza para operaciones que no dependen de los datos almacenados en el contrato. Es como resolver un problema de matemáticas en una hoja aparte, no estás mirando nada del contrato, solo estás usando lógica pura.
+The `pure` modifier takes things a step further. It indicates that the function **cannot read or modify the contract's state**. It's only used for operations that don't depend on data stored in the contract. It's like solving a math problem on a separate sheet, you're not looking at anything from the contract, you're just using pure logic.
 
 ```solidity
-function sumar(uint256 a, uint256 b) public pure returns (uint256) {
+function add(uint256 a, uint256 b) public pure returns (uint256) {
     return a + b;
 }
 
 ```
 
-La función `sumar` toma dos números, los suma y devuelve el resultado. No necesita acceder a ninguna variable del contrato para hacer esto.
+The `add` function takes two numbers, adds them, and returns the result. It doesn't need to access any contract variables to do this.
 
-### Ejemplo práctico
+### Practical Example
 
-Vamos a ver un ejemplo que combine ambos tipos de funciones:
+Let's see an example that combines both types of functions:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract EjemploViewPure {
-    uint256 contador;
+contract ViewPureExample {
+    uint256 counter;
 
-    // Función que incrementa el contador (modifica el estado)
-    function incrementar() public {
-        contador += 1;
+    // Function that increments the counter (modifies state)
+    function increment() public {
+        counter += 1;
     }
 
-    // Función 'view' que lee el estado del contrato
-    function obtenerContador() public view returns (uint256) {
-        return contador;
+    // 'view' function that reads the contract's state
+    function getCounter() public view returns (uint256) {
+        return counter;
     }
 
-    // Función 'pure' que realiza un cálculo sin leer ni modificar el estado
-    function calcularCuadrado(uint256 x) public pure returns (uint256) {
+    // 'pure' function that performs a calculation without reading or modifying state
+    function calculateSquare(uint256 x) public pure returns (uint256) {
         return x * x;
     }
 }
 ```
 
-* `incrementar`: Modifica el estado del contrato aumentando el contador.
-* `obtenerContador`: Solo lee el valor del contador, sin cambiar nada.
-* `calcularCuadrado`: Realiza un cálculo matemático sin tocar ninguna variable del contrato.
+* `increment`: Modifies the contract's state by increasing the counter.
+* `getCounter`: Only reads the counter's value, without changing anything.
+* `calculateSquare`: Performs a mathematical calculation without touching any contract variables.

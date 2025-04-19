@@ -13,105 +13,105 @@ layout:
     visible: true
 ---
 
-# Interacción con la Blockchain
+# Interaction with the Blockchain
 
-Otro aspecto fundamental para entender cómo nos relacionamos con la blockchain es la **interacción mediante claves criptográficas**, específicamente las **claves públicas y privadas** que mencionamos anteriormente. Estas claves son esenciales para realizar transacciones y garantizar la seguridad y autenticidad en la red.
+Another fundamental aspect to understand how we relate to the blockchain is **interaction through cryptographic keys**, specifically the **public and private keys** we mentioned earlier. These keys are essential for making transactions and ensuring security and authenticity in the network.
 
-La **criptografía asimétrica** es el corazón de este proceso. Se basa en la generación de un par de claves. La clave privada es como la llave de tu caja fuerte digital, mientras que la clave pública es como tu dirección postal a la que otros pueden enviarte información o, en este caso criptomonedas.
+**Asymmetric cryptography** is the heart of this process. It's based on the generation of a key pair. The private key is like the key to your digital safe, while the public key is like your postal address where others can send you information or, in this case, cryptocurrencies.
 
-### Bits y Bytes
+### Bits and Bytes
 
-Antes de profundizar, es importante entender qué son los **bits** y los **bytes** y su diferencia. Un **bit** es la unidad más pequeña de información en computación y puede tener un valor de **0** o **1**. Un **byte** está compuesto por **8 bits** y es una unidad comúnmente utilizada para representar cantidades mayores de datos. Por ejemplo, un carácter en texto ASCII generalmente ocupa 1 byte (8 bits).
+Before going deeper, it's important to understand what **bits** and **bytes** are and their difference. A **bit** is the smallest unit of information in computing and can have a value of **0** or **1**. A **byte** is composed of **8 bits** and is a commonly used unit to represent larger amounts of data. For example, a character in ASCII text generally occupies 1 byte (8 bits).
 
-Cuando hablamos de una clave privada de **256 bits**, nos referimos a una secuencia de 256 dígitos binarios (ceros y unos). Esto equivale a **32 bytes** (256 bits ÷ 8 bits por byte).
+When we talk about a **256-bit** private key, we're referring to a sequence of 256 binary digits (zeros and ones). This equals **32 bytes** (256 bits ÷ 8 bits per byte).
 
-### Entropía en la generación de claves
+### Entropy in key generation
 
-La **entropía** es un concepto clave en criptografía y se refiere al grado de aleatoriedad o incertidumbre en la generación de claves. Cuanta más entropía tenga un sistema, más impredecible será, lo que incrementa la seguridad.
+**Entropy** is a key concept in cryptography and refers to the degree of randomness or uncertainty in key generation. The more entropy a system has, the more unpredictable it will be, which increases security.
 
-Al generar una clave privada en blockchain se utiliza una cantidad suficiente de entropía para asegurar que cada clave generada sea única. Por eso es crucial que las herramientas que uses para generar claves sean de confianza y capaces de producir suficiente entropía para evitar vulnerabilidades.
+When generating a private key in blockchain, a sufficient amount of entropy is used to ensure that each generated key is unique. That's why it's crucial that the tools you use to generate keys are trustworthy and capable of producing enough entropy to avoid vulnerabilities.
 
-### Generación de Claves en Bitcoin
+### Key Generation in Bitcoin
 
-En Bitcoin las claves se generan utilizando algoritmos criptográficos basados en **criptografía de curva elíptica** (ECC), específicamente la curva **secp256k1**. Este proceso implica generar un número aleatorio de 256 bits (32 bytes), que se convierte en tu clave privada. A partir de esta clave privada se calcula la clave pública mediante operaciones matemáticas en la curva elíptica.
+In Bitcoin, keys are generated using cryptographic algorithms based on **elliptic curve cryptography** (ECC), specifically the **secp256k1** curve. This process involves generating a random 256-bit number (32 bytes), which becomes your private key. From this private key, the public key is calculated through mathematical operations on the elliptic curve.
 
-La clave pública resultante es una secuencia más larga. En Bitcoin las direcciones se derivan de la clave pública aplicando funciones hash (SHA-256 y RIPEMD-160) y una codificación especial llamada Base58Check, que produce una dirección más corta y manejable.
+The resulting public key is a longer sequence. In Bitcoin, addresses are derived from the public key by applying hash functions (SHA-256 and RIPEMD-160) and a special encoding called Base58Check, which produces a shorter and more manageable address.
 
-Para tener una experiencia práctica puedes utilizar herramientas en línea que permiten generar estos pares de claves para fines educativos. Por ejemplo la página web [**bitaddress.org**](https://www.bitaddress.org) es una herramienta de código abierto que puedes usar para generar claves privadas y públicas de Bitcoin sin necesidad de instalar una wallet. Sin embargo, es importante recordar que por seguridad nunca debes usar claves privadas generadas en línea para manejar fondos reales.
+For a practical experience, you can use online tools that allow generating these key pairs for educational purposes. For example, the website [**bitaddress.org**](https://www.bitaddress.org) is an open-source tool you can use to generate Bitcoin private and public keys without needing to install a wallet. However, it's important to remember that for security reasons, you should never use private keys generated online to manage real funds.
 
 ```
-// Ejemplo de clave privada:
+// Example of private key:
 L4jzJwZvVgxfWWN2izdpJMS8VhBaEQohG3tNjPGFDVyQfoS8tXwA
 
-// Ejemplo de Bitcoin Address:
+// Example of Bitcoin Address:
 1CKNwh13y792L3Lebntu3R1GUrGFqcDRRG
 ```
 
-### Generación de Claves en Ethereum
+### Key Generation in Ethereum
 
-En **Ethereum**, y en redes compatibles como Avalanche, el proceso es similar pero con algunas diferencias clave. Ethereum también utiliza criptografía de curva elíptica con la misma curva **secp256k1**. La clave privada es un número aleatorio de 256 bits (32 bytes, 64 caracteres hexadecimales). A partir de esta clave privada, se genera la clave pública, que es una secuencia de **128 caracteres** hexadecimales (512 bits o 64 bytes), que incluye las coordenadas **X** e **Y** de la curva elíptica.
+In **Ethereum**, and in compatible networks like Avalanche, the process is similar but with some key differences. Ethereum also uses elliptic curve cryptography with the same **secp256k1** curve. The private key is a random 256-bit number (32 bytes, 64 hexadecimal characters). From this private key, the public key is generated, which is a sequence of **128 characters** hexadecimal (512 bits or 64 bytes), which includes the **X** and **Y** coordinates of the elliptic curve.
 
-Sin embargo, para hacer el proceso más eficiente, **Ethereum comprime la clave pública**. En lugar de almacenar ambas coordenadas (**X** e **Y**), solo se almacena la coordenada **X**, junto con un bit adicional que permite calcular **Y**. Esta compresión reduce la clave pública a **66 caracteres** hexadecimales (33 bytes), lo que hace que el manejo de las claves sea más eficiente sin comprometer la seguridad.
+However, to make the process more efficient, **Ethereum compresses the public key**. Instead of storing both coordinates (**X** and **Y**), only the **X** coordinate is stored, along with an additional bit that allows calculating **Y**. This compression reduces the public key to **66 characters** hexadecimal (33 bytes), making key handling more efficient without compromising security.
 
-Para obtener la **dirección de Ethereum**, se aplica la función hash **Keccak-256** a la clave pública comprimida y se toman los últimos **40 caracteres** hexadecimales (20 bytes). Por convención se añade el prefijo '0x' al inicio para indicar que es un valor hexadecimal. La dirección de Ethereum tiene por lo tanto **42 caracteres** (incluyendo '0x').
+To obtain the **Ethereum address**, the **Keccak-256** hash function is applied to the compressed public key and the last **40 characters** hexadecimal (20 bytes) are taken. By convention, the prefix '0x' is added at the beginning to indicate that it's a hexadecimal value. The Ethereum address therefore has **42 characters** (including '0x').
 
-Para generar tus propias claves en Ethereum de manera práctica y educativa puedes utilizar herramientas como [**vanity-eth.tk**](https://vanity-eth.tk/). Esta página permite generar claves privadas y direcciones de Ethereum directamente en tu navegador, sin necesidad de descargar software adicional. Nuevamente recuerda que esta práctica debe ser solo con fines educativos y no para gestionar fondos reales.
+To generate your own keys in Ethereum in a practical and educational way, you can use tools like [**vanity-eth.tk**](https://vanity-eth.tk/). This page allows generating Ethereum private keys and addresses directly in your browser, without needing to download additional software. Again, remember that this practice should be only for educational purposes and not for managing real funds.
 
 ```
-// Clave privada (64 caracteres):
+// Private key (64 characters):
 1c39abf0e8e0f8eab0a0f5c7d9e1d3b2f4a5c6d7e8f9a0b1c2d3e4f5a6b7c8d9
 
-// Clave pública (128 caracteres):
+// Public key (128 characters):
 04a34b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5
 
-// Dirección de Ethereum (42 caracteres):
+// Ethereum address (42 characters):
 0xA9962326BFaf46775B345f85aA9a649867EA5D56
 ```
 
-### Frase semilla
+### Seed Phrase
 
-Además de la clave privada, también es común que se genere una **frase semilla**. Esta es una secuencia de palabras que actúa como respaldo de tu clave privada. La frase semilla suele estar compuesta por **12 o 24 palabras** elegidas de una lista estandarizada.
+In addition to the private key, it's also common to generate a **seed phrase**. This is a sequence of words that acts as a backup for your private key. The seed phrase is usually composed of **12 or 24 words** chosen from a standardized list.
 
 ```
-// Frase semilla (12 palabras):
-poeta ave río cielo luna campo monte luz sombra tiempo flor viento
+// Seed phrase (12 words):
+poet bird river sky moon field mountain light shadow time flower wind
 ```
 
-La frase semilla proviene de un número aleatorio con un alto nivel de entropía, y luego, este número se convierte en una serie de palabras seleccionadas de la lista estandarizada. Es crucial mantener esta frase en un lugar seguro, ya que cualquiera que tenga acceso a ella podrá controlar tu clave privada.
+The seed phrase comes from a random number with a high level of entropy, and then, this number is converted into a series of words selected from the standardized list. It's crucial to keep this phrase in a safe place, as anyone who has access to it will be able to control your private key.
 
-### Genera tu dirección de Ethereum de manera segura
+### Generate your Ethereum address securely
 
-Te guiaré paso a paso para que puedas generar tu par de claves, frase semilla y dirección de Ethereum en pocos pasos. Todo mediante una librería creada por mi exclusivamente para este curso.
+I'll guide you step by step so you can generate your key pair, seed phrase, and Ethereum address in a few steps. All through a library created by me exclusively for this course.
 
-1. Descarga e instala [Node.js](https://nodejs.org/en/).
-2. Abre la terminal de comandos.
-3. Ejecuta el siguiente comando para instalar la librería:
+1. Download and install [Node.js](https://nodejs.org/en/).
+2. Open the command terminal.
+3. Run the following command to install the library:
 
 ```
 npm install -g eth-key-generator
 ```
 
-4. Una vez instalado, puedes ejecutar la herramienta desde la línea de comandos:
+4. Once installed, you can run the tool from the command line:
 
 ```
 eth-key-generator
 ```
 
-5. Puedes seleccionar entre generar la dirección al azar o proporcionando entropía para dar mayor seguridad (solo debes ingresar una cadena de texto con cualquier palabra o frase).&#x20;
-6. La herramienta generará una dirección de Ethereum nueva, mostrando cada paso del proceso.
+5. You can choose between generating the address randomly or by providing entropy for greater security (you just need to enter a text string with any word or phrase).&#x20;
+6. The tool will generate a new Ethereum address, showing each step of the process.
 
-Puedes usar esta librería las veces que desees, compartirla con más personas e incluso puedes proponer mejoras, acá te dejo el link al repositorio.
+You can use this library as many times as you want, share it with more people, and you can even propose improvements, here's the link to the repository.
 
 {% embed url="https://github.com/DavidZapataOh/ETH-KEY-GENERATOR" %}
 
 {% hint style="info" %}
-Esta herramienta es para fines educativos. No utilices las direcciones generadas para manejar fondos reales sin las precauciones adecuadas.
+This tool is for educational purposes. Do not use the generated addresses to manage real funds without proper precautions.
 {% endhint %}
 
-### Aquí empieza tu camino
+### Here begins your journey
 
-Una vez que tienes tus claves, puedes interactuar con la blockchain de varias formas:
+Once you have your keys, you can interact with the blockchain in several ways:
 
-* **Enviar y recibir criptomonedas**: Utilizas tu clave privada para firmar transacciones que transfieren fondos desde tu dirección a otra. Esta firma garantiza que la transacción fue autorizada por el propietario legítimo.
-* **Interactuar con contratos inteligentes**: Puedes enviar transacciones que ejecutan funciones en contratos inteligentes. Esto te permite interactuar en aplicaciones descentralizadas (dApps) y servicios DeFi.
-* **Firmar mensajes**: Puedes demostrar que eres el propietario de una dirección firmando mensajes con tu clave privada, sin revelar la clave en sí. Esto es útil para autenticaciones y verificaciones en diferentes plataformas.
+* **Send and receive cryptocurrencies**: You use your private key to sign transactions that transfer funds from your address to another. This signature ensures that the transaction was authorized by the legitimate owner.
+* **Interact with smart contracts**: You can send transactions that execute functions in smart contracts. This allows you to interact in decentralized applications (dApps) and DeFi services.
+* **Sign messages**: You can prove that you are the owner of an address by signing messages with your private key, without revealing the key itself. This is useful for authentications and verifications on different platforms.

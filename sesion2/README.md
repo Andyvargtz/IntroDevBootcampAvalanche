@@ -13,6 +13,6 @@ layout:
     visible: true
 ---
 
-# Sesión 2: Fundamentos de Blockchain
+# Session 2: Blockchain Fundamentals
 
-Ahora que ya tenemos un poco más de contexto sobre blockchain, pasaremos ahora a cosas más técnicas que te ayudarán a comprender mejor como funciona la blockchain.
+Now that we have a bit more context about blockchain, we will move on to more technical aspects that will help you better understand how blockchain works.

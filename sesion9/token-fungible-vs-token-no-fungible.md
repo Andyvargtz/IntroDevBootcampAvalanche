@@ -13,56 +13,56 @@ layout:
     visible: true
 ---
 
-# Token Fungible vs Token No Fungible
+# Fungible Token vs Non-Fungible Token
 
-La diferencia entre un **token fungible** y un **token no fungible** (NFT) es como la diferencia entre una moneda y una obra de arte única. Ambos son representaciones digitales en una blockchain, pero tienen características y usos muy distintos.
+The difference between a **fungible token** and a **non-fungible token** (NFT) is like the difference between a currency and a unique work of art. Both are digital representations on a blockchain, but they have very different characteristics and uses.
 
-### Token Fungible: ¿Qué es?
+### Fungible Token: What is it?
 
-Un **token fungible** es intercambiable y tiene el mismo valor que cualquier otro token del mismo tipo. Es como el dinero en efectivo: un billete de $100 es igual a otro billete de $100, no importa cuál tengas, todos valen lo mismo. Los tokens fungibles son divisibles, es decir, puedes tener medio token o 0.01 de un token, y siguen siendo parte del mismo conjunto.
+A **fungible token** is interchangeable and has the same value as any other token of the same type. It's like cash: a $100 bill is equal to another $100 bill, no matter which one you have, they all have the same value. Fungible tokens are divisible, meaning you can have half a token or 0.01 of a token, and they still belong to the same set.
 
-**Ejemplos de tokens fungibles:**
+**Examples of fungible tokens:**
 
-1. **Criptomonedas como Bitcoin o Ethereum**: 1 BTC siempre valdrá lo mismo que otro 1 BTC, sin importar su origen o historia.
-2. **Tokens ERC20 en Ethereum**: Como USDC, DAI o cualquier otro token que siga este estándar. Estos tokens se usan para transacciones financieras, pagos y comercio dentro de aplicaciones descentralizadas (dApps).
+1. **Cryptocurrencies like Bitcoin or Ethereum**: 1 BTC will always be worth the same as another 1 BTC, regardless of its origin or history.
+2. **ERC20 tokens on Ethereum**: Like USDC, DAI or any other token that follows this standard. These tokens are used for financial transactions, payments and trade within decentralized applications (dApps).
 
-**¿Dónde se utilizan?**
+**Where are they used?**
 
-Los tokens fungibles son ideales para casos en los que necesitas un medio de intercambio estándar y divisible, como en los mercados de criptomonedas, en los sistemas de puntos de lealtad, o para representar acciones o bonos en una plataforma de trading.
+Fungible tokens are ideal for cases where you need a standard and divisible medium of exchange, such as in cryptocurrency markets, loyalty point systems, or to represent stocks or bonds on a trading platform.
 
-### Token No Fungible (NFT): ¿Qué es?
+### Non-Fungible Token (NFT): What is it?
 
-Un **token no fungible** (NFT) es único y no intercambiable por otro token de igual valor. Cada NFT tiene propiedades específicas que lo hacen diferente de cualquier otro, lo que los convierte en la mejor opción para representar activos únicos como obras de arte, coleccionables, bienes raíces virtuales o incluso momentos memorables en el deporte.
+A **non-fungible token** (NFT) is unique and not interchangeable with another token of equal value. Each NFT has specific properties that make it different from any other, making them the best option for representing unique assets such as works of art, collectibles, virtual real estate or even memorable moments in sports.
 
-**Ejemplos de tokens no fungibles:**
+**Examples of non-fungible tokens:**
 
-1. **Arte Digital**: Los famosos CryptoPunks o Bored Ape Yacht Club, donde cada NFT representa un personaje único con características exclusivas.
-2. **Coleccionables**: NBA Top Shot, donde cada NFT representa un momento específico de un juego de baloncesto.
-3. **Bienes Raíces Virtuales**: Parcels en Decentraland o The Sandbox, donde cada terreno virtual es único y no puede ser replicado.
+1. **Digital Art**: The famous CryptoPunks or Bored Ape Yacht Club, where each NFT represents a unique character with exclusive characteristics.
+2. **Collectibles**: NBA Top Shot, where each NFT represents a specific moment from a basketball game.
+3. **Virtual Real Estate**: Parcels in Decentraland or The Sandbox, where each virtual land is unique and cannot be replicated.
 
-**¿Dónde se utilizan?**
+**Where are they used?**
 
-Los NFTs son perfectos para casos en los que necesitas probar propiedad, autenticidad o escasez de un activo. Se utilizan para vender y autenticar arte digital, crear bienes raíces en el metaverso, o incluso para representar derechos de propiedad intelectual.
+NFTs are perfect for cases where you need to prove ownership, authenticity or scarcity of an asset. They are used to sell and authenticate digital art, create real estate in the metaverse, or even to represent intellectual property rights.
 
-### Token Fungible vs Token No Fungible
+### Fungible Token vs Non-Fungible Token
 
-| Característica         | Token Fungible                       | Token No Fungible (NFT)                                |
+| Characteristic         | Fungible Token                       | Non-Fungible Token (NFT)                                |
 | ---------------------- | ------------------------------------ | ------------------------------------------------------ |
-| **Intercambiabilidad** | Intercambiable 1 a 1                 | Único, no intercambiable 1 a 1                         |
-| **Divisibilidad**      | Sí (puedes tener 0.5 BTC)            | No (no puedes tener 0.5 de un NFT)                     |
-| **Ejemplos**           | DogeCoin, USDC, DAI                  | CryptoPunks, Axie Infinity, terrenos en Decentraland   |
-| **Usos**               | Pagos, votos, inversión              | Arte digital, coleccionables, propiedad digital        |
-| **Propósito**          | Representar valor económico estándar | Representar propiedad y autenticidad de activos únicos |
+| **Interchangeability** | Interchangeable 1 to 1               | Unique, not interchangeable 1 to 1                      |
+| **Divisibility**       | Yes (you can have 0.5 BTC)           | No (you can't have 0.5 of an NFT)                      |
+| **Examples**           | DogeCoin, USDC, DAI                  | CryptoPunks, Axie Infinity, lands in Decentraland      |
+| **Uses**               | Payments, votes, investment          | Digital art, collectibles, digital property            |
+| **Purpose**            | Represent standard economic value    | Represent ownership and authenticity of unique assets  |
 
-#### ¿Por qué son importantes estas diferencias?
+#### Why are these differences important?
 
-1. **Usos Diferentes:** Los tokens fungibles son perfectos para actividades financieras y de comercio, mientras que los NFTs se usan para representar cosas únicas y escasas.
-2. **Mercados Distintos:** Los tokens fungibles se intercambian en mercados financieros centralizados  o descentralizados. Los NFTs, en cambio, se compran y venden en mercados especializados como OpenSea o Rarible.
-3. **Propiedad y Autenticidad:** Los NFTs permiten a los creadores y dueños probar la autenticidad y propiedad de sus activos digitales, algo crucial en el mundo del arte y los coleccionables.
+1. **Different Uses:** Fungible tokens are perfect for financial and trading activities, while NFTs are used to represent unique and scarce things.
+2. **Different Markets:** Fungible tokens are traded in centralized or decentralized financial markets. NFTs, on the other hand, are bought and sold in specialized markets like OpenSea or Rarible.
+3. **Ownership and Authenticity:** NFTs allow creators and owners to prove the authenticity and ownership of their digital assets, something crucial in the world of art and collectibles.
 
-### Ejemplo Práctico
+### Practical Example
 
-Imaginemos que estás en un juego en línea:
+Let's imagine you're in an online game:
 
-* Los tokens fungibles en el juego podrían ser “monedas de oro” que usas para comprar armas, armaduras, o pociones. Cada moneda de oro vale lo mismo que cualquier otra.
-* Por otro lado, un NFT en ese mismo juego podría ser una “espada legendaria” que solo existe una vez en todo el juego. Esa espada tiene un valor particular, propiedades únicas y, probablemente, un precio mucho más alto.
+* Fungible tokens in the game could be "gold coins" that you use to buy weapons, armor, or potions. Each gold coin is worth the same as any other.
+* On the other hand, an NFT in that same game could be a "legendary sword" that exists only once in the entire game. That sword has a particular value, unique properties and, probably, a much higher price.

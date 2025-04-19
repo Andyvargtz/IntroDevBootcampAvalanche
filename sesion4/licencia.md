@@ -13,38 +13,36 @@ layout:
     visible: true
 ---
 
-# Licencia
+# License
 
-El primer recibimiento cuando creas un archivo `.sol` es una advertencia:
+The first thing you encounter when creating a `.sol` file is a warning:
 
 <figure><img src="../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
-Esto es debido a que Solidity te pide que en la primera linea de codigo debes declarar el tipo de licencia del archivo. Al especificar una licencia, le dices a la comunidad qué pueden hacer con tu contrato, si pueden modificarlo, distribuirlo o usarlo en sus propios proyectos.
+This is because Solidity asks you to declare the type of license for the file in the first line of code. By specifying a license, you tell the community what they can do with your contract, whether they can modify it, distribute it, or use it in their own projects.
 
-En otras palabras, la licencia define los términos bajo los cuales tu código puede ser compartido o reutilizado por otros desarrolladores.
+In other words, the license defines the terms under which your code can be shared or reused by other developers.
 
-### Tipos de licencias comunes en Solidity
+### Common types of licenses in Solidity
 
-Al escribir contratos en Solidity, lo más común es usar una licencia **open source**, lo que permite que otros desarrolladores usen, modifiquen y mejoren tu código. Algunas de las licencias más utilizadas en el mundo de los contratos inteligentes son:
+When writing contracts in Solidity, it is most common to use an **open source** license, which allows other developers to use, modify, and improve your code. Some of the most used licenses in the world of smart contracts are:
 
-1.  **MIT License**: Esta es una de las licencias más comunes y permisivas. Básicamente permite que cualquiera use, copie, modifique y distribuya tu código, siempre que incluyan una copia del aviso de derechos de autor original. Es ideal si quieres que tu código sea completamente abierto.
+1.  **MIT License**: This is one of the most common and permissive licenses. It basically allows anyone to use, copy, modify, and distribute your code, as long as they include a copy of the original copyright notice. It's ideal if you want your code to be completely open.
 
     ```solidity
     // SPDX-License-Identifier: MIT
     ```
-2.  **GPL-3.0 License**: Esta licencia es más restrictiva que la MIT. Permite que otros usen y modifiquen tu código, pero cualquier derivación de tu trabajo debe mantener la misma licencia. Esto asegura que el código modificado también sea open source.
+2.  **GPL-3.0 License**: This license is more restrictive than the MIT. It allows others to use and modify your code, but any derivation of your work must maintain the same license. This ensures that the modified code is also open source.
 
     ```solidity
     // SPDX-License-Identifier: GPL-3.0
     ```
-3.  **Unlicense**: Si prefieres que tu código no tenga restricciones y sea completamente público, puedes usar la **Unlicense**, que permite a cualquiera hacer lo que quiera con tu código, sin obligaciones.
+3.  **Unlicense**: If you prefer that your code has no restrictions and is completely public, you can use the **Unlicense**, which allows anyone to do whatever they want with your code, without obligations.
 
     ```solidity
     // SPDX-License-Identifier: Unlicense
     ```
 
-
-
-Para el código que estamos desarrollando usaremos la licencia MIT, por lo cual, agregaremos ese código en la primera linea.
+For the code we are developing, we will use the MIT license, so we will add that code in the first line.
 
 <figure><img src="../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>

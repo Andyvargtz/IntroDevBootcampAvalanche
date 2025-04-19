@@ -15,115 +15,115 @@ layout:
 
 # Import
 
-En Solidity, el comando `import` es como abrir la caja de herramientas y sacar justo lo que necesitas. Te permite reutilizar código de otros archivos en tu propio contrato, manteniendo tu proyecto organizado y evitando duplicaciones innecesarias. Esencialmente con `import` puedes traer contratos, librerías o interfaces de otros archivos, lo cual es especialmente útil en proyectos grandes donde cada contrato o librería está en su propio archivo.
+In Solidity, the `import` command is like opening a toolbox and taking out exactly what you need. It allows you to reuse code from other files in your own contract, keeping your project organized and avoiding unnecessary duplication. Essentially, with `import` you can bring in contracts, libraries, or interfaces from other files, which is especially useful in large projects where each contract or library is in its own file.
 
-### ¿Cómo funciona `import`?
+### How does `import` work?
 
-El comando `import` te permite incluir el contenido de otro archivo en tu contrato actual. Puedes pensar en ello como una forma de “copiar y pegar” todo el código de un archivo externo, pero sin tener que hacerlo manualmente. Esto facilita la reutilización de contratos y librerías existentes, y te permite separar la lógica en diferentes archivos para mantener todo organizado.
+The `import` command allows you to include the content of another file in your current contract. You can think of it as a way to "copy and paste" all the code from an external file, but without having to do it manually. This facilitates the reuse of existing contracts and libraries, and allows you to separate logic into different files to keep everything organized.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-import "ruta/archivo.sol";
+import "path/file.sol";
 ```
 
-La ruta puede ser relativa (dentro de tu proyecto) o absoluta (si estás usando paquetes de NPM o librerías de OpenZeppelin, por ejemplo).
+The path can be relative (within your project) or absolute (if you're using NPM packages or OpenZeppelin libraries, for example).
 
-### Ejemplo básico de `import`
+### Basic example of `import`
 
-Supongamos que tienes una librería matemática en un archivo llamado `Math.sol`, y quieres usar sus funciones en tu contrato principal. La estructura de tu proyecto sería algo así:
+Let's say you have a math library in a file called `Math.sol`, and you want to use its functions in your main contract. Your project structure would look something like this:
 
 ```markdown
 - contracts/
   - Math.sol
-  - MiContrato.sol
+  - MyContract.sol
 ```
 
-1. **Contenido del archivo `Math.sol`:**
+1. **Content of `Math.sol` file:**
 
 ```solidity
-// Librería matemática básica
+// Basic math library
 library Math {
-    function sumar(uint a, uint b) internal pure returns (uint) {
+    function add(uint a, uint b) internal pure returns (uint) {
         return a + b;
     }
 
-    function restar(uint a, uint b) internal pure returns (uint) {
+    function subtract(uint a, uint b) internal pure returns (uint) {
         return a - b;
     }
 }
 ```
 
-2. **Contenido del archivo `MiContrato.sol`:**
+2. **Content of `MyContract.sol` file:**
 
 ```solidity
-// Importar la librería Math
+// Import the Math library
 import "./Math.sol";
 
-contract MiContrato {
-    // Usar la librería Math en nuestro contrato
-    function calcularSuma(uint a, uint b) public pure returns (uint) {
-        return Math.sumar(a, b); // Llamada a la función sumar de la librería
+contract MyContract {
+    // Use the Math library in our contract
+    function calculateSum(uint a, uint b) public pure returns (uint) {
+        return Math.add(a, b); // Call to the library's add function
     }
 
-    function calcularResta(uint a, uint b) public pure returns (uint) {
-        return Math.restar(a, b); // Llamada a la función restar de la librería
+    function calculateSubtract(uint a, uint b) public pure returns (uint) {
+        return Math.subtract(a, b); // Call to the library's subtract function
     }
 }
 ```
 
-#### ¿Qué está pasando aquí?
+#### What's happening here?
 
-1. **Importación de `Math.sol`:** El contrato `MiContrato` importa la librería `Math` desde el archivo `Math.sol` usando la ruta relativa `./Math.sol`.
-2. **Uso de funciones de la librería:** Dentro de `MiContrato`, llamamos a las funciones `sumar` y `restar` de la librería `Math` sin necesidad de redefinirlas. Esto mantiene nuestro código limpio y modular.
+1. **Importing `Math.sol`:** The `MyContract` contract imports the `Math` library from the `Math.sol` file using the relative path `./Math.sol`.
+2. **Using library functions:** Inside `MyContract`, we call the `add` and `subtract` functions from the `Math` library without needing to redefine them. This keeps our code clean and modular.
 
-### Otras formas de usar `import`
+### Other ways to use `import`
 
-1.  **Importar todo el contenido de un archivo:**
+1. **Import all content from a file:**
 
     ```solidity
     import "./Utils.sol";
     ```
 
-    Esto importa todo el contenido de `Utils.sol` en tu contrato.
-2.  **Importar con alias:** Puedes asignar alias para evitar conflictos de nombre cuando importas múltiples librerías o contratos con nombres similares.
+    This imports all content from `Utils.sol` into your contract.
+2. **Import with alias:** You can assign aliases to avoid name conflicts when importing multiple libraries or contracts with similar names.
 
     ```solidity
     import { Math as MathLib } from "./Math.sol";
     ```
 
-    Ahora puedes usar `MathLib.sumar(a, b)` en lugar de `Math.sumar(a, b)`.
-3.  **Importar solo elementos específicos:** Si solo necesitas ciertas funciones o contratos de un archivo grande, puedes importarlos individualmente.
+    Now you can use `MathLib.add(a, b)` instead of `Math.add(a, b)`.
+3. **Import only specific elements:** If you only need certain functions or contracts from a large file, you can import them individually.
 
     ```solidity
-    import { sumar, restar } from "./Math.sol";
+    import { add, subtract } from "./Math.sol";
     ```
 
-    Ahora solo `sumar` y `restar` están disponibles en tu contrato.
+    Now only `add` and `subtract` are available in your contract.
 
-### Uso de librerías externas
+### Using external libraries
 
-Una de las grandes ventajas de `import` es la capacidad de usar contratos y librerías de terceros. Por ejemplo, puedes utilizar librerías de OpenZeppelin para implementar funciones de seguridad, administración de roles, o contratos estándar de ERC20 y ERC721.
+One of the great advantages of `import` is the ability to use third-party contracts and libraries. For example, you can use OpenZeppelin libraries to implement security functions, role management, or standard ERC20 and ERC721 contracts.
 
-**Ejemplo:**
+**Example:**
 
 ```solidity
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract MiToken is ERC20 {
-    constructor() ERC20("MiToken", "MTK") {
+contract MyToken is ERC20 {
+    constructor() ERC20("MyToken", "MTK") {
         _mint(msg.sender, 1000 * 10 ** decimals());
     }
 }
 ```
 
-En este ejemplo:
+In this example:
 
-* Estamos importando el contrato `ERC20` de la librería OpenZeppelin.
-* El contrato `MiToken` hereda de `ERC20` y aprovecha todas las funcionalidades implementadas por OpenZeppelin para crear un token ERC20 estándar.
+* We're importing the `ERC20` contract from the OpenZeppelin library.
+* The `MyToken` contract inherits from `ERC20` and leverages all the functionality implemented by OpenZeppelin to create a standard ERC20 token.
 
-### Consideraciones importantes al usar `import`
+### Important considerations when using `import`
 
-1. **Evitar importaciones cíclicas:** Asegúrate de que dos archivos no se importen mutuamente, ya que esto causará errores de compilación.
-2. **Controlar las versiones:** Asegúrate de que las versiones de los archivos importados sean compatibles con tu contrato para evitar problemas de compilación o ejecución.
-3. **Mantener la organización:** Usar `import` de forma efectiva puede hacer que tu código sea mucho más manejable y modular. Organiza tus contratos y librerías en carpetas lógicas para facilitar su uso.
+1. **Avoid cyclic imports:** Make sure two files don't import each other, as this will cause compilation errors.
+2. **Control versions:** Ensure that the versions of imported files are compatible with your contract to avoid compilation or execution issues.
+3. **Maintain organization:** Using `import` effectively can make your code much more manageable and modular. Organize your contracts and libraries in logical folders to facilitate their use.

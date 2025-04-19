@@ -15,92 +15,92 @@ layout:
 
 # Structs
 
-Las **structs** en Solidity te permiten meter diferentes tipos de datos y llevarlos todos juntos. En lugar de manejar un montón de variables sueltas, las structs te permiten agrupar datos relacionados en un solo paquete. Esto es útil cuando tienes una entidad que necesita almacenar múltiples tipos de información, como el perfil de un usuario o los detalles de una transacción.
+**Structs** in Solidity allow you to combine different types of data and keep them together. Instead of managing a bunch of loose variables, structs let you group related data into a single package. This is useful when you have an entity that needs to store multiple types of information, such as a user profile or transaction details.
 
-### ¿Qué es un struct?
+### What is a struct?
 
-Un `struct` te permite definir tu propio tipo de dato compuesto por múltiples variables. Cada una de estas variables puede ser de un tipo diferente, como números, direcciones, booleanos, etc. Es como crear tu propia plantilla para agrupar datos relacionados bajo un solo nombre.
+A `struct` allows you to define your own data type composed of multiple variables. Each of these variables can be of a different type, such as numbers, addresses, booleans, etc. It's like creating your own template to group related data under a single name.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-struct NombreDelStruct {
-    tipoDato1 variable1;
-    tipoDato2 variable2;
-    tipoDato3 variable3;
+struct StructName {
+    dataType1 variable1;
+    dataType2 variable2;
+    dataType3 variable3;
 }
 ```
 
-Por ejemplo, supongamos que queremos almacenar la información de un usuario en nuestro contrato:
+For example, let's say we want to store user information in our contract:
 
 ```solidity
-struct Usuario {
-    string nombre;
-    uint edad;
-    address direccion;
+struct User {
+    string name;
+    uint age;
+    address wallet;
 }
 ```
 
-Aquí, la struct `Usuario` agrupa tres variables: `nombre` (cadena de texto), `edad` (número entero) y `direccion` (address). En lugar de manejar estos tres datos por separado, ahora puedes usarlos como un solo conjunto.
+Here, the `User` struct groups three variables: `name` (string), `age` (integer), and `wallet` (address). Instead of managing these three pieces of data separately, you can now use them as a single set.
 
-### Cómo usar las structs
+### How to use structs
 
-Una vez que tienes definida una struct, puedes usarla para declarar variables que sigan ese "molde". Veamos cómo se hace:
-
-```solidity
-Usuario public usuario1;
-```
-
-Ahora, `usuario1` es una variable de tipo `Usuario` que puede almacenar un nombre, una edad y una dirección. Puedes asignar valores a cada campo del struct así:
+Once you have defined a struct, you can use it to declare variables that follow that "template". Let's see how it's done:
 
 ```solidity
-usuario1 = Usuario("Alice", 30, 0x1234567890123456789012345678901234567890);
+User public user1;
 ```
 
-También puedes acceder a los valores dentro de la struct utilizando el punto:
+Now, `user1` is a variable of type `User` that can store a name, age, and wallet address. You can assign values to each field of the struct like this:
 
 ```solidity
-string memory nombreUsuario = usuario1.nombre; // Accede al nombre
-usuario1.edad = 31; // Modifica la edad
+user1 = User("Alice", 30, 0x1234567890123456789012345678901234567890);
 ```
 
-### Ejemplo práctico: Sistema de Usuarios
+You can also access the values inside the struct using the dot notation:
 
-Vamos a ver cómo podrías usar structs para crear un sistema que registre usuarios en un contrato:
+```solidity
+string memory userName = user1.name; // Access the name
+user1.age = 31; // Modify the age
+```
+
+### Practical example: User System
+
+Let's see how you could use structs to create a system that registers users in a contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract RegistroUsuarios {
-    // Definimos la struct Usuario
-    struct Usuario {
-        string nombre;
-        uint edad;
-        address direccion;
+contract UserRegistry {
+    // We define the User struct
+    struct User {
+        string name;
+        uint age;
+        address wallet;
     }
 
-    // Creamos un mapping para almacenar usuarios usando su dirección
-    mapping(address => Usuario) usuarios;
+    // We create a mapping to store users using their address
+    mapping(address => User) users;
 
-    // Función para registrar un nuevo usuario
-    function registrarUsuario(string memory _nombre, uint _edad) public {
-        usuarios[msg.sender] = Usuario(_nombre, _edad, msg.sender);
+    // Function to register a new user
+    function registerUser(string memory _name, uint _age) public {
+        users[msg.sender] = User(_name, _age, msg.sender);
     }
 
-    // Función para obtener la información de un usuario
-    function obtenerUsuario(address _direccion) public view returns (string memory, uint, address) {
-        Usuario memory usuario = usuarios[_direccion];
-        return (usuario.nombre, usuario.edad, usuario.direccion);
+    // Function to get user information
+    function getUser(address _wallet) public view returns (string memory, uint, address) {
+        User memory user = users[_wallet];
+        return (user.name, user.age, user.wallet);
     }
 }
 ```
 
-En este ejemplo, usamos una struct `Usuario` para agrupar el nombre, la edad y la dirección de los usuarios. Luego, con el mapping `usuarios`, almacenamos la información de cada usuario bajo su dirección (`address`). Los usuarios pueden registrarse usando la función `registrarUsuario` y puedes consultar los datos de cualquier usuario con `obtenerUsuario`.
+In this example, we use a `User` struct to group the name, age, and wallet address of users. Then, with the `users` mapping, we store each user's information under their wallet address. Users can register using the `registerUser` function, and you can query any user's data with `getUser`.
 
-### Cosas que debes saber sobre los structs
+### Things you should know about structs
 
-1. **Almacenamiento en structs**: Las structs se pueden almacenar tanto en **memoria** como en **storage**. Si declaras una struct dentro de una función, debes especificar si estará en memoria o en storage, porque Solidity necesita saber dónde colocarla.
-2. **Uso eficiente de gas**: Las structs pueden ahorrar espacio al agrupar datos, pero si no las optimizas bien, pueden ocupar varias slots de almacenamiento, lo que aumentará el gas necesario para su manipulación.
-3. **Arrays de structs**: Puedes usar arrays de structs para manejar múltiples instancias de la misma. Por ejemplo, podrías tener un array de `Usuario[]` si necesitas manejar una lista de usuarios.
-4. **Structs anidados**: También es posible tener structs dentro de otros structs. Esto es útil cuando necesitas organizar datos aún más complejos.
+1. **Storage in structs**: Structs can be stored in both **memory** and **storage**. If you declare a struct inside a function, you must specify whether it will be in memory or storage, because Solidity needs to know where to place it.
+2. **Gas efficient usage**: Structs can save space by grouping data, but if not optimized properly, they can occupy multiple storage slots, which will increase the gas needed for their manipulation.
+3. **Arrays of structs**: You can use arrays of structs to handle multiple instances of the same type. For example, you could have an array of `User[]` if you need to manage a list of users.
+4. **Nested structs**: It's also possible to have structs inside other structs. This is useful when you need to organize even more complex data.

@@ -13,30 +13,30 @@ layout:
     visible: true
 ---
 
-# Interacción Programática con Uniswap V3
+# Programmatic Interaction with Uniswap V3
 
-La **interacción programática con Uniswap V3** permite a los desarrolladores realizar swaps, crear y gestionar pools de liquidez, y ajustar precios con precisión gracias a la nueva estructura de liquidez concentrada. A diferencia de Uniswap V2, V3 introduce características avanzadas como rangos de precios personalizables y múltiples niveles de tarifas, lo cual brinda a los proveedores de liquidez mayor control sobre sus inversiones.
+**Programmatic interaction with Uniswap V3** allows developers to perform swaps, create and manage liquidity pools, and adjust prices with precision thanks to the new concentrated liquidity structure. Unlike Uniswap V2, V3 introduces advanced features such as customizable price ranges and multiple fee tiers, which gives liquidity providers greater control over their investments.
 
-### **Diferencias Clave entre Uniswap V2 y V3**
+### **Key Differences Between Uniswap V2 and V3**
 
-* **Liquidez Concentrada**: A diferencia de V2, los proveedores de liquidez pueden especificar rangos de precios en los que desean proporcionar liquidez en V3. Esto permite una mayor eficiencia de capital.
-* **Niveles de Tarifas**: V3 permite elegir entre varios niveles de tarifas (0.01%, 0.05%, 0.3% y 1%) para adaptarse a la volatilidad y al riesgo de cada par de tokens.
-* **NFTs para Liquidez**: En lugar de tokens LP, cada posición de liquidez en Uniswap V3 se representa mediante un NFT, que contiene información única sobre el rango de precios y el nivel de tarifa.
+* **Concentrated Liquidity**: Unlike V2, liquidity providers can specify price ranges in which they want to provide liquidity in V3. This allows for greater capital efficiency.
+* **Fee Tiers**: V3 allows choosing between several fee tiers (0.01%, 0.05%, 0.3% and 1%) to adapt to the volatility and risk of each token pair.
+* **NFTs for Liquidity**: Instead of LP tokens, each liquidity position in Uniswap V3 is represented by an NFT, which contains unique information about the price range and fee tier.
 
-### **Realizando un Swap de Tokens**
+### **Performing a Token Swap**
 
-En Uniswap V3, los swaps pueden realizarse usando el contrato `SwapRouter`. Aquí se muestra un ejemplo de cómo programar un swap de tokens de AVAX a USDC utilizando Uniswap V3:
+In Uniswap V3, swaps can be performed using the `SwapRouter` contract. Here is an example of how to program a token swap from AVAX to USDC using Uniswap V3:
 
-1.  **Configuración del Contrato de Swap**:
+1.  **Swap Contract Setup**:
 
-    * Ejemplo de una función para realizar un swap exacto en Uniswap V3:
+    * Example of a function to perform an exact swap in Uniswap V3:
 
     ```solidity
     function swapExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, address recipient) external returns (uint256 amountOut) {
-        // Approbar el token de entrada para el router
+        // Approve the input token for the router
         IERC20(tokenIn).approve(address(swapRouter), amountIn);
         
-        // Configurar los parámetros para el swap
+        // Configure the parameters for the swap
         ISwapRouter.ExactInputSingleParams memory params =
             ISwapRouter.ExactInputSingleParams({
                 tokenIn: tokenIn,
@@ -49,23 +49,23 @@ En Uniswap V3, los swaps pueden realizarse usando el contrato `SwapRouter`. Aqu�
                 sqrtPriceLimitX96: 0
             });
 
-        // Ejecutar el swap
+        // Execute the swap
         amountOut = swapRouter.exactInputSingle(params);
     }
     ```
 
-    * **Parámetros Importantes**:
-      * `fee`: Nivel de tarifa para el par (por ejemplo, 3000 para 0.3%).
-      * `amountIn` y `amountOutMinimum`: Cantidad de entrada y salida mínima para protegerse de cambios de precios.
-      * `sqrtPriceLimitX96`: Límite de precio en formato raíz cuadrada, que en este caso se establece en cero para permitir cualquier precio.
+    * **Important Parameters**:
+      * `fee`: Fee tier for the pair (for example, 3000 for 0.3%).
+      * `amountIn` and `amountOutMinimum`: Input amount and minimum output to protect against price changes.
+      * `sqrtPriceLimitX96`: Price limit in square root format, which in this case is set to zero to allow any price.
 
-### **Añadir y Retirar Liquidez**
+### **Adding and Removing Liquidity**
 
-En Uniswap V3, al agregar y retirar liquidez, se especifica un rango de precios. Esto permite a los proveedores de liquidez optimizar el uso de su capital y maximizar sus rendimientos.
+In Uniswap V3, when adding and removing liquidity, a price range is specified. This allows liquidity providers to optimize the use of their capital and maximize their returns.
 
-1.  **Agregar Liquidez en un Rango de Precios**:
+1.  **Adding Liquidity in a Price Range**:
 
-    * Ejemplo de función para añadir liquidez:
+    * Example of a function to add liquidity:
 
     ```solidity
     function addLiquidity(
@@ -78,7 +78,7 @@ En Uniswap V3, al agregar y retirar liquidez, se especifica un rango de precios.
         uint256 amountB,
         address recipient
     ) external returns (uint256 tokenId, uint128 liquidity, uint256 amount0, uint256 amount1) {
-        // Configurar los parámetros para la adición de liquidez
+        // Configure the parameters for adding liquidity
         INonfungiblePositionManager.MintParams memory params =
             INonfungiblePositionManager.MintParams({
                 token0: tokenA,
@@ -94,25 +94,25 @@ En Uniswap V3, al agregar y retirar liquidez, se especifica un rango de precios.
                 deadline: block.timestamp
             });
 
-        // Añadir liquidez y recibir un NFT de posición
+        // Add liquidity and receive a position NFT
         return nonfungiblePositionManager.mint(params);
     }
     ```
 
-    * **Parámetros Clave**:
-      * `tickLower` y `tickUpper`: Determinan el rango de precios donde se proveerá liquidez.
-      * `amount0Min` y `amount1Min`: Cantidades mínimas que el usuario acepta proporcionar.
-      * `recipient`: Dirección que recibe el NFT de posición.
-2.  **Retirar Liquidez**:
+    * **Key Parameters**:
+      * `tickLower` and `tickUpper`: Determine the price range where liquidity will be provided.
+      * `amount0Min` and `amount1Min`: Minimum amounts that the user accepts to provide.
+      * `recipient`: Address that receives the position NFT.
+2.  **Removing Liquidity**:
 
-    * Los proveedores de liquidez pueden retirar su liquidez devolviendo el NFT de su posición.
+    * Liquidity providers can remove their liquidity by returning the NFT of their position.
 
     ```solidity
     function removeLiquidity(
         uint256 tokenId,
         uint128 liquidity
     ) external returns (uint256 amount0, uint256 amount1) {
-        // Parámetros para retirar liquidez
+        // Parameters for removing liquidity
         INonfungiblePositionManager.DecreaseLiquidityParams memory params =
             INonfungiblePositionManager.DecreaseLiquidityParams({
                 tokenId: tokenId,
@@ -122,7 +122,7 @@ En Uniswap V3, al agregar y retirar liquidez, se especifica un rango de precios.
                 deadline: block.timestamp
             });
 
-        // Retirar liquidez
+        // Remove liquidity
         return nonfungiblePositionManager.decreaseLiquidity(params);
     }
     ```
@@ -198,7 +198,7 @@ contract UniswapV3Interaction {
             deadline: block.timestamp
         });
 
-        // Añadir liquidez y recibir un NFT de posición
+        // Add liquidity and receive a position NFT
         return nonfungiblePositionManager.mint(params);
     }
     
@@ -206,7 +206,7 @@ contract UniswapV3Interaction {
         uint256 tokenId,
         uint128 liquidity
     ) external returns (uint256 amount0, uint256 amount1) {
-        // Parámetros para retirar liquidez
+        // Parameters for removing liquidity
         INonfungiblePositionManager.DecreaseLiquidityParams memory params =
             INonfungiblePositionManager.DecreaseLiquidityParams({
                 tokenId: tokenId,
@@ -216,7 +216,7 @@ contract UniswapV3Interaction {
                 deadline: block.timestamp
             });
     
-        // Retirar liquidez
+        // Remove liquidity
         return nonfungiblePositionManager.decreaseLiquidity(params);
     }
 }

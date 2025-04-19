@@ -13,66 +13,66 @@ layout:
     visible: true
 ---
 
-# Creando ERC721 con Openzeppelin Wizard
+# Creating ERC721 with Openzeppelin Wizard
 
-Crear un token **ERC721** desde cero puede ser un reto, especialmente si eres nuevo en Solidity. Sin embargo, gracias a herramientas como **OpenZeppelin Wizard**, puedes generar contratos ERC721 de manera sencilla y rápida, sin escribir código desde cero.
+Creating an **ERC721** token from scratch can be challenging, especially if you're new to Solidity. However, thanks to tools like **OpenZeppelin Wizard**, you can generate ERC721 contracts easily and quickly, without writing code from scratch.
 
-### ¿Qué es OpenZeppelin Wizard?
+### What is OpenZeppelin Wizard?
 
-**OpenZeppelin Wizard** es una herramienta visual en línea que facilita la creación de contratos inteligentes, permitiéndote elegir las características específicas que deseas incluir en tu contrato. Con esta herramienta, puedes configurar fácilmente todos los aspectos de tu contrato ERC721, como el nombre, el símbolo y características adicionales como minteo seguro y capacidad de quemado, sin preocuparte por los detalles técnicos.
+**OpenZeppelin Wizard** is an online visual tool that facilitates the creation of smart contracts, allowing you to choose the specific features you want to include in your contract. With this tool, you can easily configure all aspects of your ERC721 contract, such as name, symbol, and additional features like safe minting and burn capability, without worrying about technical details.
 
-### Creando tu ERC721 con OpenZeppelin Wizard: Paso a Paso
+### Creating your ERC721 with OpenZeppelin Wizard: Step by Step
 
-Vamos a ver cómo crear un token ERC721 utilizando esta poderosa herramienta.
+Let's see how to create an ERC721 token using this powerful tool.
 
-**1. Acceder a OpenZeppelin Wizard**
+**1. Access OpenZeppelin Wizard**
 
-Para comenzar, visita la página de **OpenZeppelin Wizard**. Encontrarás una interfaz amigable donde puedes configurar varios tipos de contratos, incluyendo ERC20, ERC721 (NFTs) y más.
+To begin, visit the **OpenZeppelin Wizard** page. You'll find a user-friendly interface where you can configure various types of contracts, including ERC20, ERC721 (NFTs), and more.
 
 {% embed url="https://wizard.openzeppelin.com/#erc721" %}
 
-**2. Configurar el Token ERC721**
+**2. Configure the ERC721 Token**
 
-* En la sección **ERC721** del Wizard, puedes configurar los siguientes parámetros:
-  * **Nombre del Token**: Establece el nombre de tu colección NFT. Por ejemplo, podrías llamarlo "Membresia".
-  * **Símbolo del Token**: Este es el símbolo abreviado que representará a tu colección, como "MEM" para "Membresia".
-  * **Base URI**: Configura el URI base que se usará para los metadatos de cada NFT. Esto permite que cada token tenga una URI específica al concatenar el `tokenId` con el URI base que definas.
-* **Características adicionales:**
-  * **Mintable**: Permite crear (mintear) nuevos NFTs después del despliegue inicial. Ideal si planeas tener una colección que crezca con el tiempo.
-  * **Auto Increment IDs**: Automatiza la asignación de IDs incrementales para cada nuevo token mintado, eliminando la necesidad de establecer manualmente el `tokenId` cada vez que se crea un nuevo NFT.
-  * **Burnable**: Da a los usuarios la posibilidad de quemar (destruir) sus NFTs, eliminándolos permanentemente de la colección.
-  * **Pausable**: Te da la opción de pausar las funciones de transferencia en casos de emergencia.
-  * **Ownable**: Define un propietario del contrato con permisos exclusivos, lo cual es útil para controlar la administración de la colección.
-  * **Enumerable**: Permite realizar un seguimiento de todos los tokens emitidos. Esto es útil si quieres listar todos los NFTs de la colección o verificar cuántos se han minteado.
-  * **URI Storage**: Da la posibilidad de almacenar URIs específicas para cada token, en lugar de depender de un URI base. Esto permite que cada token tenga su propio enlace personalizado a metadatos únicos.
+* In the **ERC721** section of the Wizard, you can configure the following parameters:
+  * **Token Name**: Set the name of your NFT collection. For example, you could call it "Membership".
+  * **Token Symbol**: This is the abbreviated symbol that will represent your collection, such as "MEM" for "Membership".
+  * **Base URI**: Configure the base URI that will be used for each NFT's metadata. This allows each token to have a specific URI by concatenating the `tokenId` with the base URI you define.
+* **Additional Features:**
+  * **Mintable**: Allows creating (minting) new NFTs after initial deployment. Ideal if you plan to have a collection that grows over time.
+  * **Auto Increment IDs**: Automates the assignment of incremental IDs for each new minted token, eliminating the need to manually set the `tokenId` each time a new NFT is created.
+  * **Burnable**: Gives users the possibility to burn (destroy) their NFTs, permanently removing them from the collection.
+  * **Pausable**: Gives you the option to pause transfer functions in emergency cases.
+  * **Ownable**: Defines a contract owner with exclusive permissions, which is useful for controlling collection administration.
+  * **Enumerable**: Allows tracking all issued tokens. This is useful if you want to list all NFTs in the collection or verify how many have been minted.
+  * **URI Storage**: Provides the possibility to store specific URIs for each token, instead of relying on a base URI. This allows each token to have its own personalized link to unique metadata.
 
-**3. Generar el Código**
+**3. Generate the Code**
 
-Después de configurar todas las opciones a tu gusto, haz clic en el botón de **"Open in Remix"** para abrir el contrato en Remix IDE, o simplemente copia el código generado y pégalo en un archivo dentro de Remix.
+After configuring all options to your liking, click the **"Open in Remix"** button to open the contract in Remix IDE, or simply copy the generated code and paste it into a file within Remix.
 
-**4. Desplegar el Contrato en Remix**
+**4. Deploy the Contract in Remix**
 
-Si has optado por abrir el código en Remix, sigue estos pasos para desplegar tu colección NFT:
+If you've chosen to open the code in Remix, follow these steps to deploy your NFT collection:
 
-* **Conéctate a Remix**: Abre Remix IDE.
-* **Cargar el Código**: Copia y pega el código generado en OpenZeppelin Wizard en un nuevo archivo dentro de Remix.
-* **Compilar**: Haz clic en el ícono de “compilar” para asegurarte de que el código no tiene errores.
-* **Desplegar**: Selecciona “Deploy” y elige la red de Avalanche Testnet (Fuji) o la red de tu preferencia. Dependiendo de las características adicionales que hayas incluido, como `Ownable`, es posible que debas proporcionar una dirección de propietario.
-* **Verificar**: Usa el plugin de verificación en Remix para verificar el contrato de tu ERC721.
+* **Connect to Remix**: Open Remix IDE.
+* **Load the Code**: Copy and paste the code generated in OpenZeppelin Wizard into a new file within Remix.
+* **Compile**: Click the "compile" icon to ensure the code has no errors.
+* **Deploy**: Select "Deploy" and choose the Avalanche Testnet (Fuji) network or your preferred network. Depending on the additional features you've included, such as `Ownable`, you may need to provide an owner address.
+* **Verify**: Use the verification plugin in Remix to verify your ERC721 contract.
 
-**5. Interactuar con tu Token NFT**
+**5. Interact with your NFT Token**
 
-¡Felicidades! Ahora tienes tu propia colección de NFTs en la blockchain. Puedes interactuar con tu contrato ERC721 directamente desde Remix o, si tienes una wallet compatible con NFTs, podrás ver tus tokens.
+Congratulations! You now have your own NFT collection on the blockchain. You can interact with your ERC721 contract directly from Remix or, if you have an NFT-compatible wallet, you'll be able to see your tokens.
 
-### Ejemplo de Minteo de NFT
+### Example of NFT Minting
 
-Desde Remix, puedes mintear un nuevo NFT ejecutando la función `mint`, pasando como parámetro la dirección del destinatario y el `tokenId` único. Con **Auto Increment IDs**, el `tokenId` se asignará automáticamente.
+From Remix, you can mint a new NFT by executing the `mint` function, passing as parameters the recipient's address and the unique `tokenId`. With **Auto Increment IDs**, the `tokenId` will be assigned automatically.
 
 ```
 // Address
 0x942Fa5b96C52cf4EDE7498e02fbF9196B0510702
 ```
 
-En el caso de un token ERC721, no es necesario manejar decimales como con ERC20, ya que cada token es único e indivisible.
+In the case of an ERC721 token, it's not necessary to handle decimals as with ERC20, since each token is unique and indivisible.
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>

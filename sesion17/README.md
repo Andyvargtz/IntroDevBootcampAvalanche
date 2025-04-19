@@ -2,5 +2,5 @@
 icon: gem
 ---
 
-# Sesión 17: Patrones de Diseño II
+# Session 17: Design Patterns II
 

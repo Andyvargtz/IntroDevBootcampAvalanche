@@ -15,53 +15,53 @@ layout:
 
 # Mapping
 
-Los **mappings** son como diccionarios que te permiten almacenar pares de clave-valor de manera súper eficiente. Imagínate un gran cajón con muchas etiquetas (claves) y cada etiqueta tiene un compartimento donde guardas un dato específico (valor). Esto es básicamente lo que hacen los mappings, te permiten buscar y almacenar datos de una manera rápida y sencilla.
+**Mappings** are like dictionaries that allow you to store key-value pairs in a super efficient way. Imagine a large drawer with many labels (keys) and each label has a compartment where you store specific data (value). This is basically what mappings do - they allow you to search and store data in a quick and easy way.
 
-### ¿Qué es un mapping?
+### What is a mapping?
 
-Un `mapping` en Solidity es una estructura de datos que asocia claves con valores, como una lista de contactos donde la clave es el nombre y el valor es el número de teléfono. La sintaxis es:
+A `mapping` in Solidity is a data structure that associates keys with values, like a contact list where the key is the name and the value is the phone number. The syntax is:
 
 ```solidity
-mapping(tipoClave => tipoValor) public nombreDelMapping;
+mapping(keyType => valueType) public mappingName;
 ```
 
-Por ejemplo:
+For example:
 
 ```solidity
 mapping(address => uint256) public balances;
 ```
 
-En este caso, el `mapping` `balances` asocia direcciones (`address`) con números enteros (`uint256`). Así cada dirección tiene un saldo asociado que se puede actualizar o consultar fácilmente.
+In this case, the `mapping` `balances` associates addresses (`address`) with integers (`uint256`). This way each address has an associated balance that can be easily updated or queried.
 
-### ¿Cómo funcionan los mappings?
+### How do mappings work?
 
-Lo interesante de los mappings es que **cada clave siempre existe**, pero si nunca se ha asignado un valor, devolverá el valor por defecto del tipo de dato correspondiente (por ejemplo, `0` para enteros, `false` para booleanos, etc.). Así que si consultas un `mapping` con una clave que nunca has usado antes, no te va a dar un error, sino que te va a decir algo como "bueno, aún no hay datos aquí, pero si quieres puedo empezar a guardar lo que me digas".
+The interesting thing about mappings is that **every key always exists**, but if a value has never been assigned, it will return the default value of the corresponding data type (for example, `0` for integers, `false` for booleans, etc.). So if you query a `mapping` with a key you've never used before, it won't give you an error, but rather it will say something like "well, there's no data here yet, but if you want I can start storing what you tell me".
 
-### Ejemplo básico:
+### Basic example:
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-<strong>
-</strong><strong>contract Invitaciones {
-</strong>    // Creamos un mapping para invitar usuarios a fiesta
-    mapping(address => bool) invitados;
 
-    // Función para invitar a un usuario
-    function invitar(address usuario) public {
-        invitados[usuario] = true;
+contract Invitations {
+    // We create a mapping for inviting users to a party
+    mapping(address => bool) guests;
+
+    // Function to invite a user
+    function invite(address user) public {
+        guests[user] = true;
     }
 
-    // Función para consultar si una dirección especifica tiene invitación
-    function consultarInvitados(address usuario) public view returns (bool) {
-        return invitados[usuario];
+    // Function to check if a specific address has an invitation
+    function checkGuest(address user) public view returns (bool) {
+        return guests[user];
     }
 }
 </code></pre>
 
-En este ejemplo, cada vez que alguien llama a la función `invitar` y pasa un address como parámetro, su valor en el mapping `invitados` cambia a `true`. Puedes consultar si cualquier dirección está invitada o no usando `consultarInvitados`.
+In this example, every time someone calls the `invite` function and passes an address as a parameter, their value in the `guests` mapping changes to `true`. You can check if any address is invited or not using `checkGuest`.
 
-### Cosas que debes saber sobre los mappings:
+### Things you should know about mappings:
 
-1. **No puedes iterar sobre un mapping**: A diferencia de un array, no puedes recorrer todos los elementos de un mapping. Esto significa que no hay manera fácil de "listar" todas las claves almacenadas. Si necesitas hacer eso tendrás que mantener un array separado con las claves o usar algún tipo de estructura adicional.
-2. **Valores por defecto**: Si intentas acceder a un valor que no existe, el mapping te devolverá el valor por defecto del tipo de dato del valor. Esto puede ser útil, pero también puede llevar a confusiones si no lo manejas correctamente.
-3. **Mappings anidados**: Puedes tener mappings dentro de mappings. Por ejemplo, un mapping que asocie direcciones con otro mapping de enteros, como un súper cajón con sub-cajones dentro.
+1. **You cannot iterate over a mapping**: Unlike an array, you cannot loop through all elements of a mapping. This means there's no easy way to "list" all stored keys. If you need to do that, you'll have to maintain a separate array with the keys or use some additional structure.
+2. **Default values**: If you try to access a value that doesn't exist, the mapping will return the default value of the value's data type. This can be useful, but it can also lead to confusion if not handled correctly.
+3. **Nested mappings**: You can have mappings inside mappings. For example, a mapping that associates addresses with another mapping of integers, like a super drawer with sub-drawers inside.

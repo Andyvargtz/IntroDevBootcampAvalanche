@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Storage de EVM
+# EVM Storage
 

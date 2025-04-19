@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Configurando Reown
+# Configuring Reown
 

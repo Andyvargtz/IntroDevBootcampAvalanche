@@ -13,109 +13,109 @@ layout:
     visible: true
 ---
 
-# Manejo de Errores
+# Error Handling
 
-El **manejo de errores** en Solidity es clave para que tus contratos funcionen de manera segura y predecible. Imagínate que estás jugando un videojuego, si tu personaje intenta saltar por un abismo y el juego no tiene una manera de lidiar con ese error, simplemente te caes al vacío y el juego se rompe. Pues en Solidity pasa algo parecido. Sin un buen manejo de errores, el contrato puede comportarse de forma inesperada y los usuarios pueden perder dinero o recursos.
+**Error handling** in Solidity is key to making your contracts work safely and predictably. Imagine you're playing a video game, if your character tries to jump over a cliff and the game doesn't have a way to handle that error, you simply fall into the void and the game breaks. Well, something similar happens in Solidity. Without proper error handling, the contract can behave unexpectedly and users can lose money or resources.
 
-### ¿Por qué es importante manejar errores?
+### Why is error handling important?
 
-Cuando ejecutas un contrato, muchas cosas pueden salir mal: intentas transferir más Ether del que tienes, llamas a una función con parámetros incorrectos, o hay un bug en la lógica. Si no controlas estos errores, el contrato puede comportarse de manera impredecible y causar problemas. Usar las herramientas adecuadas para manejar errores garantiza que si algo sale mal, el contrato se detiene de manera segura y devuelve el gas no utilizado.
+When you execute a contract, many things can go wrong: you try to transfer more Ether than you have, you call a function with incorrect parameters, or there's a bug in the logic. If you don't control these errors, the contract can behave unpredictably and cause problems. Using the right tools for error handling ensures that if something goes wrong, the contract stops safely and returns unused gas.
 
-### Herramientas para el manejo de errores en Solidity
+### Tools for error handling in Solidity
 
-1.  **`require`**: Verifica que se cumpla una condición antes de continuar con la ejecución. Si la condición falla, revierte la transacción, devuelve el gas no utilizado y muestra un mensaje de error. Perfecto para validar entradas de usuario o resultados de funciones.
+1.  **`require`**: Verifies that a condition is met before continuing with execution. If the condition fails, it reverts the transaction, returns unused gas, and displays an error message. Perfect for validating user inputs or function results.
 
     ```solidity
-    function retirarFondos(uint monto) public {
-        require(monto <= balance[msg.sender], "No tienes suficientes fondos");
-        balance[msg.sender] -= monto;
+    function withdrawFunds(uint amount) public {
+        require(amount <= balance[msg.sender], "You don't have enough funds");
+        balance[msg.sender] -= amount;
     }
     ```
 
-    Aquí, `require` se asegura de que el usuario no intente retirar más de lo que tiene. Si no se cumple la condición, el contrato se detiene y muestra el mensaje de error "No tienes suficientes fondos".
-2.  **`revert`**: Similar a `require`, pero se usa para revertir transacciones en situaciones más complejas, donde no es posible evaluar la condición directamente en la misma línea. También se puede usar con un mensaje personalizado.
+    Here, `require` ensures that the user doesn't try to withdraw more than they have. If the condition isn't met, the contract stops and displays the error message "You don't have enough funds".
+2.  **`revert`**: Similar to `require`, but used to revert transactions in more complex situations, where it's not possible to evaluate the condition directly in the same line. It can also be used with a custom message.
 
     ```solidity
-    function transferir(address destinatario, uint monto) public {
-        if (monto > balance[msg.sender]) {
-            revert("Fondos insuficientes");
+    function transfer(address recipient, uint amount) public {
+        if (amount > balance[msg.sender]) {
+            revert("Insufficient funds");
         }
-        balance[msg.sender] -= monto;
-        balance[destinatario] += monto;
+        balance[msg.sender] -= amount;
+        balance[recipient] += amount;
     }
     ```
 
-    Aquí, `revert` detiene la ejecución si el usuario intenta transferir más fondos de los que tiene, mostrando el mensaje "Fondos insuficientes".
-3.  **`assert`**: Se utiliza para verificar condiciones internas que deberían ser siempre verdaderas. Si `assert` falla, significa que algo está muy mal en el contrato y se detiene la ejecución de inmediato sin devolver el gas utilizado.
+    Here, `revert` stops execution if the user tries to transfer more funds than they have, showing the message "Insufficient funds".
+3.  **`assert`**: Used to verify internal conditions that should always be true. If `assert` fails, it means something is very wrong with the contract and execution stops immediately without returning the gas used.
 
     ```solidity
-    function pruebaInmutable(uint x) public pure returns (uint) {
-        assert(x != 0); // x nunca debería ser 0
+    function testImmutable(uint x) public pure returns (uint) {
+        assert(x != 0); // x should never be 0
         return 100 / x;
     }
     ```
 
-    Aquí, `assert` asegura que `x` no sea 0. Si lo es, algo grave ocurre, y el contrato se detiene por completo.
+    Here, `assert` ensures that `x` is not 0. If it is, something serious is happening, and the contract stops completely.
 
-### **Errores personalizados en `require` y `revert`**
+### **Custom errors in `require` and `revert`**
 
-Para manejar errores específicos y enviar mensajes detallados, puedes definir errores personalizados. Estos errores te permiten dar más información sobre por qué falló una operación, y son más eficientes en términos de gas.
+To handle specific errors and send detailed messages, you can define custom errors. These errors allow you to provide more information about why an operation failed, and they are more gas efficient.
 
 ```solidity
-error FondosInsuficientes(uint solicitado, uint disponible);
+error InsufficientFunds(uint requested, uint available);
 
-function retirar(uint monto) public {
-    if (monto > balance[msg.sender]) {
-        revert FondosInsuficientes({
-            solicitado: monto,
-            disponible: balance[msg.sender]
+function withdraw(uint amount) public {
+    if (amount > balance[msg.sender]) {
+        revert InsufficientFunds({
+            requested: amount,
+            available: balance[msg.sender]
         });
     }
-    balance[msg.sender] -= monto;
+    balance[msg.sender] -= amount;
 }
 ```
 
-En este ejemplo, si el usuario intenta retirar más de lo que tiene, se invoca el error `FondosInsuficientes`, indicando cuánto se solicitó y cuánto está disponible. Esto proporciona un nivel extra de detalle que puede ser muy útil para los usuarios.
+In this example, if the user tries to withdraw more than they have, the `InsufficientFunds` error is triggered, indicating how much was requested and how much was available. This provides an extra level of detail that can be very useful for users.
 
-### ¿Cuál es la diferencia entre `require`, `revert` y `assert`?
+### What's the difference between `require`, `revert`, and `assert`?
 
-* **`require`**: Se utiliza para validar condiciones que dependen de entradas externas, como parámetros de funciones o el estado actual del contrato. Si falla, la transacción se revierte y devuelve el gas no utilizado.
-* **`revert`**: Se usa para manejar condiciones más complejas donde necesitas controlar manualmente cómo y cuándo se revierte la transacción. También revierte la transacción y devuelve el gas no utilizado.
-* **`assert`**: Es más drástico. Verifica condiciones internas que siempre deberían cumplirse. Si falla, es porque hay un error crítico en la lógica del contrato y no devuelve el gas utilizado.
+* **`require`**: Used to validate conditions that depend on external inputs, such as function parameters or the current state of the contract. If it fails, the transaction is reverted and unused gas is returned.
+* **`revert`**: Used to handle more complex conditions where you need to manually control how and when the transaction is reverted. It also reverts the transaction and returns unused gas.
+* **`assert`**: It's more drastic. It verifies internal conditions that should always be met. If it fails, it's because there's a critical error in the contract's logic and it doesn't return the gas used.
 
-### Ejemplo práctico: Manejo de errores en un contrato bancario
+### Practical example: Error handling in a bank contract
 
-Imaginemos un contrato que permite a los usuarios depositar y retirar fondos. Si un usuario intenta retirar más de lo que tiene, queremos detener la operación y mostrar un mensaje específico.
+Let's imagine a contract that allows users to deposit and withdraw funds. If a user tries to withdraw more than they have, we want to stop the operation and show a specific message.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Banco {
+contract Bank {
     mapping(address => uint) public balances;
 
-    // Definimos un error personalizado
-    error FondosInsuficientes(uint solicitado, uint disponible);
+    // Define a custom error
+    error InsufficientFunds(uint requested, uint available);
 
-    // Función para depositar fondos
-    function depositar() public payable {
+    // Function to deposit funds
+    function deposit() public payable {
         balances[msg.sender] += msg.value;
     }
 
-    // Función para retirar fondos
-    function retirar(uint monto) public {
-        if (monto > balances[msg.sender]) {
-            revert FondosInsuficientes(monto, balances[msg.sender]);
+    // Function to withdraw funds
+    function withdraw(uint amount) public {
+        if (amount > balances[msg.sender]) {
+            revert InsufficientFunds(amount, balances[msg.sender]);
         }
-        balances[msg.sender] -= monto;
-        payable(msg.sender).transfer(monto);
+        balances[msg.sender] -= amount;
+        payable(msg.sender).transfer(amount);
     }
 
-    // Función para verificar el balance
-    function obtenerBalance() public view returns (uint) {
+    // Function to check balance
+    function getBalance() public view returns (uint) {
         return balances[msg.sender];
     }
 }
 ```
 
-En este contrato, si intentas retirar más fondos de los que tienes, el error `FondosInsuficientes` se activa y muestra exactamente cuánto se intentó retirar y cuánto había disponible.
+In this contract, if you try to withdraw more funds than you have, the `InsufficientFunds` error is triggered and shows exactly how much was attempted to be withdrawn and how much was available.

@@ -15,102 +15,102 @@ layout:
 
 # Arrays
 
-Los **arrays** en Solidity son listas donde puedes almacenar colecciones de datos del mismo tipo. Imagina una fila de casilleros numerados, donde cada casillero puede contener un valor específico. Ya sea que necesites almacenar un grupo de números, direcciones, o cualquier otro tipo de dato, los arrays te permiten hacerlo de manera ordenada y accesible.
+**Arrays** in Solidity are lists where you can store collections of data of the same type. Imagine a row of numbered lockers, where each locker can contain a specific value. Whether you need to store a group of numbers, addresses, or any other type of data, arrays allow you to do it in an organized and accessible way.
 
-### ¿Qué es un array?
+### What is an array?
 
-Un array es una estructura de datos que almacena una colección de elementos del mismo tipo, ya sea de tamaño fijo o dinámico. Cada elemento tiene un índice, comenzando desde 0, que te permite acceder o modificar su valor fácilmente.
+An array is a data structure that stores a collection of elements of the same type, either of fixed or dynamic size. Each element has an index, starting from 0, that allows you to access or modify its value easily.
 
-**Sintaxis básica:**
-
-```solidity
-tipoDato[] public nombreDelArray;
-```
-
-Por ejemplo:
+**Basic syntax:**
 
 ```solidity
-uint[] public numeros;
-address[] public direcciones;
+dataType[] public arrayName;
 ```
 
-En este caso, `numeros` es un array de números enteros (`uint`), mientras que `direcciones` es un array de direcciones (`address`). Ambos son arrays dinámicos, lo que significa que pueden crecer o disminuir de tamaño según se vayan agregando o eliminando elementos.
-
-### Arrays de tamaño fijo y dinámico
-
-* **Array de tamaño fijo:** Tiene un número específico de elementos que no puede cambiar una vez definido.
+For example:
 
 ```solidity
-uint[3] public top3Numeros = [1, 2, 3]; // Array con 3 elementos fijos
+uint[] public numbers;
+address[] public addresses;
 ```
 
-* **Array dinámico:** No tiene un límite predefinido y su tamaño puede cambiar agregando o eliminando elementos.
+In this case, `numbers` is an array of integers (`uint`), while `addresses` is an array of addresses (`address`). Both are dynamic arrays, which means they can grow or shrink in size as elements are added or removed.
+
+### Fixed-size and dynamic arrays
+
+* **Fixed-size array:** Has a specific number of elements that cannot change once defined.
 
 ```solidity
-uint[] public listaDeNumeros; // Array dinámico
+uint[3] public top3Numbers = [1, 2, 3]; // Array with 3 fixed elements
 ```
 
-### Operaciones básicas con arrays
-
-Los arrays en Solidity permiten realizar operaciones comunes como agregar, modificar, eliminar y consultar elementos. Vamos a ver algunos ejemplos:
-
-**1. Agregar elementos a un array dinámico:**
+* **Dynamic array:** Has no predefined limit and its size can change by adding or removing elements.
 
 ```solidity
-listaDeNumeros.push(10); // Agrega el número 10 al final del array
+uint[] public numberList; // Dynamic array
 ```
 
-**2. Acceder y modificar elementos:**
+### Basic operations with arrays
+
+Arrays in Solidity allow you to perform common operations like adding, modifying, deleting, and querying elements. Let's see some examples:
+
+**1. Adding elements to a dynamic array:**
 
 ```solidity
-uint primerNumero = listaDeNumeros[0]; // Accede al primer elemento (índice 0)
-listaDeNumeros[0] = 20; // Cambia el valor del primer elemento a 20
+numberList.push(10); // Adds the number 10 to the end of the array
 ```
 
-**3. Eliminar elementos (solo para arrays dinámicos):**
+**2. Accessing and modifying elements:**
 
 ```solidity
-listaDeNumeros.pop(); // Elimina el último elemento del array
+uint firstNumber = numberList[0]; // Accesses the first element (index 0)
+numberList[0] = 20; // Changes the value of the first element to 20
 ```
 
-**4. Longitud del array:**
+**3. Deleting elements (only for dynamic arrays):**
 
 ```solidity
-uint longitud = listaDeNumeros.length; // Devuelve la cantidad de elementos en el array
+numberList.pop(); // Removes the last element from the array
 ```
 
-### Ejemplo práctico: Lista de Participantes
+**4. Array length:**
 
-Vamos a ver un ejemplo donde usamos un array dinámico para gestionar una lista de participantes en un contrato de eventos:
+```solidity
+uint length = numberList.length; // Returns the number of elements in the array
+```
+
+### Practical example: Participant List
+
+Let's see an example where we use a dynamic array to manage a list of participants in an event contract:
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-<strong>
-</strong><strong>contract Evento {
-</strong>    // Array dinámico de direcciones
-    address[] public participantes;
 
-    // Función para agregar un participante
-    function agregarParticipante(address _participante) public {
-        participantes.push(_participante);
+contract Event {
+    // Dynamic array of addresses
+    address[] public participants;
+
+    // Function to add a participant
+    function addParticipant(address _participant) public {
+        participants.push(_participant);
     }
 
-    // Función para obtener el número total de participantes
-    function totalParticipantes() public view returns (uint) {
-        return participantes.length;
+    // Function to get the total number of participants
+    function totalParticipants() public view returns (uint) {
+        return participants.length;
     }
 
-    // Función para obtener un participante por su índice
-    function obtenerParticipante(uint indice) public view returns (address) {
-        return participantes[indice];
+    // Function to get a participant by their index
+    function getParticipant(uint index) public view returns (address) {
+        return participants[index];
     }
 }
 </code></pre>
 
-En este contrato puedes agregar direcciones de participantes con `agregarParticipante`, consultar cuántos participantes hay con `totalParticipantes` y obtener un participante específico con `obtenerParticipante`.
+In this contract, you can add participant addresses with `addParticipant`, check how many participants there are with `totalParticipants`, and get a specific participant with `getParticipant`.
 
-### Cosas a tener en cuenta con los arrays
+### Things to keep in mind with arrays
 
-1. **Cuidado con los índices:** Siempre asegúrate de que el índice esté dentro del rango del array. Intentar acceder a un índice fuera del rango resultará en un error y fallará la transacción.
-2. **Uso de gas:** Operaciones como `push` y `pop` en arrays dinámicos consumen gas. Manipular arrays grandes puede volverse costoso rápidamente, así que úsalos con moderación.
-3. **No hay métodos nativos de eliminación:** Aunque puedes usar `.pop()` para eliminar el último elemento, no hay un método nativo para eliminar un elemento específico y mantener el orden. Para eliminar elementos intermedios, necesitas una lógica personalizada.
+1. **Be careful with indices:** Always make sure the index is within the array's range. Trying to access an index outside the range will result in an error and fail the transaction.
+2. **Gas usage:** Operations like `push` and `pop` on dynamic arrays consume gas. Manipulating large arrays can become expensive quickly, so use them in moderation.
+3. **No native deletion methods:** Although you can use `.pop()` to remove the last element, there is no native method to delete a specific element and maintain order. To delete intermediate elements, you need custom logic.

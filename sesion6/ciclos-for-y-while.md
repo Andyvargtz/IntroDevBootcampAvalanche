@@ -13,50 +13,50 @@ layout:
     visible: true
 ---
 
-# Ciclos For y While
+# For and While Loops
 
-Los **ciclos for y while** se usan para repetir un bloque de código varias veces, pero ojo, no son tan amigables con el gas. Aquí te explico cómo funcionan, cuándo usarlos (y cuándo no), y te doy algunos tips para que no termines gastando más gas del necesario.
+**For and while loops** are used to repeat a block of code multiple times, but be careful, they're not very gas-friendly. Here I'll explain how they work, when to use them (and when not to), and give you some tips to avoid spending more gas than necessary.
 
-### Ciclo `for`
+### `for` Loop
 
-El ciclo `for` es ideal para cuando sabes exactamente cuántas veces quieres que se repita algo. Es como decir: "Voy a iterar sobre estos 10 elementos y listo".
+The `for` loop is ideal when you know exactly how many times you want something to repeat. It's like saying: "I'm going to iterate over these 10 elements and that's it".
 
 ```solidity
-function sumarElementos(uint[] memory numeros) public pure returns (uint) {
-    uint suma = 0;
-    for (uint i = 0; i < numeros.length; i++) {
-        suma += numeros[i];
+function sumElements(uint[] memory numbers) public pure returns (uint) {
+    uint sum = 0;
+    for (uint i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
     }
-    return suma;
+    return sum;
 }
 ```
 
-En este ejemplo, `for` recorre todos los elementos de la lista `numeros` y suma cada uno a la variable `suma`. Fácil, ¿no? Pero cuidado, si el array es demasiado largo el costo de gas puede dispararse. Así que antes de usar `for` asegúrate de que el tamaño de la lista no sea un misterio.
+In this example, `for` goes through all the elements in the `numbers` list and adds each one to the `sum` variable. Easy, right? But be careful, if the array is too long the gas cost can skyrocket. So before using `for` make sure the size of the list isn't a mystery.
 
-### Ciclo `while`
+### `while` Loop
 
-El ciclo `while` repite un bloque de código mientras una condición sea verdadera. Es como decir: "Voy a seguir comiendo pizza hasta que ya no pueda más".
+The `while` loop repeats a block of code while a condition is true. It's like saying: "I'm going to keep eating pizza until I can't anymore".
 
-**Ejemplo básico:**
+**Basic example:**
 
 ```solidity
-function cuentaRegresiva(uint inicio) public pure returns (uint) {
-    uint contador = inicio;
-    while (contador > 0) {
-        contador--;
+function countdown(uint start) public pure returns (uint) {
+    uint counter = start;
+    while (counter > 0) {
+        counter--;
     }
-    return contador;
+    return counter;
 }
 ```
 
-Aquí, `while` sigue restando 1 a `contador` hasta que llegue a 0. Útil, pero si no tienes cuidado con la condición, podrías caer en un loop infinito y acabar con todo el gas de la transacción.
+Here, `while` keeps subtracting 1 from `counter` until it reaches 0. Useful, but if you're not careful with the condition, you could end up in an infinite loop and use up all the transaction's gas.
 
-### ¿Cuándo usarlos y cuándo evitar?
+### When to use them and when to avoid them?
 
-1. **No abuses**: Los ciclos son útiles, pero cada iteración consume gas. Si tu ciclo depende del input del usuario (como un array de longitud desconocida), podrías acabar con una transacción que cuesta una fortuna o que, simplemente, no se ejecuta porque se queda sin gas.
-2. **Prefiere `for` sobre `while`**: En general, el ciclo `for` es más seguro porque su condición de salida suele ser más controlada. Con `while`, si te olvidas de actualizar la condición, boom, loop infinito.
-3. **Considera dividir la lógica**: Si necesitas recorrer un array gigante, piensa en dividir la tarea en varias transacciones o usar eventos para notificar progreso. No es tan sencillo como un ciclo, pero te puede salvar de muchos dolores de cabeza.
+1. **Don't abuse them**: Loops are useful, but each iteration consumes gas. If your loop depends on user input (like an array of unknown length), you could end up with a transaction that costs a fortune or simply doesn't execute because it runs out of gas.
+2. **Prefer `for` over `while`**: In general, the `for` loop is safer because its exit condition is usually more controlled. With `while`, if you forget to update the condition, boom, infinite loop.
+3. **Consider splitting the logic**: If you need to go through a huge array, think about splitting the task into multiple transactions or using events to notify progress. It's not as simple as a loop, but it can save you from many headaches.
 
-### Pro Tip: Evita usar ciclos dentro de funciones de pago
+### Pro Tip: Avoid using loops inside payable functions
 
-Los ciclos pueden aumentar mucho el gas de una transacción. Si tu función también recibe Ether (`payable`), no es una buena idea meterle ciclos largos. La transacción puede fallar y el usuario se queda con cara de "¿qué pasó aquí?".
+Loops can significantly increase a transaction's gas cost. If your function also receives Ether (`payable`), it's not a good idea to put long loops in it. The transaction could fail and the user is left wondering "what happened here?".

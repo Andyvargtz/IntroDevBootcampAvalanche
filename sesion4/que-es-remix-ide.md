@@ -13,28 +13,26 @@ layout:
     visible: true
 ---
 
-# Qué es Remix IDE
+# What is Remix IDE
 
-Es hora de hablar sobre una de las herramientas más importantes para cualquier desarrollador blockchain, **Remix IDE**. Si alguna vez has querido desarrollar contratos inteligentes de manera sencilla y rápida, Remix es el lugar perfecto para empezar.
+It's time to talk about one of the most important tools for any blockchain developer, **Remix IDE**. If you've ever wanted to develop smart contracts in a simple and quick way, Remix is the perfect place to start.
 
+**Remix IDE** is an integrated development environment (IDE) used to write, compile, test, and deploy smart contracts on EVM-compatible blockchains. The best thing about Remix is that it is **completely accessible from your browser**, with no need to install anything. From writing your first smart contract in **Solidity**, to interacting with complex dApps, Remix makes the entire process much more friendly for both beginners and experienced developers alike.
 
-
-**Remix IDE** es un entorno de desarrollo integrado (IDE) que se utiliza para escribir, compilar, testear y desplegar contratos inteligentes en las blockchains compatibles con la EVM. Lo mejor de Remix es que es **completamente accesible desde tu navegador**, sin necesidad de instalar nada. Desde escribir tu primer contrato inteligente en **Solidity**, hasta interactuar con dApps complejas, Remix hace que todo el proceso sea mucho más amigable para principiantes y desarrolladores experimentados por igual.
-
-Imagina que Remix es como tu "**estudio de creación de contratos inteligentes**". No solo te permite escribir código, sino que te ofrece una **plataforma completa** para probar, depurar y desplegar tus contratos en una red blockchain o Testnet. Y todo esto sin tener que abandonar tu navegador.
+Imagine Remix as your "**smart contract creation studio**". Not only does it allow you to write code, but it also provides a **complete platform** for testing, debugging, and deploying your contracts on a blockchain network or Testnet. And all of this without having to leave your browser.
 
 {% embed url="https://remix.ethereum.org/" %}
 
-### Funcionalidades principales de Remix
+### Main Features of Remix
 
-Remix viene cargado con un montón de funcionalidades útiles que facilitan el trabajo con contratos inteligentes. Aquí algunas de las más destacadas:
+Remix comes loaded with many useful features that make working with smart contracts easier. Here are some of the most notable ones:
 
-1. **Editor de código en línea**: Remix tiene un **editor de código** que te permite escribir y organizar tus contratos en **Solidity** de manera clara. Además, incluye funcionalidades como el autocompletado y resaltado de sintaxis, lo que facilita la escritura y te ayuda a evitar errores.
-2. **Compilación instantánea**: Una de las ventajas clave de Remix es que **compila** tu código en tiempo real. Esto significa que, mientras escribes, Remix va detectando errores y problemas en tu contrato, lo que te permite corregirlos al instante.
-3. **Depuración y prueba de contratos**: Después de compilar tu contrato, Remix te permite **probarlo** directamente desde su interfaz. Puedes simular cómo funcionará tu contrato inteligente en una red blockchain antes de desplegarlo en una Testnet o en la mainnet.
-4. **Despliegue directo en la blockchain**: Cuando estés listo para desplegar tu contrato, puedes hacerlo fácilmente con Remix. Puedes conectarte a **Core** o a cualquier otra wallet compatible y desplegar tu contrato directamente en la blockchain de Avalanche C-Chain o en la Testnet de Fuji. Esto hace que el proceso de poner tu contrato en la red sea súper sencillo y rápido.
-5. **Herramientas adicionales**: Remix también ofrece una serie de **plugins** que puedes agregar para personalizar tu entorno de desarrollo. Estos incluyen herramientas para análisis de gas, pruebas de seguridad, verificación automática de contratos y mucho más. Si quieres llevar tus contratos inteligentes al siguiente nivel, Remix te ofrece las herramientas necesarias.
+1. **Online code editor**: Remix has a **code editor** that allows you to write and organize your contracts in **Solidity** clearly. Additionally, it includes features like autocomplete and syntax highlighting, which makes writing easier and helps you avoid errors.
+2. **Instant compilation**: One of the key advantages of Remix is that it **compiles** your code in real-time. This means that, while you write, Remix detects errors and issues in your contract, allowing you to correct them instantly.
+3. **Contract debugging and testing**: After compiling your contract, Remix allows you to **test** it directly from its interface. You can simulate how your smart contract will work on a blockchain network before deploying it to a Testnet or the mainnet.
+4. **Direct deployment to the blockchain**: When you're ready to deploy your contract, you can do it easily with Remix. You can connect to **Core** or any other compatible wallet and deploy your contract directly on the Avalanche C-Chain blockchain or the Fuji Testnet. This makes the process of putting your contract on the network super simple and fast.
+5. **Additional tools**: Remix also offers a series of **plugins** that you can add to customize your development environment. These include tools for gas analysis, security testing, automatic contract verification, and much more. If you want to take your smart contracts to the next level, Remix provides you with the necessary tools.
 
 <figure><img src="../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
-Si estás comenzando, Remix es una excelente forma de familiarizarte con Solidity y la creación de contratos inteligentes.
+If you're just starting out, Remix is an excellent way to familiarize yourself with Solidity and smart contract creation.

@@ -13,34 +13,34 @@ layout:
     visible: true
 ---
 
-# Mecanismos de Consenso
+# Consensus Mechanisms
 
-Uno de los pilares fundamentales que hizo posible el funcionamiento de Bitcoin fue el mecanismo de consenso llamado **Proof of Work** (Prueba de Trabajo). Este sistema permite que todos los **nodos** de la red estén de acuerdo sobre el estado de la blockchain sin necesidad de una autoridad central.
+One of the fundamental pillars that made Bitcoin's operation possible was the consensus mechanism called **Proof of Work**. This system allows all **nodes** in the network to agree on the state of the blockchain without the need for a central authority.
 
-Pero, ¿qué es un nodo? Un nodo es cualquier dispositivo, como una computadora que se conecta a la blockchain y mantiene una copia actualizada de toda la cadena de bloques, participando en la validación y propagación de transacciones.
+But, what is a node? A node is any device, such as a computer, that connects to the blockchain and maintains an updated copy of the entire blockchain, participating in the validation and propagation of transactions.
 
 ### Proof of Work
 
-Los mineros, que son nodos especiales, compiten por resolver complejos problemas matemáticos, y el primero en encontrar la solución puede agregar el siguiente bloque de transacciones a la cadena, recibiendo una recompensa por su esfuerzo.
+Miners, who are special nodes, compete to solve complex mathematical problems, and the first one to find the solution can add the next block of transactions to the chain, receiving a reward for their effort.
 
 <figure><img src="../.gitbook/assets/image (60).png" alt=""><figcaption><p><a href="https://whiteboardcrypto.com/what-is-proof-of-work/">https://whiteboardcrypto.com/what-is-proof-of-work/</a></p></figcaption></figure>
 
-Sin embargo, con el crecimiento de la red y el aumento en la dificultad de los cálculos, **Proof of Work** ha mostrado ciertas limitaciones. El alto consumo energético y la lentitud en la confirmación de transacciones se han convertido en grandes obstáculos en el camino. Fue entonces cuando surgieron nuevas propuestas para mejorar la eficiencia y escalabilidad de las blockchains.
+However, with the growth of the network and the increase in calculation difficulty, **Proof of Work** has shown certain limitations. High energy consumption and slow transaction confirmation have become major obstacles along the way. It was then that new proposals emerged to improve the efficiency and scalability of blockchains.
 
 ### Proof of Stake
 
-Aquí entra en juego el **Proof of Stake** (Prueba de Participación). En lugar de depender de la potencia computacional, este mecanismo selecciona a los **validadores** en función de la cantidad de criptomoneda que poseen y están dispuestos a "apostar" como garantía.&#x20;
+This is where **Proof of Stake** comes into play. Instead of relying on computational power, this mechanism selects **validators** based on the amount of cryptocurrency they own and are willing to "stake" as collateral.&#x20;
 
-Pero, ¿quiénes son estos validadores? Los validadores en **Proof of Stake** son participantes de la red que bloquean una parte de sus monedas como compromiso de que actuarán de manera honesta. Si validan transacciones fraudulentas pueden perder sus fondos apostados. Esto reduce drásticamente el consumo de energía y acelera el proceso de validación de transacciones.&#x20;
+But, who are these validators? Validators in **Proof of Stake** are network participants who lock up a portion of their coins as a commitment that they will act honestly. If they validate fraudulent transactions, they can lose their staked funds. This drastically reduces energy consumption and speeds up the transaction validation process.&#x20;
 
 <figure><img src="../.gitbook/assets/image (61).png" alt=""><figcaption><p><a href="https://tangem.com/en/blog/post/proof-of-stake-pos-the-main-concept-and-principles/">https://tangem.com/en/blog/post/proof-of-stake-pos-the-main-concept-and-principles/</a></p></figcaption></figure>
 
-**Ethereum** reconociendo estas ventajas hizo su transición de Proof of Work a Proof of Stake con el objetivo de mejorar su rendimiento y escalabilidad. Pero la innovación en mecanismos de consenso no se detiene ahí. En 2020, surge **Avalanche**, un ecosistema blockchain que introduce un nuevo y revolucionario protocolo de consenso conocido como **Avalanche Consensus**. Este mecanismo combina lo mejor de los sistemas anteriores y añade mejoras significativas.
+**Ethereum**, recognizing these advantages, made its transition from Proof of Work to Proof of Stake with the goal of improving its performance and scalability. But innovation in consensus mechanisms doesn't stop there. In 2020, **Avalanche** emerged, a blockchain ecosystem that introduces a new and revolutionary consensus protocol known as **Avalanche Consensus**. This mechanism combines the best of previous systems and adds significant improvements.
 
 ### Avalanche Consensus
 
-**Avalanche Consensus** usa un enfoque basado en la "metastabilidad" y muestreo aleatorio repetido, es decir, en lugar de que todos los nodos validen todas las transacciones, cada nodo consulta a un pequeño subconjunto aleatorio de otros nodos. A través de múltiples rondas de consulta, la red **llega rápidamente a un acuerdo** sin sacrificar la seguridad ni la descentralización.
+**Avalanche Consensus** uses an approach based on "metastability" and repeated random sampling, meaning that instead of all nodes validating all transactions, each node queries a small random subset of other nodes. Through multiple rounds of querying, the network **quickly reaches an agreement** without sacrificing security or decentralization.
 
-Este método permite que **Avalanche** alcance tiempos de finalización de transacciones de **menos de un segundo** y una capacidad para procesar **miles de transacciones por segundo**. Además es altamente resistente a ataques y no requiere un alto consumo de energía, lo que la convierte en una de las mejores soluciones actualmente.
+This method allows **Avalanche** to achieve transaction finality times of **less than one second** and the capacity to process **thousands of transactions per second**. Additionally, it is highly resistant to attacks and doesn't require high energy consumption, making it one of the best solutions currently available.
 
 <figure><img src="../.gitbook/assets/get-started-avax-consensus.gif" alt=""><figcaption></figcaption></figure>

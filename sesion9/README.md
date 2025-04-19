@@ -2,5 +2,5 @@
 icon: coin-front
 ---
 
-# Sesión 9: Tokens ERC20
+# Session 9: ERC20 Tokens
 

@@ -15,32 +15,45 @@ layout:
 
 # Vesting
 
-El **vesting** es un mecanismo utilizado para liberar tokens gradualmente en un periodo determinado. Este método es común en las startups, donde se busca retener a los miembros del equipo y a los primeros inversores a largo plazo. En el contexto de blockchain, el vesting asegura que los tokens de fundadores, inversores iniciales y miembros del equipo no se puedan vender inmediatamente, ayudando a mantener la estabilidad y la confianza en el proyecto.
+**Vesting** is a mechanism used in the cryptocurrency and blockchain world to gradually release tokens or assets to their holders over a specific period. This practice is common in projects and companies that want to ensure long-term commitment from their team members, investors, or advisors.
 
-### **¿Qué es el Vesting y Cómo Funciona?**
+### **What is Vesting?**
 
-El vesting establece un **cronograma de liberación de tokens** que suele incluir un periodo de **cliff** y una liberación paulatina. Este proceso permite distribuir tokens de forma controlada y evitar que grandes cantidades se liberen de una vez, lo que podría afectar la oferta y la demanda, y por tanto, el precio del token.
+Vesting is a process where tokens or assets are **locked** in a smart contract and are gradually released to their holders according to a predefined schedule. This means that even though someone may own certain tokens, they cannot access or use them immediately, but must wait for the vesting period to complete.
 
-* **Periodo de Cliff**: Es el tiempo inicial durante el cual los tokens no pueden ser reclamados ni transferidos. Es una medida de seguridad para asegurar el compromiso de los beneficiarios con el proyecto.
-* **Liberación Gradual**: Una vez terminado el periodo de cliff, los tokens comienzan a liberarse de acuerdo a un calendario. Esto puede ser mensual, trimestral o anual, dependiendo de la estructura definida por el proyecto.
+### **How Vesting Works**
 
-### **Tipos de Vesting**
+The vesting process typically follows these steps:
 
-1. **Vesting Lineal**: Los tokens se liberan de forma constante a lo largo del tiempo. Por ejemplo, un calendario de 2 años con vesting lineal liberaría un porcentaje fijo cada mes.
-2. **Vesting Escalonado**: En lugar de liberarse de manera uniforme, los tokens se liberan en bloques específicos. Por ejemplo, el 25% de los tokens se libera al finalizar el primer año, el 25% al segundo año, y el 50% restante al tercer año.
-3. **Vesting Basado en Desempeño**: En algunos casos, la liberación de tokens depende del cumplimiento de ciertos objetivos o métricas específicas. Esto se utiliza para asegurar que los miembros del equipo contribuyan activamente al crecimiento del proyecto.
+1. **Token Locking**: Tokens are locked in a smart contract that controls their release.
+2. **Vesting Schedule**: A schedule is established that determines when and how many tokens will be released. This can be linear (equal amounts over time) or follow a specific curve.
+3. **Release Conditions**: Conditions for token release are defined, which may include time periods, performance milestones, or other criteria.
+4. **Gradual Release**: Tokens are gradually released to holders according to the established schedule.
 
-### **Ejemplo de Vesting en un Proyecto de Criptomonedas**
+### **Types of Vesting**
 
-Imaginemos un proyecto, los fundadores y el equipo central tienen asignados tokens con un calendario de vesting de 4 años y un periodo de cliff de 1 año. Esto significa que durante el primer año no podrán acceder a sus tokens. Después de este periodo, los tokens se irán liberando gradualmente cada mes hasta completar el 100% en el cuarto año. Esta estructura asegura que el equipo mantenga su compromiso con el proyecto y alinea sus incentivos con el crecimiento a largo plazo.
+There are several types of vesting schedules commonly used:
 
-### **Ventajas y Beneficios del Vesting**
+* **Linear Vesting**: Tokens are released in equal amounts over the vesting period. For example, if 1000 tokens are vested over 12 months, approximately 83.33 tokens would be released each month.
+* **Cliff Vesting**: A period during which no tokens are released, followed by a sudden release of a portion of the tokens. After the cliff, tokens may continue to be released linearly.
+* **Performance-based Vesting**: Tokens are released based on achieving specific milestones or performance goals.
 
-* **Estabilidad en el Mercado**: Evita que grandes cantidades de tokens sean vendidas de inmediato, ayudando a reducir la volatilidad del precio.
-* **Compromiso a Largo Plazo**: Mantiene a los miembros clave comprometidos con el éxito del proyecto, ya que solo reciben sus tokens si permanecen involucrados.
-* **Confianza de los Inversionistas**: Los inversores y la comunidad ven el vesting como una señal de que el equipo tiene intenciones genuinas de trabajar a largo plazo en el proyecto.
+### **Example of Vesting**
 
-### **Desventajas y Riesgos del Vesting**
+Suppose a startup decides to allocate 1,000,000 tokens to its team with a 4-year vesting period and a 1-year cliff. Here's how it would work:
 
-* **Limitaciones de Liquidez para el Equipo**: Los miembros del equipo no pueden acceder a todos sus tokens de inmediato, lo que limita su capacidad de liquidez en el corto plazo.
-* **Riesgo de Abandono Prematuro**: Si un miembro del equipo abandona el proyecto antes de que concluya el vesting, los tokens que no se hayan liberado podrían quedar bloqueados o perderse.
+* **Cliff Period**: During the first year, no tokens are released.
+* **After Cliff**: At the end of the first year, 25% of the tokens (250,000) are released.
+* **Monthly Releases**: The remaining 750,000 tokens are released linearly over the next 3 years, meaning approximately 20,833 tokens per month.
+
+### **Importance of Vesting**
+
+Vesting is crucial for several reasons:
+
+* **Alignment of Interests**: Ensures that team members and investors are committed to the long-term success of the project.
+* **Prevention of Token Dumping**: Prevents large amounts of tokens from being sold immediately, which could negatively impact the token's price.
+* **Project Stability**: Provides stability and predictability in token distribution, which is attractive to investors and users.
+
+### **Vesting in Smart Contracts**
+
+Vesting is typically implemented through smart contracts that automatically manage the release of tokens. These contracts are programmed to follow the vesting schedule and release tokens only when the conditions are met. This ensures transparency and trust in the process, as the rules are encoded in the blockchain and cannot be altered without consensus.

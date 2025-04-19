@@ -15,80 +15,80 @@ layout:
 
 # Mapping + Struct + Enum
 
-¡Vamos a combinar lo mejor de tres mundos! Cuando usas **mappings**, **structs** y **enums** juntos en Solidity, puedes organizar datos súper complejos de manera ordenada y eficiente. Es como armar un rompecabezas donde cada pieza tiene su lugar y propósito. Esta combinación es ideal para aplicaciones que necesitan gestionar datos con múltiples niveles de información y lógica.
+Let's combine the best of three worlds! When you use **mappings**, **structs**, and **enums** together in Solidity, you can organize super complex data in an orderly and efficient way. It's like putting together a puzzle where each piece has its place and purpose. This combination is ideal for applications that need to manage data with multiple levels of information and logic.
 
-### ¿Cómo funciona la combinación?
+### How does the combination work?
 
-1. **Mapping**: Te ayuda a asociar claves con valores. Puede ser un usuario con su información, un producto con su precio, o cualquier otra combinación de datos.
-2. **Struct**: Agrupa diferentes tipos de datos en un solo contenedor. Piensa en un perfil de usuario que tiene nombre, edad y dirección, todo en un solo “paquete”.
-3. **Enum**: Define un conjunto de opciones predefinidas, como estados de un contrato (Activo, Inactivo, Suspendido) o niveles de acceso (Usuario, Administrador).
+1. **Mapping**: Helps you associate keys with values. It can be a user with their information, a product with its price, or any other combination of data.
+2. **Struct**: Groups different types of data into a single container. Think of a user profile that has a name, age, and address, all in one "package".
+3. **Enum**: Defines a set of predefined options, like contract states (Active, Inactive, Suspended) or access levels (User, Administrator).
 
-### Ejemplo práctico: Gestión de Tareas
+### Practical example: Task Management
 
-Imaginemos que queremos crear un sistema para gestionar tareas, donde cada tarea tiene un estado y está asignada a un usuario. Vamos a usar un `enum` para definir el estado de la tarea, un `struct` para almacenar los detalles de la tarea, y un `mapping` para organizar todas las tareas por usuario.
+Let's imagine we want to create a system to manage tasks, where each task has a state and is assigned to a user. We'll use an `enum` to define the task state, a `struct` to store the task details, and a `mapping` to organize all tasks by user.
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-<strong>
-</strong><strong>contract GestionDeTareas {
-</strong>    // Definimos el enum para los estados de una tarea
-    enum EstadoTarea { Pendiente, EnProgreso, Completada }
 
-    // Creamos una struct para representar una tarea
-    struct Tarea {
-        string descripcion;
-        EstadoTarea estado;
-        uint fechaCreacion;
+contract TaskManagement {
+    // Define the enum for task states
+    enum TaskState { Pending, InProgress, Completed }
+
+    // Create a struct to represent a task
+    struct Task {
+        string description;
+        TaskState state;
+        uint creationDate;
     }
 
-    // Mapping de usuario a una lista de tareas
-    mapping(address => Tarea[]) tareasPorUsuario;
+    // Mapping from user to a list of tasks
+    mapping(address => Task[]) userTasks;
 
-    // Función para crear una nueva tarea
-    function crearTarea(string memory _descripcion) public {
-        Tarea memory nuevaTarea = Tarea(_descripcion, EstadoTarea.Pendiente, block.timestamp);
-        tareasPorUsuario[msg.sender].push(nuevaTarea);
+    // Function to create a new task
+    function createTask(string memory _description) public {
+        Task memory newTask = Task(_description, TaskState.Pending, block.timestamp);
+        userTasks[msg.sender].push(newTask);
     }
 
-    // Función para actualizar el estado de una tarea específica
-    function actualizarEstadoTarea(uint indice, EstadoTarea nuevoEstado) public {
-        require(indice &#x3C; tareasPorUsuario[msg.sender].length, "Indice de tarea fuera de rango");
-        tareasPorUsuario[msg.sender][indice].estado = nuevoEstado;
+    // Function to update the state of a specific task
+    function updateTaskState(uint index, TaskState newState) public {
+        require(index < userTasks[msg.sender].length, "Task index out of range");
+        userTasks[msg.sender][index].state = newState;
     }
 
-    // Función para obtener los detalles de una tarea específica
-    function obtenerTarea(address usuario, uint indice) public view returns (string memory, EstadoTarea, uint) {
-        Tarea memory tarea = tareasPorUsuario[usuario][indice];
-        return (tarea.descripcion, tarea.estado, tarea.fechaCreacion);
+    // Function to get the details of a specific task
+    function getTask(address user, uint index) public view returns (string memory, TaskState, uint) {
+        Task memory task = userTasks[user][index];
+        return (task.description, task.state, task.creationDate);
     }
 }
 </code></pre>
 
-1. **Enum `EstadoTarea`**: Define tres posibles estados para cada tarea: `Pendiente`, `EnProgreso` y `Completada`.
-2. **Struct `Tarea`**: Agrupa la descripción de la tarea, su estado y la fecha de creación en un solo paquete.
-3. **Mapping `tareasPorUsuario`**: Asocia cada dirección de usuario (`address`) con un array de structs `Tarea`, permitiendo que cada usuario tenga su propia lista de tareas.
+1. **Enum `TaskState`**: Defines three possible states for each task: `Pending`, `InProgress`, and `Completed`.
+2. **Struct `Task`**: Groups the task description, its state, and creation date into a single package.
+3. **Mapping `userTasks`**: Associates each user address (`address`) with an array of `Task` structs, allowing each user to have their own task list.
 
-### Interacción con el contrato:
+### Contract interaction:
 
-* Los usuarios pueden **crear tareas** con `crearTarea`, lo que añade una nueva tarea a su lista.
-* Pueden **actualizar el estado** de una tarea específica con `actualizarEstadoTarea`, cambiando su estado a `EnProgreso` o `Completada`.
-* La función `obtenerTarea` permite **consultar los detalles** de una tarea específica de cualquier usuario, devolviendo su descripción, estado y fecha de creación.
+* Users can **create tasks** with `createTask`, which adds a new task to their list.
+* They can **update the state** of a specific task with `updateTaskState`, changing its state to `InProgress` or `Completed`.
+* The `getTask` function allows you to **query the details** of a specific task from any user, returning its description, state, and creation date.
 
-### Ejemplo en la práctica:
+### Example in practice:
 
-Supongamos que Alice crea dos tareas y las gestiona de la siguiente manera:
+Let's say Alice creates two tasks and manages them as follows:
 
-1. **Crear tarea**:
-   * `descripcion`: "Comprar suministros"
-   * `estado`: `Pendiente`
-   * `fechaCreacion`: `1696015200` (timestamp)
-2. **Actualizar estado**:
-   * Tarea 1: Cambia a `EnProgreso`.
-   * Tarea 2: Cambia a `Completada`.
+1. **Create task**:
+   * `description`: "Buy supplies"
+   * `state`: `Pending`
+   * `creationDate`: `1696015200` (timestamp)
+2. **Update state**:
+   * Task 1: Changes to `InProgress`.
+   * Task 2: Changes to `Completed`.
 
-Después de estas operaciones, la estructura de datos en el mapping `tareasPorUsuario` para Alice se vería algo así:
+After these operations, the data structure in the `userTasks` mapping for Alice would look something like this:
 
-| **Usuario** | **Índice** | **Descripción**     | **Estado** | **Fecha de Creación** |
+| **User** | **Index** | **Description**     | **State** | **Creation Date** |
 | ----------- | ---------- | ------------------- | ---------- | --------------------- |
-| 0x123...abc | 0          | Comprar suministros | EnProgreso | 1696015200            |
-| 0x123...abc | 1          | Entregar informes   | Completada | 1696015300            |
+| 0x123...abc | 0          | Buy supplies | InProgress | 1696015200            |
+| 0x123...abc | 1          | Submit reports   | Completed | 1696015300            |

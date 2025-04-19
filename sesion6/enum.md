@@ -15,95 +15,95 @@ layout:
 
 # Enum
 
-Los **enum** en Solidity son listas de opciones que te permiten manejar valores predefinidos de manera más legible y organizada. Imagina que tienes una aplicación de entrega de paquetes y quieres registrar el estado del paquete como "Enviado", "En tránsito" o "Entregado". En lugar de usar números o cadenas de texto, puedes usar un `enum` para hacerlo más claro y evitar errores de lógica.
+**Enums** in Solidity are lists of options that allow you to handle predefined values in a more readable and organized way. Imagine you have a package delivery application and want to record the package status as "Sent", "In Transit", or "Delivered". Instead of using numbers or text strings, you can use an `enum` to make it clearer and avoid logic errors.
 
-### ¿Qué es un enum?
+### What is an enum?
 
-Un `enum` (abreviación de enumeración) te permite definir un conjunto de valores posibles que una variable puede tener. Es como un menú desplegable en el que solo puedes elegir entre las opciones disponibles, evitando que ingreses valores inválidos.
+An `enum` (short for enumeration) allows you to define a set of possible values that a variable can have. It's like a dropdown menu where you can only choose between the available options, preventing you from entering invalid values.
 
-**Sintaxis básica:**
-
-```solidity
-enum Estado { Enviado, EnTransito, Entregado }
-```
-
-Aquí, `Estado` es un `enum` con tres posibles valores: `Enviado`, `EnTransito` y `Entregado`. Estos valores se almacenan internamente como enteros, empezando desde 0 (Enviado = 0, EnTransito = 1, Entregado = 2).
-
-### ¿Cómo se usan los enums?
-
-Usar enums es súper sencillo y te permite mejorar la legibilidad del código. Por ejemplo, supongamos que queremos hacer un seguimiento del estado de un paquete:
+**Basic syntax:**
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract EnvioDePaquetes {
-    // Definimos el enum para los estados del paquete
-    enum Estado { Enviado, EnTransito, Entregado }
-
-    // Variable de estado para almacenar el estado actual del paquete
-    Estado public estadoActual;
-
-    // Función para actualizar el estado del paquete
-    function actualizarEstado(Estado nuevoEstado) public {
-        estadoActual = nuevoEstado;
-    }
-
-    // Función para obtener el estado actual del paquete en forma de texto
-    function obtenerEstado() public view returns (string memory) {
-        if (estadoActual == Estado.Enviado) {
-            return "El paquete ha sido enviado.";
-        } else if (estadoActual == Estado.EnTransito) {
-            return "El paquete está en tránsito.";
-        } else {
-            return "El paquete ha sido entregado.";
-        }
-    }
-}
+enum Status { Sent, InTransit, Delivered }
 ```
 
-En este contrato, `estadoActual` es una variable de tipo `Estado` que solo puede tener uno de los valores predefinidos. La función `actualizarEstado` permite cambiar el estado del paquete, y `obtenerEstado` devuelve una descripción del estado actual.
+Here, `Status` is an `enum` with three possible values: `Sent`, `InTransit`, and `Delivered`. These values are stored internally as integers, starting from 0 (Sent = 0, InTransit = 1, Delivered = 2).
 
-### Cosas que debes saber sobre los enums
+### How are enums used?
 
-1. **Números detrás de las opciones**: Cada valor del `enum` tiene asociado un número entero empezando desde 0. Así, `Enviado` es 0, `EnTransito` es 1 y `Entregado` es 2. Esto es importante porque puedes usar estos números para comparar o asignar valores.
-2. **Uso eficiente de gas**: Al ser internamente representados como números enteros, los enums son más eficientes en términos de gas que el uso de cadenas de texto para representar estados.
-3. **Limitaciones de tamaño**: Un `enum` no puede tener más de 256 valores, ya que cada valor se almacena en 1 byte. Si necesitas más opciones, es mejor usar una estructura de datos diferente.
-4. **Comparación directa**: Puedes comparar directamente el valor de un enum con otro valor del mismo enum. Esto hace que las decisiones de lógica basadas en el estado sean muy claras y fáciles de seguir.
-
-### Ejemplo práctico con varios estados
-
-Vamos a ver otro ejemplo donde usamos un enum para representar el estado de un proyecto:
+Using enums is super simple and allows you to improve code readability. For example, let's say we want to track the status of a package:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Proyecto {
-    // Definimos el enum para los estados del proyecto
-    enum Estado { Planeacion, Desarrollo, Revision, Completado }
+contract PackageDelivery {
+    // We define the enum for package statuses
+    enum Status { Sent, InTransit, Delivered }
 
-    // Variable de estado para almacenar el estado actual del proyecto
-    Estado public estadoProyecto;
+    // State variable to store the current package status
+    Status public currentStatus;
 
-    // Función para avanzar al siguiente estado del proyecto
-    function avanzarEstado() public {
-        estadoProyecto = Estado(uint(estadoProyecto) + 1);
+    // Function to update the package status
+    function updateStatus(Status newStatus) public {
+        currentStatus = newStatus;
     }
 
-    // Función para obtener el estado actual del proyecto en forma de texto
-    function obtenerEstadoProyecto() public view returns (string memory) {
-        if (estadoProyecto == Estado.Planeacion) {
-            return "El proyecto está en fase de planeación.";
-        } else if (estadoProyecto == Estado.Desarrollo) {
-            return "El proyecto está en desarrollo.";
-        } else if (estadoProyecto == Estado.Revision) {
-            return "El proyecto está en revisión.";
+    // Function to get the current package status as text
+    function getStatus() public view returns (string memory) {
+        if (currentStatus == Status.Sent) {
+            return "The package has been sent.";
+        } else if (currentStatus == Status.InTransit) {
+            return "The package is in transit.";
         } else {
-            return "El proyecto está completado.";
+            return "The package has been delivered.";
         }
     }
 }
 ```
 
-En este contrato, `estadoProyecto` pasa por cuatro estados: `Planeacion`, `Desarrollo`, `Revision` y `Completado`. La función `avanzarEstado` permite moverse al siguiente estado, siempre que no esté ya en `Completado`.
+In this contract, `currentStatus` is a variable of type `Status` that can only have one of the predefined values. The `updateStatus` function allows changing the package status, and `getStatus` returns a description of the current status.
+
+### Things you should know about enums
+
+1. **Numbers behind the options**: Each `enum` value has an associated integer starting from 0. So, `Sent` is 0, `InTransit` is 1, and `Delivered` is 2. This is important because you can use these numbers to compare or assign values.
+2. **Gas efficient usage**: Since they are internally represented as integers, enums are more gas efficient than using text strings to represent states.
+3. **Size limitations**: An `enum` cannot have more than 256 values, as each value is stored in 1 byte. If you need more options, it's better to use a different data structure.
+4. **Direct comparison**: You can directly compare the value of an enum with another value of the same enum. This makes logic decisions based on state very clear and easy to follow.
+
+### Practical example with multiple states
+
+Let's see another example where we use an enum to represent the status of a project:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Project {
+    // We define the enum for project statuses
+    enum Status { Planning, Development, Review, Completed }
+
+    // State variable to store the current project status
+    Status public projectStatus;
+
+    // Function to advance to the next project status
+    function advanceStatus() public {
+        projectStatus = Status(uint(projectStatus) + 1);
+    }
+
+    // Function to get the current project status as text
+    function getProjectStatus() public view returns (string memory) {
+        if (projectStatus == Status.Planning) {
+            return "The project is in planning phase.";
+        } else if (projectStatus == Status.Development) {
+            return "The project is in development.";
+        } else if (projectStatus == Status.Review) {
+            return "The project is under review.";
+        } else {
+            return "The project is completed.";
+        }
+    }
+}
+```
+
+In this contract, `projectStatus` goes through four states: `Planning`, `Development`, `Review`, and `Completed`. The `advanceStatus` function allows moving to the next status, as long as it's not already in `Completed`.

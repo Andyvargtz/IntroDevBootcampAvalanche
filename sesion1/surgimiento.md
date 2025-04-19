@@ -13,32 +13,32 @@ layout:
     visible: true
 ---
 
-# Surgimiento de la Blockchain
+# Emergence of Blockchain
 
-Muchas personas creerán que la blockhain nace a raiz del lanzamiento de la blockchain y criptomoneda "**Bitcoin**" en el 2009, sin embargo, toca retroceder muchos más años atrás para encontrar la primera vez que se usó este término.
+Many people believe that blockchain was born with the launch of the "**Bitcoin**" blockchain and cryptocurrency in 2009, however, we need to go back many more years to find the first time this term was used.
 
-Sería en el año 1982 y por obra de **David Chaum**, que se daría la primera definición a este término, en una disertación académica en la Universidad de Berkeley, Californía.&#x20;
+It was in 1982 and through the work of **David Chaum** that the first definition of this term was given, in an academic dissertation at the University of Berkeley, California.&#x20;
 
-> Sistemas informáticos establecidos, mantenidos y confiables por grupos mutuamente sospechosos.
+> Computer systems established, maintained, and trusted by mutually suspicious groups.
 
-Cómo puedes ver, la utilidad principal de esta tecnología no se basaba originalmente en las monedas digitales, sino en ser una base de datos descentralizada. Sin embargo, no pasó mucho tiempo hasta que Chaum vio su potencial para ello.
+As you can see, the main utility of this technology was not originally based on digital currencies, but on being a decentralized database. However, it didn't take long for Chaum to see its potential for that.
 
-Chaum lanzaría en 1989 su compañía **DigiCash**, la cual seguiría avanzando y presentaría las primeras criptomonedas en 1995, digicash, eCash y cyberbucks. Se enfatizaba el anonimato como su principal beneficio, motivo por el que no logró convencer a los bancos para que apoyaran el proyecto, además aún no se contaba con una infraestructura de internet solida para soportar transacciones entre personas. Al final DigiCash se declararía en bancarrota en 1998.
+Chaum would launch his company **DigiCash** in 1989, which would continue to advance and present the first cryptocurrencies in 1995: digicash, eCash, and cyberbucks. Anonymity was emphasized as its main benefit, which is why it failed to convince banks to support the project. Additionally, there was not yet a solid internet infrastructure to support transactions between people. In the end, DigiCash would declare bankruptcy in 1998.
 
 <figure><img src="../.gitbook/assets/image (89).png" alt=""><figcaption><p>DigiCash Team</p></figcaption></figure>
 
-No fue hasta 2008 que una persona (o grupo de personas) bajo el seudónimo de **Satoshi Nakamoto**, mejoró bastante el diseño al implementar un mecanismo de consenso distribuido. Este mecanismo permitía que la blockchain operara sin una autoridad central y solucionaba el problema de doble gasto, es decir, la posibilidad de que una única unidad monetaria digital se gaste dos veces.
+It wasn't until 2008 that a person (or group of people) under the pseudonym **Satoshi Nakamoto** significantly improved the design by implementing a distributed consensus mechanism. This mechanism allowed the blockchain to operate without a central authority and solved the double-spending problem, that is, the possibility that a single digital monetary unit could be spent twice.
 
-Todo comenzó cuando empezó a circular el articulo "_Bitcoin: un sistema de efectivo electrónico de persona a persona_", por Satoshi Nakamoto. Si lo repasas te darás cuenta que está basado en su mayoría en las propuestas técnicas de Chaum, con la única diferencia de que Bitcoin implementó el mecanismo de consenso de Proof of Work (minería) para validar transacciones.
+It all began when the article "_Bitcoin: A Peer-to-Peer Electronic Cash System_" by Satoshi Nakamoto started circulating. If you review it, you'll notice that it is mostly based on Chaum's technical proposals, with the only difference being that Bitcoin implemented the Proof of Work (mining) consensus mechanism to validate transactions.
 
 {% embed url="https://bitcoin.org/files/bitcoin-paper/bitcoin_es_latam.pdf" %}
 Whitepaper
 {% endembed %}
 
-Unos meses después, en enero 2009, Nakamoto publica el código fuente de la blockchain para que desarrolladores alrededor del mundo pudieran contribuir al proyecto. Junto a esto también viene la criptomoneda Bitcoin, el cuál también se la auguraba el mismo final que DigiCash. Sin embargo, solo le tomaría dos años alcanzar el valor de 1 dólar.
+A few months later, in January 2009, Nakamoto published the source code of the blockchain so that developers around the world could contribute to the project. Along with this also came the Bitcoin cryptocurrency, which was also predicted to have the same fate as DigiCash. However, it would only take two years to reach the value of 1 dollar.
 
-El impacto de Bitcoin fue tal que tras su lanzamiento se desató una oleada de nuevas blockchains y criptomonedas. Entre las más destacadas está **Ethereum**, introducida en 2015 por **Vitalik Buterin**, que extendió las capacidades de la Blockchain al incorporar los **contratos inteligentes**. Ahora no solo se centra en la transacciones de valores, sino también en código que auto-ejecuta acuerdos sin necesidad de intermediarios.
+The impact of Bitcoin was such that after its launch, a wave of new blockchains and cryptocurrencies emerged. Among the most notable is **Ethereum**, introduced in 2015 by **Vitalik Buterin**, which extended the capabilities of the Blockchain by incorporating **smart contracts**. Now it not only focuses on value transactions but also on code that self-executes agreements without the need for intermediaries.
 
 <figure><img src="../.gitbook/assets/image (90).png" alt=""><figcaption><p>Vitalik Buterin</p></figcaption></figure>
 
-A lo largo de los años, la tecnología blockchain va evolucionando y diversificando sus casos de uso más allá de las criptomonedas. Ahora que ya sabemos un poco de la historia de la blockchain, podemos profundizar en su significado.
+Over the years, blockchain technology has evolved and diversified its use cases beyond cryptocurrencies. Now that we know a bit about the history of blockchain, we can delve deeper into its meaning.

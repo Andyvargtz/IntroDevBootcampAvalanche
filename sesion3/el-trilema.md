@@ -13,48 +13,46 @@ layout:
     visible: true
 ---
 
-# El Trilema
+# The Trilemma
 
-El **Trilema de la Blockchain** es un término que fue popularizado por **Vitalik Buterin.** Básicamente sostiene que hay tres propiedades esenciales que una blockchain debería tener, pero que es extremadamente difícil (si no imposible) lograr las tres al mismo tiempo. Estas son:
+The **Blockchain Trilemma** is a term that was popularized by **Vitalik Buterin.** It basically states that there are three essential properties that a blockchain should have, but it is extremely difficult (if not impossible) to achieve all three at the same time. These are:
 
-* **Seguridad**
-* **Descentralización**
-* **Escalabilidad**
+* **Security**
+* **Decentralization**
+* **Scalability**
 
-El dilema surge porque, en la práctica, al intentar optimizar una de estas propiedades, generalmente sacrificas una o ambas de las otras. Vamos a ver más a fondo cada una de estas:
+The dilemma arises because, in practice, when trying to optimize one of these properties, you generally sacrifice one or both of the others. Let's look more deeply at each of these:
 
-### Seguridad
+### Security
 
-Es probablemente el aspecto más importante en cualquier blockchain. Al final del día la gente quiere saber que sus activos digitales están seguros y que la red no será vulnerable a ataques o manipulaciones. Para que una blockchain sea realmente segura, debe ser resistente a cosas como ataques del 51%, donde un atacante puede potencialmente tomar el control de la red si consigue suficiente poder computacional o participación.
+It is probably the most important aspect in any blockchain. At the end of the day, people want to know that their digital assets are secure and that the network won't be vulnerable to attacks or manipulations. For a blockchain to be truly secure, it must be resistant to things like 51% attacks, where an attacker could potentially take control of the network if they gain enough computational power or participation.
 
-En blockchains como Bitcoin y Ethereum, la seguridad está garantizada por mecanismos como **Proof of Work** o **Proof of Stake**, donde los validadores tienen que gastar recursos (ya sea energía o capital en forma de ETH) para asegurar la red.
+In blockchains like Bitcoin and Ethereum, security is guaranteed by mechanisms such as **Proof of Work** or **Proof of Stake**, where validators have to spend resources (either energy or capital in the form of ETH) to secure the network.
 
-### Descentralización
+### Decentralization
 
-Significa que ninguna entidad o grupo tiene el control sobre la red. En una blockchain verdaderamente descentralizada, cualquier persona puede unirse como nodo o validador, y no hay una autoridad central que dicte las reglas. Esto es lo que le da a la blockchain su poder de ser resistente a la censura y de operar sin intermediarios.
+Means that no single entity or group has control over the network. In a truly decentralized blockchain, anyone can join as a node or validator, and there is no central authority dictating the rules. This is what gives blockchain its power to be censorship-resistant and to operate without intermediaries.
 
-El problema es que lograr un alto nivel de descentralización suele hacer más difícil escalar la red. Cuantos más nodos y validadores tienes, más tiempo y recursos pueden ser necesarios para coordinar todos esos participantes y llegar a un consenso.
+The problem is that achieving a high level of decentralization usually makes it harder to scale the network. The more nodes and validators you have, the more time and resources may be needed to coordinate all those participants and reach consensus.
 
-### Escalabilidad
+### Scalability
 
-Se refiere a la capacidad de una blockchain para manejar un gran número de transacciones en un corto periodo de tiempo. Ethereum 1.0, por ejemplo, tuvo problemas con la escalabilidad, ya que solo podía procesar entre 15 y 30 transacciones por segundo. Esto puede sonar bien hasta que te das cuenta de que redes centralizadas como Visa pueden procesar miles de transacciones por segundo.
+Refers to a blockchain's ability to handle a large number of transactions in a short period of time. Ethereum 1.0, for example, had problems with scalability, as it could only process between 15 and 30 transactions per second. This might sound good until you realize that centralized networks like Visa can process thousands of transactions per second.
 
-Cuando una blockchain no es escalable, se vuelve lenta y las tarifas de transacción se disparan. Este fue uno de los principales problemas que Ethereum enfrentó antes de comenzar su transición a Ethereum 2.0.
+When a blockchain is not scalable, it becomes slow and transaction fees skyrocket. This was one of the main problems that Ethereum faced before beginning its transition to Ethereum 2.0.
 
-### ¿Por qué es tan complicado?
+### Why is it so complicated?
 
-Aquí es donde entra el verdadero dilema. Mejorar una de estas tres características casi siempre implica comprometer las otras dos. Por ejemplo:
+This is where the real dilemma comes in. Improving one of these three characteristics almost always implies compromising the other two. For example:
 
-* Si intentas aumentar la **escalabilidad** a menudo sacrificas la **descentralización**. Al permitir que solo unos pocos nodos o validadores manejen la mayoría de las transacciones, pierdes parte de esa naturaleza descentralizada que hace que la blockchain sea resistente a la censura.
-* Si te enfocas en **descentralización** pura, como Bitcoin, entonces es difícil escalar la red, ya que cada nodo necesita procesar y validar cada transacción individualmente, lo que puede ralentizar todo.
-* Y si priorizas la **seguridad**, como ocurre en muchas blockchains, el esfuerzo y los recursos necesarios para asegurar la red pueden hacer que sea difícil escalar.
+* If you try to increase **scalability** you often sacrifice **decentralization**. By allowing only a few nodes or validators to handle most transactions, you lose part of that decentralized nature that makes blockchain censorship-resistant.
+* If you focus on pure **decentralization**, like Bitcoin, then it's hard to scale the network, as each node needs to process and validate each transaction individually, which can slow everything down.
+* And if you prioritize **security**, as happens in many blockchains, the effort and resources needed to secure the network can make it difficult to scale.
 
-### El Trilema en Ethereum
+### The Trilemma in Ethereum
 
-Ethereum en sus primeras versiones, tuvo que enfrentarse a este trilema de frente. La red quería ser **segura** y **descentralizada**, pero eso llevó a problemas de **escalabilidad**, como lo vimos con las altas tarifas de gas y la congestión en la red.
+Ethereum in its early versions had to face this trilemma head-on. The network wanted to be **secure** and **decentralized**, but that led to **scalability** problems, as we saw with high gas fees and network congestion.
 
-Con Ethereum 2.0 y la introducción de tecnologías como **Proof of Stake** y **sharding**, la red busca una solución que mejore la **escalabilidad** sin sacrificar demasiado en términos de **seguridad** y **descentralización**. Sharding permite que la carga de trabajo se divida entre múltiples fragmentos, aumentando el número de transacciones que se pueden procesar sin tener que comprometer la descentralización de la red.
+With Ethereum 2.0 and the introduction of technologies like **Proof of Stake** and **sharding**, the network seeks a solution that improves **scalability** without sacrificing too much in terms of **security** and **decentralization**. Sharding allows the workload to be divided among multiple fragments, increasing the number of transactions that can be processed without having to compromise the network's decentralization.
 
-
-
-El Trilema sigue siendo un desafío sin una solución definitiva, pero muchos desarrolladores y proyectos están trabajando en cómo abordar este problema. Desde el lado de Ethereum existen las soluciones Layer 2, que veremos más adelante.
+The Trilemma remains a challenge without a definitive solution, but many developers and projects are working on how to address this problem. From Ethereum's side, there are Layer 2 solutions, which we will see later.

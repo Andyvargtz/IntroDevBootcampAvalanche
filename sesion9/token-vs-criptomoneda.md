@@ -13,40 +13,40 @@ layout:
     visible: true
 ---
 
-# Token vs Criptomoneda
+# Token vs Cryptocurrency
 
-Los términos “**token**” y “**criptomoneda**” se usan a menudo de manera intercambiable, pero en realidad no son exactamente lo mismo. Ambos son representaciones digitales en una blockchain, pero tienen diferencias importantes en cuanto a su propósito y funcionalidad.
+The terms "**token**" and "**cryptocurrency**" are often used interchangeably, but they are not exactly the same. Both are digital representations on a blockchain, but they have important differences in terms of their purpose and functionality.
 
-### ¿Qué es una criptomoneda?
+### What is a cryptocurrency?
 
-Una **criptomoneda** es una forma de dinero digital que opera en su propia blockchain. Se crea como una alternativa a las monedas tradicionales, con la idea de ser usada como medio de intercambio, reserva de valor o unidad de cuenta. Las criptomonedas están diseñadas para funcionar como efectivo digital, permitiendo a las personas enviar y recibir pagos en línea de manera segura, descentralizada y sin intermediarios.
+A **cryptocurrency** is a form of digital money that operates on its own blockchain. It is created as an alternative to traditional currencies, with the idea of being used as a medium of exchange, store of value or unit of account. Cryptocurrencies are designed to function as digital cash, allowing people to send and receive payments online in a secure, decentralized manner without intermediaries.
 
-* **Ejemplos:** Bitcoin (BTC), que opera en la blockchain de Bitcoin, AVAX, que trabaja en la red principal de Avalanche,  y Ether (ETH), que es la criptomoneda nativa de la blockchain de Ethereum.
-* **Propósito principal:** Actuar como dinero digital o “cash” en un entorno digital. Pueden ser utilizadas para pagar bienes y servicios, transferir valor o como inversión, además de pagar los costos de gas.
+* **Examples:** Bitcoin (BTC), which operates on the Bitcoin blockchain, AVAX, which works on the Avalanche mainnet, and Ether (ETH), which is the native cryptocurrency of the Ethereum blockchain.
+* **Main purpose:** To act as digital money or "cash" in a digital environment. They can be used to pay for goods and services, transfer value or as an investment, in addition to paying gas costs.
 
-### ¿Qué es un token?
+### What is a token?
 
-Un **token**, por otro lado, es una representación digital que puede crearse sobre cualquier blockchain que permita contratos inteligentes, como Ethereum, Avalanche o Binance Smart Chain. Los tokens no tienen una blockchain propia, en su lugar, se basan en la blockchain del proyecto donde son emitidos.
+A **token**, on the other hand, is a digital representation that can be created on any blockchain that allows smart contracts, such as Ethereum, Avalanche or Binance Smart Chain. Tokens do not have their own blockchain, instead, they are based on the blockchain of the project where they are issued.
 
-* **Ejemplos:** USDC, un token de valor estable, o AXS, el token del juego Axie Infinity.
-* **Propósito principal:** Los tokens pueden representar muchas cosas más allá del dinero digital: pueden ser activos en un juego, derechos de voto en un proyecto, acceso a servicios exclusivos, propiedad de un activo (como una obra de arte digital) o incluso deuda.
+* **Examples:** USDC, a stablecoin, or AXS, the token of the Axie Infinity game.
+* **Main purpose:** Tokens can represent many things beyond digital money: they can be assets in a game, voting rights in a project, access to exclusive services, ownership of an asset (such as a digital artwork) or even debt.
 
-### Principales diferencias entre token y criptomoneda
+### Main differences between token and cryptocurrency
 
-| Característica | Criptomoneda                  | Token                                           |
+| Characteristic | Cryptocurrency                  | Token                                           |
 | -------------- | ----------------------------- | ----------------------------------------------- |
-| **Blockchain** | Opera en su propia blockchain | Se crea en una blockchain existente             |
-| **Propósito**  | Medio de intercambio y valor  | Propósito variable (utilidad, gobernanza, etc.) |
-| **Ejemplos**   | Bitcoin (BTC), Ethereum (ETH) | USDC, DAI, Uniswap (UNI), Axie Infinity (AXS)   |
-| **Creación**   | A través de minería o staking | Mediante contratos inteligentes                 |
-| **Uso**        | Pagos, inversión              | Acceso a servicios, gobernanza, propiedad       |
+| **Blockchain** | Operates on its own blockchain | Created on an existing blockchain               |
+| **Purpose**    | Medium of exchange and value   | Variable purpose (utility, governance, etc.)    |
+| **Examples**   | Bitcoin (BTC), Ethereum (ETH)  | USDC, DAI, Uniswap (UNI), Axie Infinity (AXS)   |
+| **Creation**   | Through mining or staking      | Through smart contracts                         |
+| **Use**        | Payments, investment           | Access to services, governance, ownership       |
 
-¿Por qué esta distinción es importante?
+Why is this distinction important?
 
-1. **Contexto de Uso:** Las criptomonedas como Bitcoin y AVAX se utilizan principalmente como formas de dinero digital, mientras que los tokens pueden tener propósitos mucho más diversos dentro de aplicaciones descentralizadas (dApps).
-2. **Tecnología Subyacente:** Una criptomoneda requiere de una blockchain completa con validadores o mineros que confirmen las transacciones. Un token solo necesita un contrato inteligente en una blockchain existente.
-3. **Flexibilidad:** Los tokens son increíblemente versátiles. Un solo proyecto puede emitir múltiples tokens para diferentes propósitos, como un token de utilidad, un token de gobernanza, o incluso tokens no fungibles (NFTs).
+1. **Usage Context:** Cryptocurrencies like Bitcoin and AVAX are primarily used as forms of digital money, while tokens can have much more diverse purposes within decentralized applications (dApps).
+2. **Underlying Technology:** A cryptocurrency requires a complete blockchain with validators or miners that confirm transactions. A token only needs a smart contract on an existing blockchain.
+3. **Flexibility:** Tokens are incredibly versatile. A single project can issue multiple tokens for different purposes, such as a utility token, a governance token, or even non-fungible tokens (NFTs).
 
-### Ejemplo práctico
+### Practical example
 
-Imaginemos que tienes una aplicación descentralizada (dApp) en la blockchain de Ethereum. Puedes usar Ether (ETH) para pagar las tarifas de transacción y, al mismo tiempo, emitir tu propio token para recompensar a los usuarios por participar en la plataforma. Este token, que vive en la misma blockchain que ETH, podría usarse para votar sobre cambios en la plataforma o para acceder a funciones premium.
+Let's imagine you have a decentralized application (dApp) on the Ethereum blockchain. You can use Ether (ETH) to pay transaction fees and, at the same time, issue your own token to reward users for participating in the platform. This token, which lives on the same blockchain as ETH, could be used to vote on changes to the platform or to access premium features.

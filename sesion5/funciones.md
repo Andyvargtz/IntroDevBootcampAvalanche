@@ -13,45 +13,45 @@ layout:
     visible: true
 ---
 
-# Funciones
+# Functions
 
-Las **funciones** en Solidity son la columna vertebral de cualquier contrato inteligente. Son bloques de código reutilizables que permiten interactuar con el contrato, modificar su estado, ejecutar lógica y devolver resultados. Vamos a desglosar todo lo que necesitas saber sobre las funciones, desde su estructura básica hasta las diferentes opciones de visibilidad y modificadores que puedes usar para controlar su comportamiento.
+**Functions** in Solidity are the backbone of any smart contract. They are reusable blocks of code that allow interaction with the contract, modify its state, execute logic, and return results. Let's break down everything you need to know about functions, from their basic structure to the different visibility options and modifiers you can use to control their behavior.
 
-### ¿Qué es una función en Solidity?
+### What is a function in Solidity?
 
-Una función en Solidity es un conjunto de instrucciones que realizan una tarea específica. Cada vez que se invoca una función, se ejecuta su código y, dependiendo de su diseño, puede leer o modificar el estado del contrato, interactuar con otros contratos o incluso devolver valores.
+A function in Solidity is a set of instructions that perform a specific task. Each time a function is invoked, its code is executed and, depending on its design, it can read or modify the contract's state, interact with other contracts, or even return values.
 
 ```solidity
-function saludar() public pure returns (string memory) {
-    return "Hola, Avalanche!";
+function greet() public pure returns (string memory) {
+    return "Hello, Avalanche!";
 }
 ```
 
-En este ejemplo, `saludar` es una función simple que devuelve un saludo. Vamos a desglosar los elementos principales:
+In this example, `greet` is a simple function that returns a greeting. Let's break down the main elements:
 
-1. **`function`**: La palabra clave para definir una función.
-2. **`saludar`**: El nombre de la función.
-3. **`public`**: Especifica la visibilidad de la función.
-4. **`pure`**: Indica que la función no accede ni modifica el estado del contrato.
-5. **`returns (string memory)`**: Especifica que la función devuelve un dato, en esta caso una cadena de texto.
+1. **`function`**: The keyword to define a function.
+2. **`greet`**: The name of the function.
+3. **`public`**: Specifies the visibility of the function.
+4. **`pure`**: Indicates that the function does not access or modify the contract's state.
+5. **`returns (string memory)`**: Specifies that the function returns data, in this case a text string.
 
-### Parametros
+### Parameters
 
-Las funciones en Solidity pueden recibir **parámetros** como entrada para ejecutar lógica específica. Los parámetros son variables que se pasan a la función al momento de llamarla, permitiendo personalizar su comportamiento según los valores proporcionados. Los parámetros se definen dentro de los paréntesis de la función y pueden ser de cualquier tipo de dato
+Functions in Solidity can receive **parameters** as input to execute specific logic. Parameters are variables that are passed to the function when it is called, allowing its behavior to be customized based on the provided values. Parameters are defined within the function's parentheses and can be of any data type.
 
 ```solidity
-function setSaldo(uint256 nuevoSaldo, address usuario) public {
-    saldos[usuario] = nuevoSaldo;
+function setBalance(uint256 newBalance, address user) public {
+    balances[user] = newBalance;
 }
 ```
 
-En este caso la función `setSaldo` recibe dos parámetros: `nuevoSaldo` (un número entero) y `usuario` (una dirección). Esto permite establecer el saldo de cualquier dirección específica.
+In this case, the `setBalance` function receives two parameters: `newBalance` (an integer) and `user` (an address). This allows setting the balance for any specific address.
 
-### Tipos de Funciones en Solidity
+### Types of Functions in Solidity
 
-#### **1. Funciones de Estado**
+#### **1. State Functions**
 
-Estas funciones pueden modificar el estado del contrato. Es decir, pueden cambiar el valor de las variables de estado.
+These functions can modify the contract's state. That is, they can change the value of state variables.
 
 ```solidity
 function setBalance(uint256 _balance) public {
@@ -59,11 +59,11 @@ function setBalance(uint256 _balance) public {
 }
 ```
 
-* `setBalance` es una función que modifica la variable de estado `balance`. Este tipo de funciones conlleva costos de gas porque realizan escrituras en la blockchain.
+* `setBalance` is a function that modifies the state variable `balance`. This type of function incurs gas costs because it performs writes to the blockchain.
 
-#### **2. Funciones de Solo Lectura**
+#### **2. Read-Only Functions**
 
-Estas funciones solo leen el estado del contrato y no lo modifican. Se declaran con el modificador `view`.
+These functions only read the contract's state and do not modify it. They are declared with the `view` modifier.
 
 ```solidity
 function getBalance() public view returns (uint256) {
@@ -71,35 +71,35 @@ function getBalance() public view returns (uint256) {
 }
 ```
 
-* `getBalance` devuelve el valor de `balance` sin modificarlo. Las funciones `view` no incurren en costos de gas cuando se llaman externamente (por ejemplo, desde una interfaz).
+* `getBalance` returns the value of `balance` without modifying it. `view` functions do not incur gas costs when called externally (for example, from an interface).
 
-### Ejemplos de funciones
+### Function Examples
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Funciones {
-    uint8 edad;
+contract Functions {
+    uint8 age;
 
-    // Función para establecer la edad (modifica el estado)
-    function asignarEdad(uint8 _edad) public {
-        edad = _edad;
+    // Function to set age (modifies state)
+    function setAge(uint8 _age) public {
+        age = _age;
     }
 
-    // Función para obtener la edad (solo lectura)
-    function verEdad() public view returns (uint8) {
-        return edad;
+    // Function to get age (read-only)
+    function getAge() public view returns (uint8) {
+        return age;
     }
 
-    // Función pura que suma dos números
-    function sumar(uint a, uint b) public pure returns (uint256) {
+    // Pure function that adds two numbers
+    function add(uint a, uint b) public pure returns (uint256) {
         return a + b;
     }
 
-    // Función que calcula la edad en días (internal)
-    function edadEnDias() public view returns (uint16) {
-        return edad * 365;
+    // Function that calculates age in days (internal)
+    function ageInDays() public view returns (uint16) {
+        return age * 365;
     }
 }
 ```

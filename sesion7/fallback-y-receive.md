@@ -13,95 +13,95 @@ layout:
     visible: true
 ---
 
-# Fallback y Receive
+# Fallback and Receive
 
-Las funciones **`fallback`** y **`receive`** en Solidity son súper útiles cuando tu contrato recibe llamadas que no coinciden con ninguna de sus funciones o cuando alguien le envía Ether a tu contrato.
+The **`fallback`** and **`receive`** functions in Solidity are super useful when your contract receives calls that don't match any of its functions or when someone sends Ether to your contract.
 
-### `fallback`: el plan de respaldo
+### `fallback`: the backup plan
 
-La función `fallback` es como el plan B del contrato. Se activa cuando alguien intenta interactuar con tu contrato llamando una función que no existe. Es como si alguien tocara la puerta equivocada y en lugar de quedarse esperando, el contrato abre la puerta y dice: “Lo siento, esa función no está aquí, pero ¿qué necesitas?”.
+The `fallback` function is like the contract's plan B. It's triggered when someone tries to interact with your contract by calling a function that doesn't exist. It's like if someone knocks on the wrong door and instead of waiting, the contract opens the door and says: "Sorry, that function isn't here, but what do you need?".
 
-**Características de `fallback`:**
+**Characteristics of `fallback`:**
 
-* No puede tener argumentos ni devolver valores.
-* Puede ser declarada como `payable` para aceptar Ether, o no, si solo se usa para manejar llamadas incorrectas.
-* No tiene nombre específico, se define simplemente con la palabra clave `fallback`.
+* It cannot have arguments or return values.
+* It can be declared as `payable` to accept Ether, or not, if it's only used to handle incorrect calls.
+* It doesn't have a specific name, it's defined simply with the `fallback` keyword.
 
-**Sintaxis:**
+**Syntax:**
 
 ```solidity
 fallback() external {
-    // Lógica a ejecutar si se llama una función inexistente
+    // Logic to execute if a non-existent function is called
 }
 ```
 
-Si quieres que también pueda aceptar Ether, la declaras como `payable`:
+If you want it to also accept Ether, you declare it as `payable`:
 
 ```solidity
 fallback() external payable {
-    // Lógica a ejecutar si se llama una función inexistente o se envía Ether
+    // Logic to execute if a non-existent function is called or Ether is sent
 }
 ```
 
-### `receive`: el portero de los pagos
+### `receive`: the payment doorman
 
-La función `receive` se activa específicamente cuando el contrato recibe Ether, pero no se proporcionan datos adicionales ni se especifica ninguna función. Es como un portero que solo abre la puerta si alguien quiere dejar dinero.
+The `receive` function is specifically triggered when the contract receives Ether, but no additional data is provided or any function is specified. It's like a doorman who only opens the door if someone wants to leave money.
 
-**Características de `receive`:**
+**Characteristics of `receive`:**
 
-* Solo se activa cuando se envía Ether sin datos (sin `msg.data`).
-* No puede tener argumentos ni devolver valores.
-* Debe ser declarada como `payable` para aceptar Ether.
+* It's only triggered when Ether is sent without data (without `msg.data`).
+* It cannot have arguments or return values.
+* It must be declared as `payable` to accept Ether.
 
-**Sintaxis:**
+**Syntax:**
 
 ```solidity
 receive() external payable {
-    // Lógica a ejecutar al recibir Ether
+    // Logic to execute when receiving Ether
 }
 ```
 
-### Ejemplo práctico: Contrato de donaciones
+### Practical example: Donation contract
 
-Vamos a ver cómo usar `fallback` y `receive` juntos en un contrato de donaciones:
+Let's see how to use `fallback` and `receive` together in a donation contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Donaciones {
-    // Evento para registrar las donaciones recibidas
-    event DonacionRecibida(address donante, uint cantidad);
+contract Donations {
+    // Event to record received donations
+    event DonationReceived(address donor, uint amount);
 
-    // Mapeo para llevar un registro de las donaciones por usuario
-    mapping(address => uint) public donaciones;
+    // Mapping to keep track of donations by user
+    mapping(address => uint) public donations;
 
-    // Función `receive` que se activa al recibir Ether sin datos
+    // `receive` function that is triggered when receiving Ether without data
     receive() external payable {
-        donaciones[msg.sender] += msg.value;
-        emit DonacionRecibida(msg.sender, msg.value);
+        donations[msg.sender] += msg.value;
+        emit DonationReceived(msg.sender, msg.value);
     }
 
-    // Función `fallback` para manejar llamadas a funciones inexistentes
+    // `fallback` function to handle calls to non-existent functions
     fallback() external payable {
-        donaciones[msg.sender] += msg.value;
-        emit DonacionRecibida(msg.sender, msg.value);
+        donations[msg.sender] += msg.value;
+        emit DonationReceived(msg.sender, msg.value);
     }
 
-    // Función para consultar el total donado por un usuario
-    function totalDonado(address usuario) public view returns (uint) {
-        return donaciones[usuario];
+    // Function to query the total donated by a user
+    function totalDonated(address user) public view returns (uint) {
+        return donations[user];
     }
 }
 ```
 
-¿Cómo funciona este contrato?
+How does this contract work?
 
-1. **receive()**: Cuando alguien envía Ether al contrato sin especificar datos, esta función se activa, se registra la donación y se emite un evento para que todos sepan quién donó cuánto.
-2. **fallback()**: Si alguien intenta llamar a una función que no existe y, además, envía Ether, se activa `fallback`. En este caso, también se registra la donación como en `receive`.
-3. **totalDonado()**: Permite consultar cuánto ha donado un usuario específico. Este tipo de función es útil para llevar un registro y dar transparencia al proceso.
+1. **receive()**: When someone sends Ether to the contract without specifying data, this function is triggered, the donation is recorded, and an event is emitted so everyone knows who donated how much.
+2. **fallback()**: If someone tries to call a function that doesn't exist and, in addition, sends Ether, `fallback` is triggered. In this case, the donation is also recorded as in `receive`.
+3. **totalDonated()**: Allows querying how much a specific user has donated. This type of function is useful for keeping records and giving transparency to the process.
 
-### Diferencias entre `fallback` y `receive`
+### Differences between `fallback` and `receive`
 
-* **`receive`** solo se activa cuando el contrato recibe Ether sin datos (`msg.data` vacío).
-* **`fallback`** se activa cuando se llama a una función inexistente, ya sea con o sin Ether, siempre y cuando `msg.data` no esté vacío (aunque también funciona si no hay función `receive` definida).
+* **`receive`** is only triggered when the contract receives Ether without data (empty `msg.data`).
+* **`fallback`** is triggered when a non-existent function is called, with or without Ether, as long as `msg.data` is not empty (although it also works if there is no `receive` function defined).

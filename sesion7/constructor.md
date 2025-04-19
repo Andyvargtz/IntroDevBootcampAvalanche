@@ -15,70 +15,70 @@ layout:
 
 # Constructor
 
-El **constructor** en Solidity es ese momento inicial donde defines cómo se va a configurar todo tu contrato. Es el encargado de poner las cosas en su lugar desde el principio. Solo se ejecuta una vez, al momento de desplegar el contrato, y es perfecto para establecer variables iniciales, asignar roles, o configurar cualquier valor que no quieras cambiar después.
+The **constructor** in Solidity is that initial moment where you define how your contract will be configured. It's responsible for putting everything in place from the start. It only executes once, at the moment of contract deployment, and is perfect for setting initial variables, assigning roles, or configuring any value you don't want to change later.
 
-### ¿Qué es un constructor?
+### What is a constructor?
 
-Un constructor es una función especial que tiene el mismo nombre que el contrato (en versiones antiguas de Solidity) o se declara con la palabra clave `constructor` (en versiones recientes). Se ejecuta automáticamente cuando el contrato es desplegado en la blockchain, y después de eso, desaparece como un ninja, no se puede llamar nuevamente ni actualizar.
+A constructor is a special function that has the same name as the contract (in older versions of Solidity) or is declared with the `constructor` keyword (in recent versions). It executes automatically when the contract is deployed on the blockchain, and after that, it disappears like a ninja, it cannot be called again or updated.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
 constructor() {
-    // Lógica del constructor
+    // Constructor logic
 }
 ```
 
-Por ejemplo, si queremos asignar al creador del contrato como el "propietario", podemos hacerlo en el constructor:
+For example, if we want to assign the contract creator as the "owner", we can do it in the constructor:
 
 ```solidity
-contract MiContrato {
-    address public propietario;
+contract MyContract {
+    address public owner;
 
     constructor() {
-        propietario = msg.sender; // Asigna al creador del contrato como propietario
+        owner = msg.sender; // Assigns the contract creator as owner
     }
 }
 ```
 
-En este caso, `msg.sender` se refiere a la dirección que desplegó el contrato, y el constructor la guarda como `propietario`.
+In this case, `msg.sender` refers to the address that deployed the contract, and the constructor stores it as `owner`.
 
-### ¿Para qué se usa el constructor?
+### What is the constructor used for?
 
-El constructor es perfecto para inicializar el estado del contrato y establecer configuraciones importantes. Algunas cosas típicas que puedes hacer en un constructor incluyen:
+The constructor is perfect for initializing the contract's state and setting important configurations. Some typical things you can do in a constructor include:
 
-1. **Asignar propietarios o roles:** Ideal para contratos donde solo ciertos usuarios tienen permisos especiales, como contratos de administración.
-2. **Establecer valores iniciales:** Puedes configurar límites, tarifas, o cualquier otro valor que no debería cambiar.
-3. **Configurar interacciones externas:** Puedes inicializar contratos externos o configurar integraciones con otros contratos o servicios.
+1. **Assign owners or roles:** Ideal for contracts where only certain users have special permissions, like administration contracts.
+2. **Set initial values:** You can configure limits, fees, or any other value that shouldn't change.
+3. **Configure external interactions:** You can initialize external contracts or set up integrations with other contracts or services.
 
-### Ejemplo práctico: Sistema de Registro
+### Practical Example: Registration System
 
-Vamos a construir un contrato que utiliza el constructor para establecer al propietario y un costo de registro:
+Let's build a contract that uses the constructor to set the owner and a registration cost:
 
 ```solidity
-contract SistemaDeRegistro {
-    address public propietario;
-    uint256 public costoDeRegistro;
+contract RegistrationSystem {
+    address public owner;
+    uint256 public registrationCost;
 
-    // Constructor que establece el propietario y el costo de registro
-    constructor(uint256 _costoDeRegistro) {
-        propietario = msg.sender; // El creador del contrato es el propietario
-        costoDeRegistro = _costoDeRegistro; // Establece el costo inicial
+    // Constructor that sets the owner and registration cost
+    constructor(uint256 _registrationCost) {
+        owner = msg.sender; // The contract creator is the owner
+        registrationCost = _registrationCost; // Sets the initial cost
     }
 
-    // Función para cambiar el costo de registro (solo el propietario puede hacerlo)
-    function cambiarCostoDeRegistro(uint256 nuevoCosto) public {
-        require(msg.sender == propietario, "Solo el propietario puede cambiar el costo.");
-        costoDeRegistro = nuevoCosto;
+    // Function to change the registration cost (only the owner can do this)
+    function changeRegistrationCost(uint256 newCost) public {
+        require(msg.sender == owner, "Only the owner can change the cost.");
+        registrationCost = newCost;
     }
 }
 ```
 
-En este contrato, el constructor toma un parámetro (`_costoDeRegistro`) y lo utiliza para establecer el costo inicial de registro. También establece a `msg.sender` como el `propietario`. Después de que el contrato se despliega, nadie más puede ejecutar el constructor.
+In this contract, the constructor takes a parameter (`_registrationCost`) and uses it to set the initial registration cost. It also sets `msg.sender` as the `owner`. After the contract is deployed, no one else can execute the constructor.
 
-### Cosas que debes saber sobre el constructor
+### Things you should know about the constructor
 
-1. **Solo se ejecuta una vez:** Una vez que el constructor termina su ejecución, no puede ser llamado de nuevo. Es como configurar las reglas del juego: una vez que empiezas a jugar, no puedes cambiarlas.
-2. **No tiene un nombre específico:** En las versiones antiguas de Solidity, el constructor debía tener el mismo nombre que el contrato. En versiones actuales, solo necesitas usar la palabra clave `constructor`.
-3. **Interacciones limitadas:** Aunque puedes interactuar con otros contratos dentro del constructor, ten en cuenta que cualquier lógica que dependa de condiciones futuras debe manejarse cuidadosamente, ya que no podrás volver a ejecutar el constructor para corregir problemas.
-4. **No consume gas extra:** Aunque ejecuta lógica importante, el constructor no impone costos adicionales de gas. El costo de desplegar el contrato ya incluye la ejecución del constructor.
+1. **Only executes once:** Once the constructor finishes its execution, it cannot be called again. It's like setting the game rules: once you start playing, you can't change them.
+2. **No specific name:** In older versions of Solidity, the constructor had to have the same name as the contract. In current versions, you only need to use the `constructor` keyword.
+3. **Limited interactions:** Although you can interact with other contracts within the constructor, keep in mind that any logic that depends on future conditions must be handled carefully, as you won't be able to run the constructor again to fix issues.
+4. **No extra gas cost:** Although it executes important logic, the constructor doesn't impose additional gas costs. The cost of deploying the contract already includes the constructor's execution.

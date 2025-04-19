@@ -13,38 +13,38 @@ layout:
     visible: true
 ---
 
-# Casos de uso
+# Use Cases
 
-### Finanzas Descentralizadas (DeFi):
+### Decentralized Finance (DeFi):
 
-Uno de los principales usos de blockchain es para crear servicios financieros abiertos a todos, sin intermediarios como bancos. Esto incluye préstamos, intercambio de activos, seguros, entre otros, todo esto ofreciendo mayor transparencia y eficiencia.
+One of the main uses of blockchain is to create financial services open to everyone, without intermediaries like banks. This includes loans, asset exchange, insurance, among others, all while offering greater transparency and efficiency.
 
-Ejemplos reconocidos son Uniswap, Aave y Compound, que permiten operaciones financieras descentralizadas.
+Well-known examples are Uniswap, Aave, and Compound, which allow decentralized financial operations.
 
 ### Gaming:
 
-En cuanto a los videojuegos, la blockchain ha introducido una nueva dimensión de propiedad y ganancia. Los jugadores no solo disfrutan de la experiencia del juego sino que también pueden acumular activos digitales únicos, como skins y personajes que son verdaderamente suyos.
+In terms of video games, blockchain has introduced a new dimension of ownership and earnings. Players not only enjoy the gaming experience but can also accumulate unique digital assets, such as skins and characters that are truly theirs.
 
-Además, plataformas como Axie Infinity, Decentraland y Sorare han popularizado el modelo "play-to-earn", en el que jugar se convierte en una fuente de ingresos reales.
+Additionally, platforms like Axie Infinity, Decentraland, and Sorare have popularized the "play-to-earn" model, where playing becomes a source of real income.
 
-### Identidad Digital:
+### Digital Identity:
 
-La gestión de identidades digitales ha encontrado en la blockchain una solución segura y privada. Esta tecnología permite a los individuos mantener el control total sobre su información personal, compartiéndola de manera selectiva.
+Digital identity management has found a secure and private solution in blockchain. This technology allows individuals to maintain total control over their personal information, sharing it selectively.
 
-Ejemplos incluyen proyectos como Civic y uPort, que ofrecen plataformas para la gestión de identidades verificadas sin necesidad de una autoridad central.
+Examples include projects like Civic and uPort, which offer platforms for managing verified identities without the need for a central authority.
 
-### Propiedad Digital:
+### Digital Ownership:
 
-Blockchain posibilita la creación de "tokens" que representan la propiedad de activos digitales y físicos. Esto puede ir desde arte digital y musica hasta bienes raíces.
+Blockchain enables the creation of "tokens" that represent ownership of digital and physical assets. This can range from digital art and music to real estate.
 
-Plataformas como NBA Top Shot y OpenSea permiten a los usuarios comprar, vender y comerciar con estos activos digitales de manera segura.
+Platforms like NBA Top Shot and OpenSea allow users to buy, sell, and trade these digital assets securely.
 
-### Trazabilidad:
+### Traceability:
 
-Blockchain permite rastrear la procedencia y el historial de productos desde su origen hasta el consumidor final. Esta capacidad es crucial en industrias como la alimentación, donde es vital verificar la autenticidad de productos orgánicos o de comercio justo.
+Blockchain allows tracking the origin and history of products from their source to the end consumer. This capability is crucial in industries like food, where it is vital to verify the authenticity of organic or fair trade products.
 
-Proyectos como IBM Food Trust y VeChain son ejemplos de cómo blockchain puede mejorar la trazabilidad en la cadena de suministro.
+Projects like IBM Food Trust and VeChain are examples of how blockchain can improve traceability in the supply chain.
 
-### Gobernanza:
+### Governance:
 
-Blockchain facilita la creación de sistemas de gobernanza descentralizada donde las decisiones se toman colectivamente por los participantes (DAO). Esto es aplicable tanto en empresas como en comunidades online, asegurando una mayor transparencia y participación. Aragon y Safe son ejemplos de plataformas que permiten a las comunidades gestionar recursos y tomar decisiones de forma autónoma y descentralizada.
+Blockchain facilitates the creation of decentralized governance systems where decisions are made collectively by participants (DAO). This is applicable both in companies and online communities, ensuring greater transparency and participation. Aragon and Safe are examples of platforms that allow communities to manage resources and make decisions autonomously and in a decentralized manner.

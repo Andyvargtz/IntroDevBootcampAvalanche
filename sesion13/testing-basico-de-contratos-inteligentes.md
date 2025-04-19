@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Testing Básico de Contratos Inteligentes
+# Basic Smart Contract Testing
 

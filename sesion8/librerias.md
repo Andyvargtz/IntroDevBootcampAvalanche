@@ -13,40 +13,40 @@ layout:
     visible: true
 ---
 
-# Librerías
+# Libraries
 
-En Solidity, **las librerías** funcionan de forma similar a los contratos, pero están optimizadas para no ocupar espacio extra en la blockchain y para no ser desplegadas por sí mismas. En lugar de crear múltiples copias de una función en cada contrato, puedes usar una librería para centralizar la lógica y hacer que varios contratos la reutilicen. Esto ahorra gas y mantiene el código más limpio y eficiente.
+In Solidity, **libraries** work similarly to contracts, but they are optimized to not take up extra space on the blockchain and to not be deployed by themselves. Instead of creating multiple copies of a function in each contract, you can use a library to centralize the logic and have multiple contracts reuse it. This saves gas and keeps the code cleaner and more efficient.
 
-### ¿Qué es una librería?
+### What is a library?
 
-Una librería en Solidity es un conjunto de funciones que pueden ser utilizadas por otros contratos. Las librerías no pueden mantener estado, es decir, no tienen variables de estado ni pueden recibir ether. Están diseñadas para ser ligeras y modulares, y pueden definirse como "internas" o "externas", dependiendo de cómo quieras usarlas.
+A library in Solidity is a set of functions that can be used by other contracts. Libraries cannot maintain state, meaning they don't have state variables and cannot receive ether. They are designed to be lightweight and modular, and can be defined as "internal" or "external", depending on how you want to use them.
 
-* **Interna**: Las funciones de la librería se copian en el contrato que las llama durante la compilación. No se requiere una dirección adicional para invocarlas.
-* **Externa**: La librería se despliega como un contrato separado y luego los contratos llaman a sus funciones a través de la dirección de la librería, lo que reduce el espacio de almacenamiento.
+* **Internal**: The library functions are copied into the calling contract during compilation. No additional address is required to invoke them.
+* **External**: The library is deployed as a separate contract and then contracts call its functions through the library's address, which reduces storage space.
 
-### ¿Cómo funciona una librería?
+### How does a library work?
 
-Una librería puede contener funciones que se aplican a tipos de datos específicos o funciones más generales que otros contratos pueden invocar. La gran ventaja es que permiten reutilizar código y hacer que tus contratos sean más modulares.
+A library can contain functions that apply to specific data types or more general functions that other contracts can invoke. The big advantage is that they allow code reuse and make your contracts more modular.
 
-**Sintaxis básica de una librería:**
+**Basic library syntax:**
 
 ```solidity
-library MiLibreria {
-    function incrementar(uint valor) internal pure returns (uint) {
-        return valor + 1;
+library MyLibrary {
+    function increment(uint value) internal pure returns (uint) {
+        return value + 1;
     }
 }
 ```
 
-Este es un ejemplo simple de una librería llamada `MiLibreria` con una función `incrementar` que toma un número y lo aumenta en uno. Esta función puede ser usada por otros contratos para reutilizar esta lógica, en lugar de escribirla repetidamente.
+This is a simple example of a library called `MyLibrary` with an `increment` function that takes a number and increases it by one. This function can be used by other contracts to reuse this logic, instead of writing it repeatedly.
 
-### Librería de cadena de texto
+### String library
 
-Veamos un ejemplo más interesante. Vamos a crear una librería que trabaje con cadenas de texto (strings), permitiendo convertirlas en mayúsculas.
+Let's look at a more interesting example. We'll create a library that works with strings, allowing them to be converted to uppercase.
 
 ```solidity
 library StringUtils {
-    // Convierte una cadena de texto a mayúsculas
+    // Converts a string to uppercase
     function toUpperCase(string memory str) internal pure returns (string memory) {
         bytes memory bStr = bytes(str);
         for (uint i = 0; i < bStr.length; i++) {
@@ -59,32 +59,32 @@ library StringUtils {
 }
 ```
 
-**¿Qué hace esta librería?**
+**What does this library do?**
 
-1. **Convierte cadenas de texto**: La función `toUpperCase` convierte cualquier letra minúscula en una cadena de texto a mayúsculas.
-2. **Reutilizable**: Esta lógica puede ser utilizada en cualquier contrato que necesite manipular cadenas de texto.
+1. **Converts strings**: The `toUpperCase` function converts any lowercase letter in a string to uppercase.
+2. **Reusable**: This logic can be used in any contract that needs to manipulate strings.
 
-### Usando la librería en un contrato
+### Using the library in a contract
 
-Una vez que hemos definido la librería, podemos usarla en cualquier contrato. Aquí te muestro cómo hacerlo:
+Once we have defined the library, we can use it in any contract. Here's how to do it:
 
 ```solidity
 import "./StringUtils.sol";
 
-contract GestorDeCadenas {
+contract StringManager {
     using StringUtils for string;
 
-    // Devuelve una cadena en mayúsculas
-    function convertir(string memory texto) public pure returns (string memory) {
-        return texto.toUpperCase();
+    // Returns a string in uppercase
+    function convert(string memory text) public pure returns (string memory) {
+        return text.toUpperCase();
     }
 }
 ```
 
-En este ejemplo, estamos usando la librería `StringUtils` para convertir una cadena de texto a mayúsculas. La línea `using StringUtils for string` nos permite extender el tipo `string` y usar la función `toUpperCase` como si fuera parte de las funciones básicas de las cadenas de texto.
+In this example, we're using the `StringUtils` library to convert a string to uppercase. The line `using StringUtils for string` allows us to extend the `string` type and use the `toUpperCase` function as if it were part of the basic string functions.
 
-### Consideraciones al usar librerías
+### Considerations when using libraries
 
-* **Funciones puras y view**: Debido a que las librerías no tienen estado, las funciones que contienen suelen ser puras (`pure`) o de solo lectura (`view`), lo que significa que no pueden modificar el estado del contrato.
-* **No son contratos independientes**: Las librerías no pueden ser desplegadas por sí solas, pero pueden ser llamadas por otros contratos para ejecutar lógica.
-* **Seguridad**: Usar librerías auditadas o bien probadas mejora la seguridad de tus contratos, ya que reduces el riesgo de introducir errores o vulnerabilidades.
+* **Pure and view functions**: Because libraries have no state, the functions they contain are usually pure (`pure`) or read-only (`view`), meaning they cannot modify the contract's state.
+* **Not independent contracts**: Libraries cannot be deployed by themselves, but they can be called by other contracts to execute logic.
+* **Security**: Using audited or well-tested libraries improves the security of your contracts, as you reduce the risk of introducing errors or vulnerabilities.

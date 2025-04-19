@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Qué es Github
+# What is Github
 

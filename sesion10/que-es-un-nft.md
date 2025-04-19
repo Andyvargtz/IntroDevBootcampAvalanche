@@ -13,27 +13,27 @@ layout:
     visible: true
 ---
 
-# Qué es un NFT
+# What is an NFT
 
-Muchas personas asocian los NFTs (Tokens No Fungibles) con las imágenes digitales de arte y coleccionables extremadamente costosas que se popularizaron en redes sociales, pero los NFTs van mucho más allá de eso. Este concepto, al igual que la blockchain misma, se basa en una idea de unicidad y propiedad en el mundo digital.
+Many people associate NFTs (Non-Fungible Tokens) with extremely expensive digital art and collectible images that became popular on social media, but NFTs go far beyond that. This concept, like blockchain itself, is based on an idea of uniqueness and ownership in the digital world.
 
-**NFT** significa "Non-Fungible Token" o "Token No Fungible", lo cual hace referencia a una característica particular, cada NFT es **único**, **irrepetible** e **intercambiable** solo de manera específica. Esto los diferencia de los tokens fungibles, como las criptomonedas (por ejemplo, un Bitcoin es idéntico y tiene el mismo valor que otro Bitcoin).&#x20;
+**NFT** stands for "Non-Fungible Token", which refers to a particular characteristic: each NFT is **unique**, **irreplicable**, and **interchangeable** only in specific ways. This differentiates them from fungible tokens, like cryptocurrencies (for example, one Bitcoin is identical and has the same value as another Bitcoin).
 
-### ¿Por qué es único?
+### Why is it unique?
 
-Mientras que los tokens fungibles están pensados para representar un valor idéntico y divisible, los NFTs representan una entidad única, lo que los hace más parecidos a una obra de arte o a un certificado de propiedad. Así, un NFT no puede ser "intercambiado" en sentido estricto, porque no hay dos que sean iguales en su valor intrínseco.
+While fungible tokens are designed to represent identical and divisible value, NFTs represent a unique entity, making them more similar to a work of art or a certificate of ownership. Thus, an NFT cannot be "exchanged" in the strict sense, because there are no two that are equal in their intrinsic value.
 
-Los NFTs están diseñados para representar objetos digitales o físicos únicos. Cada NFT es emitido a través de un contrato inteligente en una blockchain, lo cual le da un **identificador exclusivo** que garantiza su autenticidad. Este identificador permite que el token actúe como un certificado de propiedad, sin posibilidad de duplicación o falsificación, ya que cada transacción es registrada en la blockchain.
+NFTs are designed to represent unique digital or physical objects. Each NFT is issued through a smart contract on a blockchain, which gives it an **exclusive identifier** that guarantees its authenticity. This identifier allows the token to act as a certificate of ownership, without the possibility of duplication or forgery, as each transaction is recorded on the blockchain.
 
-### ¿Dónde se usan los NFTs?
+### Where are NFTs used?
 
-Desde su primera aparición en la blockchain de Ethereum en 2017 con los "CryptoPunks", los NFTs han encontrado aplicaciones en numerosos sectores:
+Since their first appearance on the Ethereum blockchain in 2017 with "CryptoPunks", NFTs have found applications in numerous sectors:
 
-* **Arte digital**: Artistas pueden crear y vender obras digitales, garantizando autenticidad y exclusividad.
-* **Música**: Los músicos pueden lanzar canciones y experiencias exclusivas para sus seguidores.
-* **Deportes**: Equipos deportivos ofrecen NFTs con mercancía digital única.
-* **Videojuegos**: Los NFTs permiten a los jugadores poseer objetos que pueden intercambiarse o tener una retribución al tiempo invertido.
+* **Digital art**: Artists can create and sell digital works, guaranteeing authenticity and exclusivity.
+* **Music**: Musicians can release songs and exclusive experiences for their followers.
+* **Sports**: Sports teams offer NFTs with unique digital merchandise.
+* **Video games**: NFTs allow players to own items that can be exchanged or provide a return on time invested.
 
-### ¿Por qué los NFTs son importantes?
+### Why are NFTs important?
 
-Los NFTs crean una nueva forma de propiedad digital. Antes de los NFTs, poseer algo en internet era complicado, ya que cualquier archivo podía copiarse o distribuirse infinitamente. Con los NFTs, la blockchain permite que un archivo digital tenga **propiedad auténtica y trazable**, como en el mundo físico.
+NFTs create a new form of digital ownership. Before NFTs, owning something on the internet was complicated, as any file could be copied or distributed infinitely. With NFTs, blockchain allows a digital file to have **authentic and traceable ownership**, just like in the physical world.

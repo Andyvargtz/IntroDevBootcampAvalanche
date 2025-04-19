@@ -13,6 +13,6 @@ layout:
     visible: true
 ---
 
-# Sesión 3: EVM y Fundamentos de Avalanche
+# Session 3: EVM and Avalanche Fundamentals
 
-Ahora entraremos en profundidad en cuanto a la EVM (Ethereum Virtual Machine), su historia, su función, y como, a parte de Ethereum, otras redes como Avalanche se han aprovechado de esta tecnología para crear un sistema supremamente escalable.
+Now we will dive deeper into the EVM (Ethereum Virtual Machine), its history, its function, and how, in addition to Ethereum, other networks like Avalanche have leveraged this technology to create a highly scalable system.

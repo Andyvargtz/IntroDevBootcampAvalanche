@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Instalación y Configuración
+# Installation and Configuration
 

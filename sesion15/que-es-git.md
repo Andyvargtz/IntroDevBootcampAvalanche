@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Qué es Git
+# What is Git
 

@@ -13,27 +13,28 @@ layout:
     visible: true
 ---
 
-# Introducción a Criptografía
+# Introduction to Cryptography
 
-La criptografía es otro pilar fundamental en el funcionamiento de las blockchain. Sin ella sería prácticamente imposible garantizar la seguridad y la integridad de las transacciones y datos almacenados. Pero, ¿cómo funciona exactamente la criptografía en este contexto?
+Cryptography is another fundamental pillar in the functioning of blockchains. Without it, it would be practically impossible to guarantee the security and integrity of transactions and stored data. But how exactly does cryptography work in this context?
 
-Todo comienza con las **funciones hash criptográficas**. Estas funciones toman una entrada de cualquier tamaño y producen una salida de tamaño fijo, conocida como hash. Lo interesante es que, si cambias aunque sea un solo carácter en la entrada, el hash resultante será completamente diferente. Esto asegura que cualquier alteración en un bloque sea fácilmente detectable, ya que el hash del bloque cambiaría y rompería la cadena.
+It all begins with **cryptographic hash functions**. These functions take an input of any size and produce a fixed-size output, known as a hash. The interesting thing is that if you change even a single character in the input, the resulting hash will be completely different. This ensures that any alteration in a block is easily detectable, as the block's hash would change and break the chain.
 
 <figure><img src="../.gitbook/assets/Hhola (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/hola.png" alt="" width="563"><figcaption></figcaption></figure>
 
-Como puedes observar, el hash cambia completamente a pesar de que solo estamos cambiando la "H" mayúscula por la minúscula. Puedes experimentar con los hash en la siguiente página:
+As you can observe, the hash changes completely even though we're only changing the uppercase "H" to lowercase. You can experiment with hashes on the following page:
 
 {% embed url="https://10015.io/tools/sha256-encrypt-decrypt" %}
 
-Además, cada bloque en la blockchain contiene el hash del bloque anterior, creando una cadena inmutable de bloques enlazados. Si alguien intentara modificar un bloque anterior, tendría que recalcular los hashes de todos los bloques siguientes, lo cual es computacionalmente inviable en una red grande y distribuida.
+Additionally, each block in the blockchain contains the hash of the previous block, creating an immutable chain of linked blocks. If someone tried to modify a previous block, they would have to recalculate the hashes of all subsequent blocks, which is computationally infeasible in a large and distributed network.
 
-Otro componente esencial es el **sistema de clave pública y clave privada**. Cada usuario en la blockchain tiene un par de claves:
+Another essential component is the **public key and private key system**. Each user in the blockchain has a key pair:
 
-* Clave Pública: se puede compartir con otros, es como si fuera tu correo electrónico. Funciona como una dirección a la que otros pueden enviar transacciones Clave Privada: se debe mantener en secreto, es como si fuera tu contraseña. Es utilizada para firmar digitalmente las transacciones que envías, demostrando que eres el propietario de los fondos.
+* Public Key: can be shared with others, it's like your email address. It functions as an address where others can send transactions.
+* Private Key: must be kept secret, it's like your password. It's used to digitally sign the transactions you send, proving that you are the owner of the funds.
 
-Cuando realizas una transacción esta es firmada con tu clave privada. Los nodos de la red pueden verificar esta firma utilizando tu clave pública, sin necesidad de conocer tu clave privada. Esto garantiza que las transacciones sean auténticas y que solo el dueño legítimo pueda mover los fondos asociados a esa clave pública.
+When you make a transaction, it is signed with your private key. The network nodes can verify this signature using your public key, without needing to know your private key. This ensures that transactions are authentic and that only the legitimate owner can move the funds associated with that public key.
 
-La criptografía también juega un papel crucial en mantener el anonimato (o más bien el seudonimato) en las transacciones. Aunque todas las transacciones son públicas, están asociadas a direcciones que no necesariamente revelan la identidad real del usuario. Sin embargo, es importante recordar que con suficiente análisis es posible rastrear transacciones y potencialmente identificar a los usuarios.
+Cryptography also plays a crucial role in maintaining anonymity (or rather pseudonymity) in transactions. Although all transactions are public, they are associated with addresses that don't necessarily reveal the real identity of the user. However, it's important to remember that with sufficient analysis, it's possible to trace transactions and potentially identify users.
 

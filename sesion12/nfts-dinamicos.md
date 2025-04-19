@@ -13,37 +13,37 @@ layout:
     visible: true
 ---
 
-# NFTs Dinámicos
+# Dynamic NFTs
 
-Los **NFTs dinámicos** representan una evolución significativa en la tecnología de tokens no fungibles, ya que permiten que los metadatos del NFT cambien en respuesta a ciertos eventos o condiciones. En el contexto de **Real World Assets (RWA)**, los NFTs dinámicos presentan una oportunidad única para representar activos cuyo valor, propiedades o estado pueden variar con el tiempo, proporcionando una representación más precisa y en tiempo real de los activos del mundo real.
+**Dynamic NFTs** represent a significant evolution in non-fungible token technology, as they allow the NFT's metadata to change in response to certain events or conditions. In the context of **Real World Assets (RWA)**, dynamic NFTs present a unique opportunity to represent assets whose value, properties, or state can vary over time, providing a more accurate and real-time representation of real-world assets.
 
-### **¿Qué es un NFT Dinámico?**
+### **What is a Dynamic NFT?**
 
-Un **NFT dinámico** es un token no fungible cuya información o metadatos pueden actualizarse automáticamente en función de cambios en el mundo real o en la blockchain. A diferencia de los NFTs tradicionales, que poseen características fijas, los NFTs dinámicos pueden adaptarse a condiciones específicas mediante la integración de **oráculos**, **contratos inteligentes** y **eventos externos**.
+A **dynamic NFT** is a non-fungible token whose information or metadata can be automatically updated based on changes in the real world or on the blockchain. Unlike traditional NFTs, which have fixed characteristics, dynamic NFTs can adapt to specific conditions through the integration of **oracles**, **smart contracts**, and **external events**.
 
-Ejemplo: Imagina que posees un NFT que representa un bien inmueble. Con un NFT dinámico, el valor de mercado de la propiedad, su estado o cualquier renovación que se le haga, puede reflejarse automáticamente en el NFT a medida que ocurren estos cambios.
+Example: Imagine you own an NFT representing a real estate property. With a dynamic NFT, the property's market value, its condition, or any renovations made to it can be automatically reflected in the NFT as these changes occur.
 
-### **Casos de Uso de NFTs Dinámicos en RWA**
+### **Use Cases of Dynamic NFTs in RWA**
 
-1. **Propiedades Inmobiliarias**
-   * Los NFTs dinámicos pueden representar propiedades cuyos valores de mercado fluctúan con el tiempo. Cada cambio en el valor, como una remodelación o una actualización en la tasación, puede reflejarse automáticamente en el NFT.
-   * **Ejemplo práctico**: Un NFT que representa un edificio puede actualizar su valor cada trimestre según el precio del mercado local, mostrando también información sobre el estado de la propiedad, como si necesita reparaciones o si ha sido remodelada recientemente.
-2. **Automóviles y Bienes Duraderos**
-   * Para activos como automóviles, un NFT dinámico puede registrar el kilometraje, el historial de mantenimiento y el desgaste, permitiendo a los compradores potenciales evaluar el estado actual del vehículo sin depender de intermediarios.
-   * **Ejemplo práctico**: Un NFT de un automóvil que cambia su valor y condiciones cada vez que se realiza una reparación importante o después de una revisión técnica, permitiendo a los compradores tener un historial actualizado en todo momento.
-3. **Instrumentos Financieros y Valores**
-   * Los NFTs dinámicos pueden representar bonos, acciones y otros instrumentos financieros cuyos valores y condiciones cambian en tiempo real.
-   * **Ejemplo práctico**: Un bono tokenizado como NFT puede reflejar automáticamente los pagos de intereses realizados y los cambios en la tasa de interés, brindando a los inversionistas una vista actualizada de su inversión.
-4. **Commodities y Recursos Naturales**
-   * Activos como el oro, el petróleo y otros commodities pueden tokenizarse en NFTs dinámicos que reflejan el valor de mercado actual y las variaciones en su cantidad o calidad.
-   * **Ejemplo práctico**: Un NFT que representa una mina de oro podría actualizar el valor de las reservas restantes y reflejar el precio actual del oro, brindando una representación en tiempo real de los recursos disponibles.
+1. **Real Estate Properties**
+   * Dynamic NFTs can represent properties whose market values fluctuate over time. Each change in value, such as a renovation or an update in appraisal, can be automatically reflected in the NFT.
+   * **Practical example**: An NFT representing a building can update its value quarterly based on the local market price, also showing information about the property's condition, such as if it needs repairs or has been recently renovated.
+2. **Automobiles and Durable Goods**
+   * For assets like automobiles, a dynamic NFT can record mileage, maintenance history, and wear, allowing potential buyers to evaluate the current state of the vehicle without relying on intermediaries.
+   * **Practical example**: An NFT of a car that changes its value and conditions every time a major repair is made or after a technical inspection, allowing buyers to have an updated history at all times.
+3. **Financial Instruments and Securities**
+   * Dynamic NFTs can represent bonds, stocks, and other financial instruments whose values and conditions change in real-time.
+   * **Practical example**: A tokenized bond as an NFT can automatically reflect interest payments made and changes in the interest rate, providing investors with an updated view of their investment.
+4. **Commodities and Natural Resources**
+   * Assets like gold, oil, and other commodities can be tokenized into dynamic NFTs that reflect the current market value and variations in their quantity or quality.
+   * **Practical example**: An NFT representing a gold mine could update the value of remaining reserves and reflect the current price of gold, providing a real-time representation of available resources.
 
-### **Implementación de un NFT Dinámico: Contrato RealEstateNFT**
+### **Implementation of a Dynamic NFT: RealEstateNFT Contract**
 
-A continuación, un contrato que representa un **NFT dinámico** para un activo del mundo real, como una propiedad inmobiliaria, cuyo valor se actualiza automáticamente según los datos proporcionados por un oráculo (simulado aquí). Este ejemplo utiliza **OpenZeppelin** para las funciones básicas de un NFT y **Chainlink** como oráculo de precios:
+Below is a contract representing a **dynamic NFT** for a real-world asset, such as a real estate property, whose value is automatically updated based on data provided by an oracle (simulated here). This example uses **OpenZeppelin** for basic NFT functions and **Chainlink** as a price oracle:
 
 ```solidity
-solidityCopiar código// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -54,17 +54,17 @@ contract RealEstateNFT is ERC721URIStorage, Ownable {
     uint256 public tokenId;
     AggregatorV3Interface internal priceFeed;
 
-    // Mapeo para almacenar los valores actuales de los activos
+    // Mapping to store current asset values
     mapping(uint256 => uint256) public assetValues;
 
-    // Evento para el cambio de valor del NFT
+    // Event for NFT value change
     event AssetValueUpdated(uint256 tokenId, uint256 newValue);
 
     constructor(address _priceFeed) ERC721("RealEstateNFT", "REALE") {
         priceFeed = AggregatorV3Interface(_priceFeed);
     }
 
-    // Función para mintear un nuevo NFT y establecer un valor inicial
+    // Function to mint a new NFT and set an initial value
     function mintNFT(address recipient, string memory tokenURI, uint256 initialValue) public onlyOwner {
         _mint(recipient, tokenId);
         _setTokenURI(tokenId, tokenURI);
@@ -72,34 +72,34 @@ contract RealEstateNFT is ERC721URIStorage, Ownable {
         tokenId++;
     }
 
-    // Función para actualizar el valor del activo desde un oráculo externo
+    // Function to update asset value from an external oracle
     function updateAssetValue(uint256 _tokenId) public onlyOwner {
-        require(_exists(_tokenId), "Token no existe.");
+        require(_exists(_tokenId), "Token does not exist.");
         
-        // Obtener el precio actual desde el oráculo (simulado)
+        // Get current price from oracle (simulated)
         (, int price, , ,) = priceFeed.latestRoundData();
         uint256 newValue = uint256(price);
 
-        // Actualizar el valor del activo
+        // Update asset value
         assetValues[_tokenId] = newValue;
         
         emit AssetValueUpdated(_tokenId, newValue);
     }
 
-    // Obtener el valor actual del activo
+    // Get current asset value
     function getAssetValue(uint256 _tokenId) public view returns (uint256) {
-        require(_exists(_tokenId), "Token no existe.");
+        require(_exists(_tokenId), "Token does not exist.");
         return assetValues[_tokenId];
     }
 }
 ```
 
-1. **Imports**: Este contrato utiliza la extensión `ERC721URIStorage` de OpenZeppelin para manejar los URIs de los tokens y `Ownable` para controlar las funciones solo para el propietario.
-2. **Oráculo de Precios**: Este contrato asume la existencia de un oráculo (por ejemplo, Chainlink) que proporciona el valor del activo. Aquí, se inicializa el oráculo en el constructor.
-3. **Minting del NFT**: La función `mintNFT` permite al propietario crear un nuevo NFT para representar un activo inmobiliario. A cada token se le asigna un URI y un valor inicial.
-4. **Actualización de Valor**: La función `updateAssetValue` obtiene el valor más reciente del activo desde el oráculo y actualiza el valor del token en el contrato. Esta actualización solo puede ser realizada por el propietario del contrato.
-5. **Consulta de Valor**: La función `getAssetValue` permite a cualquier usuario verificar el valor actual del activo representado por el NFT.
+1. **Imports**: This contract uses OpenZeppelin's `ERC721URIStorage` extension to handle token URIs and `Ownable` to control owner-only functions.
+2. **Price Oracle**: This contract assumes the existence of an oracle (e.g., Chainlink) that provides the asset's value. Here, the oracle is initialized in the constructor.
+3. **NFT Minting**: The `mintNFT` function allows the owner to create a new NFT to represent a real estate asset. Each token is assigned a URI and an initial value.
+4. **Value Update**: The `updateAssetValue` function obtains the most recent asset value from the oracle and updates the token's value in the contract. This update can only be performed by the contract owner.
+5. **Value Query**: The `getAssetValue` function allows any user to check the current value of the asset represented by the NFT.
 
-### **Beneficios de los NFTs Dinámicos en RWA**
+### **Benefits of Dynamic NFTs in RWA**
 
-Los NFTs dinámicos brindan **transparencia y precisión** en la representación de activos del mundo real. Con este enfoque, los inversionistas pueden acceder a una vista en tiempo real de su activo sin necesidad de intermediarios, lo cual permite mejorar la confianza y eficiencia en el mercado de activos tokenizados.
+Dynamic NFTs provide **transparency and accuracy** in representing real-world assets. With this approach, investors can access a real-time view of their asset without the need for intermediaries, which improves trust and efficiency in the tokenized asset market.

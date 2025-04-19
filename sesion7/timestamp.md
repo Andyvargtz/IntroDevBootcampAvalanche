@@ -15,93 +15,93 @@ layout:
 
 # Timestamp
 
-El **timestamp** en Solidity es como el reloj del blockchain. Te permite saber en qué momento exacto (en segundos desde el 1 de enero de 1970) se creó un bloque, se ejecutó una transacción o se hizo alguna acción específica. Es súper útil para cosas como verificar plazos, establecer límites de tiempo o ejecutar funciones solo en momentos específicos.
+The **timestamp** in Solidity is like the blockchain's clock. It allows you to know the exact moment (in seconds since January 1, 1970) when a block was created, a transaction was executed, or a specific action was taken. It's super useful for things like verifying deadlines, setting time limits, or executing functions only at specific times.
 
-### ¿Qué es un timestamp?
+### What is a timestamp?
 
-Un timestamp es un número entero que representa el tiempo en segundos desde la medianoche del 1 de enero de 1970, también conocido como "Unix epoch". En el contexto de Solidity, el timestamp generalmente se refiere al momento en que se mina un bloque.
+A timestamp is an integer that represents time in seconds since midnight on January 1, 1970, also known as "Unix epoch". In the context of Solidity, the timestamp generally refers to the moment when a block is mined.
 
 ```solidity
-uint public tiempoActual = block.timestamp;
+uint public currentTime = block.timestamp;
 ```
 
-Aquí, `block.timestamp` devuelve el momento exacto en que se creó el bloque en el que se está ejecutando la transacción. Esto es especialmente útil para funciones que dependen del tiempo, como contratos que tienen que desbloquear fondos después de cierta fecha o que ejecutan acciones solo en periodos específicos.
+Here, `block.timestamp` returns the exact moment when the block in which the transaction is being executed was created. This is especially useful for time-dependent functions, such as contracts that have to unlock funds after a certain date or that execute actions only in specific periods.
 
-### Usos comunes del timestamp en Solidity
+### Common uses of timestamp in Solidity
 
-1.  **Verificar fechas**: Puedes usar `block.timestamp` para asegurarte de que una función solo se ejecute después de un tiempo determinado.
-
-    ```solidity
-    function liberarFondos() public {
-        require(block.timestamp >= fechaLiberacion, "Los fondos aún no se pueden liberar");
-        // Lógica para liberar fondos
-    }
-    ```
-2.  **Crear temporizadores**: También puedes usar timestamps para crear temporizadores o "cooldowns" en los contratos, permitiendo que ciertas acciones solo se ejecuten después de un intervalo de tiempo.
+1.  **Verify dates**: You can use `block.timestamp` to ensure that a function only executes after a certain time.
 
     ```solidity
-    uint public ultimaAccion;
-
-    function realizarAccion() public {
-        require(block.timestamp >= ultimaAccion + 1 days, "Debes esperar 1 día antes de realizar esta acción nuevamente");
-        ultimaAccion = block.timestamp;
-        // Lógica de la acción
+    function releaseFunds() public {
+        require(block.timestamp >= releaseDate, "Funds cannot be released yet");
+        // Logic to release funds
     }
     ```
-3.  **Eventos específicos**: Si quieres que un evento ocurra a una hora y fecha específicas, el timestamp es la forma de programar esta lógica.
+2.  **Create timers**: You can also use timestamps to create timers or "cooldowns" in contracts, allowing certain actions to only be executed after a time interval.
 
     ```solidity
-    function eventoEspecial() public {
-        require(block.timestamp == fechaEspecifica, "El evento solo ocurre en una fecha específica");
-        // Lógica del evento especial
+    uint public lastAction;
+
+    function performAction() public {
+        require(block.timestamp >= lastAction + 1 days, "You must wait 1 day before performing this action again");
+        lastAction = block.timestamp;
+        // Action logic
+    }
+    ```
+3.  **Specific events**: If you want an event to occur at a specific time and date, the timestamp is the way to program this logic.
+
+    ```solidity
+    function specialEvent() public {
+        require(block.timestamp == specificDate, "The event only occurs on a specific date");
+        // Special event logic
     }
     ```
 
-### Cosas a tener en cuenta con los timestamps
+### Things to keep in mind with timestamps
 
-1. **No son 100% precisos**: El timestamp es fijado por el minero que mina el bloque, y tiene un margen de manipulación de unos pocos segundos. Aunque no suele ser un problema para la mayoría de las aplicaciones, es importante tener en cuenta que no debes usar timestamps para cosas que requieran una precisión absoluta.
-2. **No uses timestamps para generar números aleatorios**: Dado que los mineros pueden influir en el valor del timestamp, usarlo para generar números aleatorios en el contrato puede llevar a resultados manipulables y poco seguros.
-3. **Conversiones de tiempo**: Solidity no tiene funciones de fecha y hora como las bibliotecas estándar de programación, por lo que tendrás que hacer todas las conversiones a mano (segundos, minutos, horas, días).
+1. **They are not 100% accurate**: The timestamp is set by the miner who mines the block, and has a manipulation margin of a few seconds. Although it's usually not a problem for most applications, it's important to keep in mind that you shouldn't use timestamps for things that require absolute precision.
+2. **Don't use timestamps to generate random numbers**: Since miners can influence the timestamp value, using it to generate random numbers in the contract can lead to manipulable and insecure results.
+3. **Time conversions**: Solidity doesn't have date and time functions like standard programming libraries, so you'll have to do all the conversions manually (seconds, minutes, hours, days).
 
-### Ejemplo práctico: Contrato de Subasta con Timestamp
+### Practical example: Auction Contract with Timestamp
 
-Vamos a ver cómo se usa un timestamp en un contrato de subasta simple. La subasta solo permite pujas durante un periodo de tiempo específico:
+Let's see how a timestamp is used in a simple auction contract. The auction only allows bids during a specific time period:
 
 ```solidity
-solidityCopy codecontract Subasta {
-    address public mayorPostor;
-    uint public mayorOferta;
-    uint public inicioSubasta;
-    uint public finSubasta;
+contract Auction {
+    address public highestBidder;
+    uint public highestBid;
+    uint public auctionStart;
+    uint public auctionEnd;
 
-    constructor(uint _duracionSubasta) {
-        inicioSubasta = block.timestamp;
-        finSubasta = inicioSubasta + _duracionSubasta;
+    constructor(uint _auctionDuration) {
+        auctionStart = block.timestamp;
+        auctionEnd = auctionStart + _auctionDuration;
     }
 
-    function pujar() public payable {
-        require(block.timestamp >= inicioSubasta, "La subasta no ha comenzado");
-        require(block.timestamp <= finSubasta, "La subasta ha terminado");
-        require(msg.value > mayorOferta, "Tu oferta debe ser mayor que la oferta actual");
+    function bid() public payable {
+        require(block.timestamp >= auctionStart, "The auction has not started");
+        require(block.timestamp <= auctionEnd, "The auction has ended");
+        require(msg.value > highestBid, "Your bid must be higher than the current bid");
 
-        if (mayorPostor != address(0)) {
-            payable(mayorPostor).transfer(mayorOferta); // Reembolsa al mayor postor anterior
+        if (highestBidder != address(0)) {
+            payable(highestBidder).transfer(highestBid); // Refunds the previous highest bidder
         }
 
-        mayorPostor = msg.sender;
-        mayorOferta = msg.value;
+        highestBidder = msg.sender;
+        highestBid = msg.value;
     }
 
-    function reclamarFondos() public {
-        require(block.timestamp > finSubasta, "La subasta aún no ha terminado");
-        require(msg.sender == mayorPostor, "Solo el mayor postor puede reclamar los fondos");
-        payable(mayorPostor).transfer(mayorOferta);
+    function claimFunds() public {
+        require(block.timestamp > auctionEnd, "The auction has not ended yet");
+        require(msg.sender == highestBidder, "Only the highest bidder can claim the funds");
+        payable(highestBidder).transfer(highestBid);
     }
 }
 ```
 
-En este contrato de subasta:
+In this auction contract:
 
-1. **Constructor**: Define el tiempo de inicio y fin de la subasta.
-2. **Función `pujar`**: Solo permite pujas durante el tiempo de la subasta.
-3. **Función `reclamarFondos`**: Permite al ganador de la subasta reclamar los fondos después de que la subasta haya terminado.
+1. **Constructor**: Defines the auction's start and end time.
+2. **`bid` function**: Only allows bids during the auction time.
+3. **`claimFunds` function**: Allows the auction winner to claim the funds after the auction has ended.

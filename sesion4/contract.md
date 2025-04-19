@@ -15,22 +15,22 @@ layout:
 
 # Contract
 
-¡Ya no tenemos advertencias! Ahora si podemos seguir con la declaración de los contratos. Cuando estamos trabajando con **Solidity**, los **contratos** son el núcleo de todo. Cada contrato inteligente que creamos es básicamente un conjunto de funciones y datos que pueden ser almacenados y ejecutados en la blockchain.
+No more warnings! Now we can continue with contract declarations. When working with **Solidity**, **contracts** are the core of everything. Each smart contract we create is basically a set of functions and data that can be stored and executed on the blockchain.
 
-Cada vez que creas un contrato, lo que estás haciendo es definir las reglas y las acciones que se pueden tomar cuando alguien interactúa con ese contrato en la blockchain.
+Every time you create a contract, what you're doing is defining the rules and actions that can be taken when someone interacts with that contract on the blockchain.
 
-La declaración de un contrato en Solidity es bastante simple. Usamos la palabra clave `contract` seguida del nombre que quieras darle a tu contrato, como por ejemplo:
+Declaring a contract in Solidity is quite simple. We use the `contract` keyword followed by the name you want to give to your contract, for example:
 
 ```solidity
 contract MiPrimerContrato {
-    // Aquí va todo el código del contrato
+    // Here goes all the contract code
 }
 ```
 
-Esta es la estructura básica para crear cualquier contrato en Solidity. Dentro de este bloque es donde definirás todas las funciones, variables y eventos que forman parte de tu contrato inteligente.
+This is the basic structure for creating any contract in Solidity. Inside this block is where you'll define all the functions, variables, and events that make up your smart contract.
 
-Como puedes observar se usa la convención PascalCase a la hora de declarar el nombre del contrato, es decir, la primera letra de cada una de las palabras es mayúscula. Ejemplo: _EjemploDePascalCase_.
+As you can see, PascalCase convention is used when declaring the contract name, meaning the first letter of each word is capitalized. Example: _ExampleOfPascalCase_.
 
-Los contratos en Solidity son similares a las clases en los lenguajes orientados a objetos. Cada contrato puede contener declaraciones de Variables de Estado, Funciones, Modificadores, Eventos, Errores, Tipos Struct y Tipos Enum. Además, los contratos pueden heredar de otros contratos.
+Contracts in Solidity are similar to classes in object-oriented languages. Each contract can contain declarations of State Variables, Functions, Modifiers, Events, Errors, Struct Types, and Enum Types. Additionally, contracts can inherit from other contracts.
 
 <figure><img src="../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>

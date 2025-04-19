@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Qué son los Proyectos Open Source
+# What are Open Source Projects
 

@@ -2,5 +2,5 @@
 icon: hammer-crash
 ---
 
-# Sesión 13: Explorando Foundry
+# Session 13: Exploring Foundry
 

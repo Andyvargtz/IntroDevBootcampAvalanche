@@ -13,69 +13,69 @@ layout:
     visible: true
 ---
 
-# Mapping Doble
+# Double Mapping
 
-Si un mapping ya te parece genial, espera a conocer los **mappings dobles**. Son la herramienta perfecta para situaciones donde necesitas almacenar información más compleja, como permisos de acceso, datos por categorías o cualquier cosa que necesite dos niveles de organización.
+If a mapping already seems great to you, wait until you learn about **double mappings**. They are the perfect tool for situations where you need to store more complex information, such as access permissions, categorized data, or anything that needs two levels of organization.
 
-### ¿Qué es un mapping doble?
+### What is a double mapping?
 
-Un **mapping doble** es simplemente un mapping dentro de otro mapping. Imagina que tienes un armario (primer mapping) y, dentro de cada cajón, tienes otro armario más pequeño (segundo mapping). De esta forma, puedes almacenar datos en dos niveles de claves.
+A **double mapping** is simply a mapping inside another mapping. Imagine you have a wardrobe (first mapping) and, inside each drawer, you have another smaller wardrobe (second mapping). This way, you can store data in two levels of keys.
 
-**Sintaxis básica:**
-
-```solidity
-mapping(tipoClave1 => mapping(tipoClave2 => tipoValor)) public nombreDelMapping;
-```
-
-Por ejemplo, supongamos que quieres llevar un registro de permisos por usuario y por aplicación:
+**Basic syntax:**
 
 ```solidity
-mapping(address => mapping(string => bool)) public permisos;
+mapping(keyType1 => mapping(keyType2 => valueType)) public mappingName;
 ```
 
-En este caso, `permisos` toma dos claves:
+For example, let's say you want to keep track of permissions per user and per application:
 
-1. Una dirección (`address`) para identificar al usuario.
-2. Un string (`string`) para identificar la aplicación.
+```solidity
+mapping(address => mapping(string => bool)) public permissions;
+```
 
-El valor almacenado es un booleano (`bool`) que indica si ese usuario tiene permiso o no para esa aplicación específica.
+In this case, `permissions` takes two keys:
 
-### Ejemplo práctico de mapping doble
+1. An address (`address`) to identify the user.
+2. A string (`string`) to identify the application.
 
-Vamos a ver un ejemplo donde almacenamos y consultamos permisos de acceso:
+The stored value is a boolean (`bool`) that indicates whether that user has permission or not for that specific application.
+
+### Practical example of double mapping
+
+Let's see an example where we store and query access permissions:
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-<strong>
-</strong><strong>contract SistemaDePermisos {
-</strong>    // Mapping doble: usuario => (aplicación => permiso)
-    mapping(address => mapping(string => bool)) public permisos;
 
-    // Función para asignar permisos a un usuario en una aplicación específica
-    function asignarPermiso(address usuario, string memory aplicacion, bool tienePermiso) public {
-        permisos[usuario][aplicacion] = tienePermiso;
+contract PermissionSystem {
+    // Double mapping: user => (application => permission)
+    mapping(address => mapping(string => bool)) public permissions;
+
+    // Function to assign permissions to a user for a specific application
+    function assignPermission(address user, string memory application, bool hasPermission) public {
+        permissions[user][application] = hasPermission;
     }
 
-    // Función para consultar si un usuario tiene permiso en una aplicación específica
-    function consultarPermiso(address usuario, string memory aplicacion) public view returns (bool) {
-        return permisos[usuario][aplicacion];
+    // Function to check if a user has permission for a specific application
+    function checkPermission(address user, string memory application) public view returns (bool) {
+        return permissions[user][application];
     }
 }
 </code></pre>
 
-En este contrato, cada usuario (`address`) tiene un mapping asociado que guarda permisos para diferentes aplicaciones (`string`). Con la función `asignarPermiso`, puedes conceder o revocar permisos, y con `consultarPermiso` puedes verificar si un usuario tiene acceso a una aplicación específica. Vamos a visualizar cómo se vería esto en una tabla:
+In this contract, each user (`address`) has an associated mapping that stores permissions for different applications (`string`). With the `assignPermission` function, you can grant or revoke permissions, and with `checkPermission` you can verify if a user has access to a specific application. Let's visualize how this would look in a table:
 
-| **Usuario (address)** | **Aplicación** | **Permiso** |
-| --------------------- | -------------- | ----------- |
-| 0x123...abc           | "Facebook"     | true        |
-| 0x123...abc           | "Twitter"      | false       |
-| 0x456...def           | "Instagram"    | true        |
-| 0x789...ghi           | "Facebook"     | false       |
+| **User (address)** | **Application** | **Permission** |
+| ------------------ | --------------- | -------------- |
+| 0x123...abc        | "Facebook"      | true           |
+| 0x123...abc        | "Twitter"       | false          |
+| 0x456...def        | "Instagram"     | true           |
+| 0x789...ghi        | "Facebook"      | false          |
 
-En esta tabla, el primer usuario (`0x123...abc`) tiene permiso para usar "Facebook" pero no para "Twitter". Mientras que el segundo usuario (`0x456...def`) tiene acceso a "Instagram" y el tercero (`0x789...ghi`) no tiene permiso para "Facebook".
+In this table, the first user (`0x123...abc`) has permission to use "Facebook" but not "Twitter". While the second user (`0x456...def`) has access to "Instagram" and the third (`0x789...ghi`) doesn't have permission for "Facebook".
 
-### Ventajas de los mappings dobles
+### Advantages of double mappings
 
-1. **Organización por niveles**: Perfecto para escenarios donde necesitas varios niveles de datos, como usuarios y permisos, categorías y subcategorías, etc.
-2. **Acceso rápido y eficiente**: A pesar de tener dos niveles, acceder a un valor es rápido porque Solidity sabe cómo navegar estos mappings.
-3. **Flexibilidad**: Puedes agregar o quitar permisos sin preocuparte por la estructura del contrato; simplemente actualizas el mapping correspondiente.
+1. **Level-based organization**: Perfect for scenarios where you need multiple levels of data, such as users and permissions, categories and subcategories, etc.
+2. **Quick and efficient access**: Despite having two levels, accessing a value is fast because Solidity knows how to navigate these mappings.
+3. **Flexibility**: You can add or remove permissions without worrying about the contract's structure; you simply update the corresponding mapping.

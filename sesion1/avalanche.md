@@ -13,14 +13,14 @@ layout:
     visible: true
 ---
 
-# Surgimiento de Avalanche
+# Emergence of Avalanche
 
-En mayo del 2018, un misterioso grupo de desarrolladores conocido como Team Rocket publicó un artículo que introducía un nuevo mecanismo de consenso. Este protocolo prometía superar las deficiencias de las redes existentes al ofrecer una solución más rápida, escalable y eficiente para la verificación de transacciones.
+In May 2018, a mysterious group of developers known as Team Rocket published an article introducing a new consensus mechanism. This protocol promised to overcome the deficiencies of existing networks by offering a faster, more scalable, and more efficient solution for transaction verification.
 
-Emin Gün Sirer, un renombrado profesor de ciencias de la computación en la Universidad de Cornell, fue una pieza clave y dirigió el desarrollo de Avalanche. Inspirado por el potencial del protocolo, Sirer fundó Ava Labs, una empresa destinada a hacer Avalanche una realidad.
+Emin Gün Sirer, a renowned computer science professor at Cornell University, was a key figure and led the development of Avalanche. Inspired by the potential of the protocol, Sirer founded Ava Labs, a company aimed at making Avalanche a reality.
 
 <figure><img src="../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
 
-A través de su trabajo con estudiantes de doctorado y otros investigadores de Cornell, Sirer y su equipo desarrollaron y refinaron el mecanismo, llevándolo a un público más amplio. En marzo de 2020, el código de base AVA se lanzó como código abierto, marcando un hito significativo en su desarrollo.
+Through his work with doctoral students and other researchers at Cornell, Sirer and his team developed and refined the mechanism, bringing it to a wider audience. In March 2020, the Avalanche code base was released as open source, marking a significant milestone in its development.
 
 {% embed url="https://www.avalabs.org/whitepapers" %}

@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Configurar versión de Solidity
+# Configure Solidity Version
 

@@ -2,5 +2,5 @@
 icon: rectangle-terminal
 ---
 
-# Sesión 5: Explorando Solidity I
+# Session 5: Exploring Solidity I
 

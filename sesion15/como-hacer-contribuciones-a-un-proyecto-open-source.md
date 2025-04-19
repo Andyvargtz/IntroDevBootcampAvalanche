@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Cómo hacer Contribuciones a un Proyecto Open Source
+# How to Contribute to an Open Source Project
 

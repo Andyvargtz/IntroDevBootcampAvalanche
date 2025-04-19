@@ -13,72 +13,72 @@ layout:
     visible: true
 ---
 
-# Creando ERC20 con Openzeppelin Wizard
+# Creating ERC20 with Openzeppelin Wizard
 
-Crear un token ERC20 desde cero puede ser un poco enredado, especialmente si eres nuevo en Solidity. Pero gracias a herramientas como OpenZeppelin Wizard, ahora puedes generar contratos ERC20 con solo unos pocos clics, sin necesidad de escribir una sola línea de código.
+Creating an ERC20 token from scratch can be a bit tricky, especially if you're new to Solidity. But thanks to tools like OpenZeppelin Wizard, you can now generate ERC20 contracts with just a few clicks, without needing to write a single line of code.
 
-### ¿Qué es OpenZeppelin Wizard?
+### What is OpenZeppelin Wizard?
 
-OpenZeppelin Wizard es una herramienta visual en línea que te permite crear contratos inteligentes de manera rápida y sencilla, seleccionando las características que deseas incluir. Con esta herramienta puedes configurar todo lo necesario para tu contrato ERC20, desde el nombre y símbolo del token hasta funciones adicionales como minteo, quemado, o snapshots, sin preocuparte por los detalles técnicos.
+OpenZeppelin Wizard is an online visual tool that allows you to create smart contracts quickly and easily, selecting the features you want to include. With this tool you can configure everything needed for your ERC20 contract, from the token name and symbol to additional functions like minting, burning, or snapshots, without worrying about technical details.
 
-### Creando tu ERC20 con OpenZeppelin Wizard: Paso a Paso
+### Creating your ERC20 with OpenZeppelin Wizard: Step by Step
 
-Vamos a ver cómo crear un token ERC20 utilizando esta increíble herramienta.
+Let's see how to create an ERC20 token using this amazing tool.
 
-**1. Acceder a OpenZeppelin Wizard**
+**1. Access OpenZeppelin Wizard**
 
-Lo primero que debes hacer es ir a la página de OpenZeppelin Wizard. Aquí verás una interfaz amigable que te permite configurar varios tipos de contratos, incluyendo ERC20, ERC721 (NFTs) y más.
+The first thing you need to do is go to the OpenZeppelin Wizard page. Here you'll see a friendly interface that allows you to configure various types of contracts, including ERC20, ERC721 (NFTs) and more.
 
 {% embed url="https://wizard.openzeppelin.com/" %}
 
-**2. Configurar el Token ERC20**
+**2. Configure the ERC20 Token**
 
-* **Selecciona el tipo de contrato:** En la sección de ERC20, puedes configurar los siguientes parámetros:
-  * **Nombre del Token:** Elige el nombre que tendrá tu token, yo le pondré “Genesis”.
-  * **Símbolo del Token:** Este es el símbolo que representará tu token, en mi caso “GNS”. Es cómo el FCB del FC Barcelona, o el COL de Colombia.
-  * **Premint:** La cantidad de tokens que se crearán al desplegar el contrato. Por ejemplo, puedes establecerlo en 1,000,000.
-* **Características adicionales:**
-  * **Mintable:** Permite crear más tokens después del despliegue inicial. Ideal si quieres tener la capacidad de aumentar la cantidad de tokens en circulación.
-  * **Burnable:** Los usuarios pueden quemar (destruir) sus propios tokens, reduciendo la cantidad total en circulación.
-  * **Pausable:** Te da la opción de pausar las funciones de transferencia en casos de emergencia.
-  * Ownable: Es ideal para controlar el acceso a funciones específicas, definiendo un propietario del contrato que puede transferir la propiedad a otro usuario.
+* **Select the contract type:** In the ERC20 section, you can configure the following parameters:
+  * **Token Name:** Choose the name your token will have, I'll call it "Genesis".
+  * **Token Symbol:** This is the symbol that will represent your token, in my case "GNS". It's like FCB for FC Barcelona, or COL for Colombia.
+  * **Premint:** The number of tokens that will be created when deploying the contract. For example, you can set it to 1,000,000.
+* **Additional features:**
+  * **Mintable:** Allows creating more tokens after the initial deployment. Ideal if you want to have the ability to increase the number of tokens in circulation.
+  * **Burnable:** Users can burn (destroy) their own tokens, reducing the total amount in circulation.
+  * **Pausable:** Gives you the option to pause transfer functions in emergency cases.
+  * **Ownable:** Ideal for controlling access to specific functions, defining a contract owner who can transfer ownership to another user.
 
 <figure><img src="../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
-**3. Generar el Código**
+**3. Generate the Code**
 
-Una vez que hayas configurado todas las opciones según tus necesidades, haz clic en el botón de "Open in Remix" o simplemente cópialo y pégalo.&#x20;
+Once you've configured all the options according to your needs, click on the "Open in Remix" button or simply copy and paste it.&#x20;
 
-**4. Desplegar el Contrato en Remix**
+**4. Deploy the Contract in Remix**
 
-Si has elegido la opción de abrir el código en Remix, sigue estos pasos para desplegar tu token:
+If you've chosen to open the code in Remix, follow these steps to deploy your token:
 
-1. **Conéctate a Remix:** Ve a [Remix IDE](https://remix.ethereum.org/).
-2. **Cargar el Código:** Copia y pega el código generado en OpenZeppelin Wizard en un nuevo archivo dentro de Remix.
-3. **Compilar:** Haz clic en el ícono de “compilar” para asegurarte de que el código no tiene errores.
-4. **Desplegar:** Selecciona “Deploy” y elige la red de Avalanche Testnet (Fuji). Según las características adicionales que añadas, te pedirá que ingreses valores como parámetros, en mi caso, al añadir Ownable, me pedirá la dirección que será dueña del contrato.
-5. **Verificar:** Usa el plugin de verificación para verificar el contrato de tu ERC20,
-6. **Wallet:** Al abrir tu wallet de Core, verás reflejados automáticamente tus tokens.
+1. **Connect to Remix:** Go to [Remix IDE](https://remix.ethereum.org/).
+2. **Load the Code:** Copy and paste the code generated in OpenZeppelin Wizard into a new file within Remix.
+3. **Compile:** Click on the "compile" icon to make sure the code has no errors.
+4. **Deploy:** Select "Deploy" and choose the Avalanche Testnet (Fuji) network. Depending on the additional features you add, it will ask you to enter values as parameters, in my case, when adding Ownable, it will ask for the address that will own the contract.
+5. **Verify:** Use the verification plugin to verify your ERC20 contract.
+6. **Wallet:** When opening your Core wallet, you'll see your tokens automatically reflected.
 
 <figure><img src="../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
-**5. Interactuar con tu Token**
+**5. Interact with your Token**
 
-¡Felicidades! Ahora tienes tu propio token ERC20 desplegado. Puedes interactuar con él directamente desde Remix o usar Core para enviar, recibir y ver tus tokens.
+Congratulations! Now you have your own ERC20 token deployed. You can interact with it directly from Remix or use Core to send, receive and view your tokens.
 
-¡Intenta enviarme un poco de tus tokens! Ve a Remix y ve a la sección de contratos desplegados, ahora, ejectuta la función `transfer` , pasando como parámetro el address del destinatario (0x942Fa5b96C52cf4EDE7498e02fbF9196B0510702), y la cantidad de tokens que quieras enviar, recuerda tener en cuenta el numero de decimales que has definido, si vas a mandar 50 tokens, debes ingresar 50 \* 10^`decimals`. En mi caso yo dejé el valor por defecto (18), por lo cual debería ingresar 50 \* 10^18.
+Try sending me some of your tokens! Go to Remix and go to the deployed contracts section, now, execute the `transfer` function, passing as parameter the recipient's address (0x942Fa5b96C52cf4EDE7498e02fbF9196B0510702), and the amount of tokens you want to send, remember to take into account the number of decimals you have defined, if you're going to send 50 tokens, you should enter 50 \* 10^`decimals`. In my case I left the default value (18), so I should enter 50 \* 10^18.
 
 ```
 // Address
 0x942Fa5b96C52cf4EDE7498e02fbF9196B0510702
-// Cantidad a transferir (50 * 10^18)
+// Amount to transfer (50 * 10^18)
 50000000000000000000
 ```
 
 <figure><img src="../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
-### Ventajas de Usar OpenZeppelin Wizard
+### Advantages of Using OpenZeppelin Wizard
 
-1. **Simplicidad:** No necesitas ser un experto en Solidity para crear un token funcional y seguro. OpenZeppelin Wizard se encarga de la parte difícil.
-2. **Seguridad:** Los contratos generados siguen los estándares de OpenZeppelin, lo que asegura que sean seguros y estén alineados con las mejores prácticas de la industria.
-3. **Personalización:** Puedes elegir exactamente qué características quieres en tu token, asegurando que se adapte a las necesidades de tu proyecto sin añadir complejidad innecesaria.
+1. **Simplicity:** You don't need to be a Solidity expert to create a functional and secure token. OpenZeppelin Wizard takes care of the hard part.
+2. **Security:** The generated contracts follow OpenZeppelin standards, ensuring they are secure and aligned with industry best practices.
+3. **Customization:** You can choose exactly what features you want in your token, ensuring it fits your project's needs without adding unnecessary complexity.

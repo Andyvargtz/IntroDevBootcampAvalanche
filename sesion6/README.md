@@ -2,5 +2,5 @@
 icon: terminal
 ---
 
-# Sesión 6: Explorando Solidity II
+# Session 6: Exploring Solidity II
 

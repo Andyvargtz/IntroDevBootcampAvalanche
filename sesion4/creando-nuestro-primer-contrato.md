@@ -13,39 +13,37 @@ layout:
     visible: true
 ---
 
-# Creando nuestro primer contrato
+# Creating our first contract
 
-Ya conoces la estructura inicial de un contrato. Ahora, vamos a crear nuestro primer contrato inteligente sencillo. En esta ocasión yo te daré el código y lo único que tendrás que hacer es copiarlo y pegarlo. No te preocupes si aún no entiendes nada del código, en las siguientes secciones explicaremos cada cosa paso a paso.
+You already know the initial structure of a contract. Now, we are going to create our first simple smart contract. This time I will give you the code and all you have to do is copy and paste it. Don't worry if you don't understand anything about the code yet, in the following sections we will explain everything step by step.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract MiPrimerContrato {
+contract MyFirstContract {
 
-    string mensaje;
+    string message;
 
-    function enviarMensaje(string memory _nuevoMensaje) public {
-        mensaje = _nuevoMensaje;
+    function sendMessage(string memory _newMessage) public {
+        mensaje = _newMessage;
     }
 
-    function leerMensaje() public view returns(string memory){
-        return mensaje;
+    function readMessage() public view returns(string memory){
+        return message;
     }
 }
 ```
 
-Este contrato cuenta con dos funciones:
+This contract has two functions:
 
-* `enviarMensaje`: Actualiza el valor de la variable mensaje.
-* `leerMensaje`: Muestra el valor actual de la variable mensaje.
+* `sendMessage`: Updates the value of the message variable.
+* `readMessage`: Shows the current value of the message variable.
 
-La variable `mensaje` es tipo `string`, lo que quiere decir que es una cadena de caracteres, es decir, un texto.
+The `message` variable is of type `string`, which means it is a character string, that is, a text.
 
-
-
-Al intentar pegar este código a tu contrato, te saldrá la siguiente advertencia:
+When trying to paste this code into your contract, you will get the following warning:
 
 <figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
-Esto se debe a que Remix te pide que tengas cuidado de que la fuente de donde sacaste el código sea segura y confiable, porque podría haber la posibilidad de interactuar con un código malicioso que saquee todos tus fondos.
+This is because Remix asks you to be careful that the source from which you got the code is secure and trustworthy, because there could be the possibility of interacting with malicious code that drains all your funds.

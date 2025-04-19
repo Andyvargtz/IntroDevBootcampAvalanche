@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Creando Proyecto en React
+# Creating React Project
 

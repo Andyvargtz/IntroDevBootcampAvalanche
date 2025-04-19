@@ -15,46 +15,46 @@ layout:
 
 # Keccak256
 
-El algoritmo **keccak256** es una función de hashing que toma cualquier cantidad de datos y los convierte en un valor único de 32 bytes (256 bits). Es súper útil para asegurar que los datos no se modifiquen y para evitar colisiones (dos entradas diferentes generando el mismo hash). Es el equivalente digital de meter un pastel entero en una trituradora y obtener un código único, por mucho que intentes, no puedes reconstruir el pastel original solo con ese código.
+The **keccak256** algorithm is a hashing function that takes any amount of data and converts it into a unique 32-byte (256-bit) value. It's super useful for ensuring that data isn't modified and for avoiding collisions (two different inputs generating the same hash). It's the digital equivalent of putting an entire cake into a shredder and getting a unique code - no matter how hard you try, you can't reconstruct the original cake just from that code.
 
-Keccak256 asegura que cualquier cambio, por mínimo que sea, en los datos originales, producirá un hash completamente diferente. Esto lo convierte en la herramienta perfecta para comparar, validar y asegurar información en los contratos inteligentes.
+Keccak256 ensures that any change, no matter how small, in the original data will produce a completely different hash. This makes it the perfect tool for comparing, validating, and securing information in smart contracts.
 
-### El problema con los `strings` y cómo lo resuelve `keccak256`
+### The problem with `strings` and how `keccak256` solves it
 
-Imagina que quieres verificar si dos strings son iguales, algo así como comprobar si `"Hola"` es igual a `"hola"`. En Solidity no puedes simplemente hacer `if (string1 == string2)`, porque los strings no se pueden comparar de esa forma directamente. Esto se debe a que Solidity no tiene un operador de comparación para `strings`. Entonces, ¿qué haces?
+Imagine you want to verify if two strings are equal, something like checking if `"Hello"` is equal to `"hello"`. In Solidity, you can't simply do `if (string1 == string2)`, because strings can't be compared that way directly. This is because Solidity doesn't have a comparison operator for `strings`. So, what do you do?
 
-Aquí entra **keccak256** al rescate. Lo que haces es convertir ambos strings en su hash correspondiente usando `keccak256` y luego comparas esos hashes. Si los hashes son iguales, entonces los strings también lo son.
+This is where **keccak256** comes to the rescue. What you do is convert both strings into their corresponding hash using `keccak256` and then compare those hashes. If the hashes are equal, then the strings are too.
 
 ```solidity
-function compararStrings(string memory _a, string memory _b) public pure returns (bool) {
+function compareStrings(string memory _a, string memory _b) public pure returns (bool) {
     return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b));
 }
 ```
 
-En este código, ambos strings se convierten en su hash usando `keccak256` y se comparan. Esto te asegura que cualquier variación en los strings, por pequeña que sea, resultará en hashes diferentes.
+In this code, both strings are converted into their hash using `keccak256` and compared. This ensures that any variation in the strings, no matter how small, will result in different hashes.
 
-### Otros usos del `keccak256`
+### Other uses of `keccak256`
 
-El uso de `keccak256` va mucho más allá de comparar strings. Aquí te dejo algunos ejemplos de cómo se puede utilizar en diferentes contextos:
+The use of `keccak256` goes far beyond comparing strings. Here are some examples of how it can be used in different contexts:
 
-1.  **Crear identificadores únicos**: Si necesitas un identificador único para algo en tu contrato, como una dirección de billetera o un token, `keccak256` es perfecto. Puedes usarlo para generar un identificador a partir de múltiples datos combinados, como la dirección del usuario, un número aleatorio y un timestamp.
+1. **Create unique identifiers**: If you need a unique identifier for something in your contract, like a wallet address or a token, `keccak256` is perfect. You can use it to generate an identifier from multiple combined data, such as the user's address, a random number, and a timestamp.
 
     {% code fullWidth="false" %}
     ```solidity
-    function generarID(address _usuario, uint _timestamp) public pure returns (bytes32) {
-        return keccak256(abi.encodePacked(_usuario, _timestamp));
+    function generateID(address _user, uint _timestamp) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_user, _timestamp));
     }
     ```
     {% endcode %}
-2. **Verificar firmas digitales**: En contratos donde necesitas verificar la autenticidad de una firma, `keccak256` se usa para crear el hash del mensaje firmado. Este hash se compara luego con la firma proporcionada para asegurarse de que no ha sido alterada.
-3.  **Generar números pseudoaleatorios**: Aunque Solidity no tiene una función de números aleatorios como tal, puedes usar `keccak256` con datos impredecibles (como `block.timestamp` y `block.difficulty`) para crear algo parecido. Pero ojo, no es realmente seguro para cosas importantes como juegos de azar.
+2. **Verify digital signatures**: In contracts where you need to verify the authenticity of a signature, `keccak256` is used to create the hash of the signed message. This hash is then compared with the provided signature to ensure it hasn't been altered.
+3. **Generate pseudo-random numbers**: Although Solidity doesn't have a random number function as such, you can use `keccak256` with unpredictable data (like `block.timestamp` and `block.difficulty`) to create something similar. But be careful, it's not really secure for important things like gambling.
 
     ```solidity
-    function numeroAleatorio(uint256 _input) public view returns (uint256) {
+    function randomNumber(uint256 _input) public view returns (uint256) {
         return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, _input)));
     }
     ```
 
-### ¿Cómo funciona `keccak256` por detrás?
+### How does `keccak256` work under the hood?
 
-Debajo de la superficie, `keccak256` usa un algoritmo de hashing que transforma la entrada en bloques de datos y realiza operaciones matemáticas y lógicas para generar el hash final. Cada bit en la entrada afecta al hash resultante, y cambiar incluso un solo carácter en la entrada producirá un hash completamente diferente. Esto lo hace ideal para detectar cambios en los datos y proteger contra manipulaciones.
+Under the surface, `keccak256` uses a hashing algorithm that transforms the input into data blocks and performs mathematical and logical operations to generate the final hash. Every bit in the input affects the resulting hash, and changing even a single character in the input will produce a completely different hash. This makes it ideal for detecting changes in data and protecting against manipulations.

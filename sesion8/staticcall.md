@@ -15,72 +15,72 @@ layout:
 
 # StaticCall
 
-El método `staticcall` en Solidity es el modo “solo lectura” para interactuar con otros contratos. Te permite consultar información sin cambiar nada en el contrato al que llamas, lo cual es genial cuando solo necesitas obtener datos. A diferencia de `call`, `staticcall` garantiza que no se podrá modificar el estado del contrato, incluso si intentas hacerlo. Es perfecto para llamadas seguras donde no quieres preocuparte por alterar accidentalmente algo en el contrato externo.
+The `staticcall` method in Solidity is the "read-only" mode for interacting with other contracts. It allows you to query information without changing anything in the contract you're calling, which is great when you only need to retrieve data. Unlike `call`, `staticcall` ensures that the contract's state cannot be modified, even if you try to do so. It's perfect for safe calls where you don't want to worry about accidentally altering something in the external contract.
 
-### ¿Qué es `staticcall`?
+### What is `staticcall`?
 
-`staticcall` es una función de bajo nivel que se utiliza para hacer llamadas a otros contratos de manera segura, asegurando que la llamada no pueda alterar el estado del contrato al que se está llamando. Si la función que intentas llamar intenta hacer cambios (como transferir tokens o modificar una variable), `staticcall` fallará. Es como decirle al contrato: "Quiero saber algo, pero prometo no tocar nada".
+`staticcall` is a low-level function used to make safe calls to other contracts, ensuring that the call cannot alter the state of the contract being called. If the function you're trying to call attempts to make changes (like transferring tokens or modifying a variable), `staticcall` will fail. It's like telling the contract: "I want to know something, but I promise not to touch anything."
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-(bool exito, bytes memory data) = direccion.staticcall(abi.encodeWithSignature("nombreFuncion(parametros)"));
+(bool success, bytes memory data) = address.staticcall(abi.encodeWithSignature("functionName(parameters)"));
 ```
 
-* `exito` es un booleano que indica si la llamada fue exitosa.
-* `data` contiene los datos devueltos por la función llamada.
-* `direccion` es la dirección del contrato al que estás llamando.
-* `abi.encodeWithSignature` codifica la firma de la función y sus parámetros.
+* `success` is a boolean indicating if the call was successful.
+* `data` contains the data returned by the called function.
+* `address` is the address of the contract you're calling.
+* `abi.encodeWithSignature` encodes the function signature and its parameters.
 
-### Llamando a otra función con `staticcall`
+### Calling another function with `staticcall`
 
-Imaginemos que queremos consultar el balance de tokens de un usuario en un contrato ERC20 sin cambiar nada en el contrato. Vamos a ver cómo se hace:
+Let's imagine we want to query a user's token balance in an ERC20 contract without changing anything in the contract. Here's how it's done:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract ConsultaBalance {
-    // Función para consultar el balance usando `staticcall`
-    function consultarBalance(address contratoToken, address cuenta) public view returns (uint256) {
-        // Preparamos la llamada con `staticcall`
-        (bool exito, bytes memory data) = contratoToken.staticcall(
-            abi.encodeWithSignature("balanceOf(address)", cuenta)
+contract BalanceQuery {
+    // Function to query balance using `staticcall`
+    function queryBalance(address tokenContract, address account) public view returns (uint256) {
+        // Prepare the call with `staticcall`
+        (bool success, bytes memory data) = tokenContract.staticcall(
+            abi.encodeWithSignature("balanceOf(address)", account)
         );
         
-        // Verificamos si la llamada fue exitosa
-        require(exito, "Fallo en la llamada a staticcall");
+        // Verify if the call was successful
+        require(success, "staticcall failed");
         
-        // Decodificamos el resultado para obtener el balance
+        // Decode the result to get the balance
         return abi.decode(data, (uint256));
     }
 }
 ```
 
-1. **Construcción de la llamada**: Usamos `abi.encodeWithSignature` para crear la firma de la función `balanceOf`, que toma una dirección como parámetro (`cuenta`).
-2. **Llamada con `staticcall`**: Llamamos a la función `balanceOf` del contrato de tokens (`contratoToken`) usando `staticcall`.
-3. **Verificación del resultado**: Si `exito` es `true`, la llamada fue exitosa. Si no, la transacción falla con el mensaje "Fallo en la llamada a staticcall".
-4. **Decodificación del resultado**: Usamos `abi.decode` para convertir los datos devueltos (`data`) en un número entero (`uint256`), que es el balance del usuario.
+1. **Call construction**: We use `abi.encodeWithSignature` to create the signature of the `balanceOf` function, which takes an address as a parameter (`account`).
+2. **Call with `staticcall`**: We call the `balanceOf` function of the token contract (`tokenContract`) using `staticcall`.
+3. **Result verification**: If `success` is `true`, the call was successful. If not, the transaction fails with the message "staticcall failed".
+4. **Result decoding**: We use `abi.decode` to convert the returned data (`data`) into an integer (`uint256`), which is the user's balance.
 
-### Ventajas y desventajas de `staticcall`
+### Advantages and disadvantages of `staticcall`
 
-**Ventajas:**
+**Advantages:**
 
-1. **Seguridad**: Garantiza que no se harán cambios en el contrato llamado, protegiendo contra modificaciones no deseadas.
-2. **Eficiencia**: Las llamadas de solo lectura son más baratas en términos de gas, ya que no necesitan registrar cambios en la blockchain.
-3. **Ideal para consultas**: Perfecto para consultar balances, estados de contratos y cualquier otra información que no necesite alterar el contrato.
+1. **Security**: Ensures no changes will be made to the called contract, protecting against unwanted modifications.
+2. **Efficiency**: Read-only calls are cheaper in terms of gas since they don't need to record changes on the blockchain.
+3. **Ideal for queries**: Perfect for querying balances, contract states, and any other information that doesn't need to alter the contract.
 
-**Desventajas:**
+**Disadvantages:**
 
-1. **Limitación a solo lectura**: No puedes hacer nada que modifique el estado, como transferir tokens o actualizar variables.
-2. **Fallo en funciones con cambios de estado**: Si intentas llamar a una función que modifica el estado, la llamada fallará, ya que `staticcall` no permite cambios.
+1. **Read-only limitation**: You can't do anything that modifies the state, like transferring tokens or updating variables.
+2. **Failure in state-changing functions**: If you try to call a function that modifies the state, the call will fail, as `staticcall` doesn't allow changes.
 
-### Comparación con `call` y `delegatecall`
+### Comparison with `call` and `delegatecall`
 
-* **`call`**: Te permite hacer cualquier tipo de llamada, incluyendo cambios de estado y envío de ether. Es flexible pero potencialmente riesgoso.
-* **`delegatecall`**: Ejecuta el código de otro contrato en el contexto de tu contrato. Cambia tu propio estado en lugar del contrato llamado.
-* **`staticcall`**: Es la opción segura y específica para llamadas de solo lectura, asegurando que no se hagan cambios en el contrato externo.
+* **`call`**: Allows you to make any type of call, including state changes and sending ether. It's flexible but potentially risky.
+* **`delegatecall`**: Executes another contract's code in the context of your contract. Changes your own state instead of the called contract's.
+* **`staticcall`**: Is the safe and specific option for read-only calls, ensuring no changes are made to the external contract.
 
-### ¿Por qué usar `staticcall`?
+### Why use `staticcall`?
 
-Si solo necesitas consultar datos sin afectar el estado del contrato, `staticcall` es tu mejor opción. Por ejemplo, si quieres verificar balances, estados de contratos o cualquier otra información estática, `staticcall` garantiza que no ocurrirán cambios inesperados. Esto lo convierte en una herramienta esencial para evitar errores o comportamientos no deseados en tus contratos.
+If you only need to query data without affecting the contract's state, `staticcall` is your best option. For example, if you want to verify balances, contract states, or any other static information, `staticcall` guarantees that no unexpected changes will occur. This makes it an essential tool for avoiding errors or unwanted behaviors in your contracts.

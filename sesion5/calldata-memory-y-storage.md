@@ -13,88 +13,88 @@ layout:
     visible: true
 ---
 
-# Calldata, Memory y Storage
+# Calldata, Memory and Storage
 
-En Solidity, entender cómo funcionan **calldata, memory y storage** es clave para escribir contratos eficientes y evitar errores. Estos tres términos definen dónde y cómo se almacenan los datos en el contrato y tienen un impacto directo en el costo de gas y en la funcionalidad del contrato.
+In Solidity, understanding how **calldata, memory, and storage** work is key to writing efficient contracts and avoiding errors. These three terms define where and how data is stored in the contract and have a direct impact on gas costs and contract functionality.
 
-Vamos a desglosarlos y ver cómo usar cada uno de manera efectiva, con especial atención a los strings.
+Let's break them down and see how to use each one effectively, with special attention to strings.
 
-### Calldata, Memory y Storage
+### Calldata, Memory and Storage
 
-**1. Calldata: Datos Temporales y de Solo Lectura**
+**1. Calldata: Temporary and Read-Only Data**
 
-* Puedes ver los datos, pero no puedes cambiarlos. Se utiliza para los datos de entrada de funciones externas y es **inmutable** (no puedes modificar los datos que llegan aquí).
-* **¿Cuándo usarlo?**\
-  Úsalo cuando quieras pasar datos a una función y no necesites cambiarlos. Es más eficiente en términos de gas que `memory` porque evita copiar datos innecesarios.
-*   **Ejemplo:**
+* You can view the data, but you cannot change it. It is used for input data of external functions and is **immutable** (you cannot modify the data that arrives here).
+* **When to use it?**\
+  Use it when you want to pass data to a function and don't need to change it. It's more gas efficient than `memory` because it avoids unnecessary data copying.
+*   **Example:**
 
     ```solidity
-    function procesarDatos(uint256[] calldata numeros) external pure returns (uint256) {
-        return numeros[0] * 2; // Solo estamos leyendo datos, no cambiándolos.
+    function processData(uint256[] calldata numbers) external pure returns (uint256) {
+        return numbers[0] * 2; // We are only reading data, not changing it.
     }
     ```
 
-    Aquí, `numeros` es un array de enteros.
+    Here, `numbers` is an array of integers.
 
-**2. Memory: Memoria Temporal para Datos Cambiantes**
+**2. Memory: Temporary Memory for Changing Data**
 
-* Es útil mientras lo necesitas, pero no queda nada guardado cuando te vas. Aquí es donde se almacenan datos temporales dentro de una función.
-* **¿Cuándo usarlo?**\
-  Se usa para datos que necesitas modificar dentro de la función o para manejar datos intermedios. Los strings y arrays que se manipulan en funciones deben estar en `memory` para poder trabajar con ellos sin restricciones.
-*   **Ejemplo 1:**
+* It's useful while you need it, but nothing remains saved when you leave. This is where temporary data is stored within a function.
+* **When to use it?**\
+  It's used for data that you need to modify within the function or to handle intermediate data. Strings and arrays that are manipulated in functions must be in `memory` to work with them without restrictions.
+*   **Example 1:**
 
     ```solidity
-    function saludoTemporal() public pure returns (string memory) {
-        string memory mensaje = "Hola, Avalanche!";
-        return mensaje; // El valor de 'mensaje' se guarda solo mientras se ejecuta la función.
+    function temporaryGreeting() public pure returns (string memory) {
+        string memory message = "Hello, Avalanche!";
+        return message; // The value of 'message' is only saved while the function executes.
     }
     ```
 
-    Al terminar la ejecución de la función, `mensaje` desaparece, y nadie recuerda que existió.
-*   **Ejemplo 1:**
+    When the function execution ends, `message` disappears, and no one remembers it existed.
+*   **Example 2:**
 
     ```solidity
-    function cambiarMensaje(string memory mensaje) public pure returns (string memory) {
-        mensaje = "Hola, Avalanche!";
-        return mensaje; // Se puede modificar 'mensaje' porque está en memory.
+    function changeMessage(string memory message) public pure returns (string memory) {
+        message = "Hello, Avalanche!";
+        return message; // We can modify 'message' because it's in memory.
     }
     ```
 
-    Aquí puedes hacer lo que quieras con `mensaje`, cambiarlo, combinarlo, etc., porque está en `memory` y no en `calldata`.
+    Here you can do whatever you want with `message`, change it, combine it, etc., because it's in `memory` and not in `calldata`.
 
-**3. Storage: Almacenamiento Permanente en la Blockchain**
+**3. Storage: Permanent Storage on the Blockchain**
 
-* `storage` es la bóveda del contrato, donde se guarda todo lo que quieres que dure para siempre (o hasta que alguien lo cambie). Aquí es donde se almacenan las variables de estado del contrato, como balances o datos de usuario.
-* **¿Cuándo usarlo?**\
-  Se usa para datos que deben ser persistentes, como el balance de usuarios, el propietario del contrato, o cualquier información que necesites mantener incluso después de que la función termine.
-*   **Ejemplo:**
+* `storage` is the contract's vault, where everything you want to last forever (or until someone changes it) is stored. This is where the contract's state variables are stored, such as balances or user data.
+* **When to use it?**\
+  It's used for data that must be persistent, such as user balances, contract owner, or any information you need to maintain even after the function ends.
+*   **Example:**
 
     ```solidity
-    uint256 public totalTokens; // Esto está en storage
+    uint256 public totalTokens; // This is in storage
 
-    function setTokens(uint256 cantidad) public {
-        totalTokens = cantidad; // Cambiamos el valor en storage, y esto tiene un costo de gas.
+    function setTokens(uint256 amount) public {
+        totalTokens = amount; // We change the value in storage, and this has a gas cost.
     }
     ```
 
-    Aquí, `totalTokens` se guarda en storage, y cualquier cambio que hagas será permanente (bueno, al menos hasta que se ejecute otra transacción que lo modifique).
+    Here, `totalTokens` is stored in storage, and any change you make will be permanent (well, at least until another transaction modifies it).
 
 
 
-Usar bien `calldata`, `memory` y `storage` no solo optimiza el uso de gas, sino que también evita errores y comportamientos inesperados. Por ejemplo, si pasas un string como parámetro sin especificar su ubicación, Solidity no sabrá cómo manejarlo y te lanzará un error de compilación. Es por eso que siempre debes declarar strings y arrays dinámicos como `calldata` o `memory` al pasarlos como parámetros a una función.
+Using `calldata`, `memory`, and `storage` correctly not only optimizes gas usage but also prevents errors and unexpected behaviors. For example, if you pass a string as a parameter without specifying its location, Solidity won't know how to handle it and will throw a compilation error. That's why you should always declare strings and dynamic arrays as `calldata` or `memory` when passing them as parameters to a function.
 
-**Ejemplo común de error:**
+**Common error example:**
 
 ```solidity
-function cambiarMensaje(string mensaje) public { 
-    // Error: No se especifica si 'mensaje' está en memory o calldata.
+function changeMessage(string message) public { 
+    // Error: It's not specified whether 'message' is in memory or calldata.
 }
 ```
 
-**Versión corregida:**
+**Corrected version:**
 
 ```solidity
-function cambiarMensaje(string memory mensaje) public { 
-    // Ahora sí, porque 'mensaje' está en memory.
+function changeMessage(string memory message) public { 
+    // Now it's correct, because 'message' is in memory.
 }
 ```

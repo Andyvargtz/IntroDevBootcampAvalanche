@@ -13,57 +13,57 @@ layout:
     visible: true
 ---
 
-# Condicionales If / Else
+# If / Else Conditionals
 
-Las **condicionales `if / else`** en Solidity son estructuras de control que permiten ejecutar diferentes bloques de código dependiendo de si una condición se cumple o no. Básicamente, son el "si pasa esto, haz esto otro, si no, haz aquello" de la programación.
+**`if / else` conditionals** in Solidity are control structures that allow executing different blocks of code depending on whether a condition is met or not. Basically, they are the "if this happens, do this, otherwise, do that" of programming.
 
-### ¿Cómo funciona?
+### How does it work?
 
-En pocas palabras, `if` evalúa una condición. Si esa condición es verdadera, ejecuta el bloque de código correspondiente. Si no, puedes agregar un `else` para indicarle al contrato qué hacer en caso contrario. Vamos con ejemplos para que quede más claro.
+In short, `if` evaluates a condition. If that condition is true, it executes the corresponding block of code. If not, you can add an `else` to tell the contract what to do otherwise. Let's go with examples to make it clearer.
 
-**Ejemplo básico de `if`:**
+**Basic `if` example:**
 
 ```solidity
-function verificarNumero(uint256 numero) public pure returns (string memory) {
-    if (numero > 10) {
-        return "El número es mayor que 10";
+function checkNumber(uint256 number) public pure returns (string memory) {
+    if (number > 10) {
+        return "The number is greater than 10";
     }
-    // No hay else aquí, así que si la condición no se cumple, no pasa nada.
+    // There's no else here, so if the condition is not met, nothing happens.
 }
 ```
 
-En este caso, la función verifica si el número es mayor que 10. Si lo es, devuelve el mensaje "El número es mayor que 10". Si no lo es, simplemente no hace nada (o puedes agregar un `else` si quieres manejar esa situación).
+In this case, the function checks if the number is greater than 10. If it is, it returns the message "The number is greater than 10". If it's not, it simply does nothing (or you can add an `else` if you want to handle that situation).
 
-### ¿Y si quiero agregar más opciones?
+### What if I want to add more options?
 
-Si necesitas controlar más de una condición, puedes usar `else` o incluso `else if` para verificar múltiples escenarios. Esto te permite manejar varias posibilidades sin complicarte la vida.
+If you need to control more than one condition, you can use `else` or even `else if` to check multiple scenarios. This allows you to handle several possibilities without complicating your life.
 
-**Ejemplo de `if/else`:**
+**`if/else` example:**
 
 ```solidity
-function verificarEdad(uint256 edad) public pure returns (string memory) {
-    if (edad >= 18) {
-        return "Eres mayor de edad";
+function checkAge(uint256 age) public pure returns (string memory) {
+    if (age >= 18) {
+        return "You are of legal age";
     } else {
-        return "Eres menor de edad";
+        return "You are underage";
     }
 }
 ```
 
-Aquí la función devuelve si alguien es mayor o menor de edad, dependiendo del valor de `edad`. Pero si quieres manejar más opciones, usa `else if`.
+Here the function returns whether someone is of legal age or underage, depending on the value of `age`. But if you want to handle more options, use `else if`.
 
-**Ejemplo con `else if`:**
+**Example with `else if`:**
 
 ```solidity
-function verificarPuntuacion(uint256 puntos) public pure returns (string memory) {
-    if (puntos > 100) {
-        return "Ganaste el premio mayor";
-    } else if (puntos > 50) {
-        return "Te llevas el segundo premio";
+function checkScore(uint256 points) public pure returns (string memory) {
+    if (points > 100) {
+        return "You won the grand prize";
+    } else if (points > 50) {
+        return "You get the second prize";
     } else {
-        return "Sigue participando";
+        return "Keep participating";
     }
 }
 ```
 
-Con `else if`, estás agregando una condición adicional. Si no ganas el premio mayor pero tienes más de 50 puntos, ¡aún te llevas algo!
+With `else if`, you're adding an additional condition. If you don't win the grand prize but have more than 50 points, you still get something!

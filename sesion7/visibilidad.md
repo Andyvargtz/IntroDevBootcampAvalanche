@@ -13,102 +13,102 @@ layout:
     visible: true
 ---
 
-# Visibilidad
+# Visibility
 
-La **visibilidad** define quién puede ver o interactuar con las variables y funciones de tu contrato. Piensa en la visibilidad como en los filtros de privacidad de tus redes sociales ¿quieres que tu publicación la vea todo el mundo, solo tus amigos o solo tú? Aquí es igual, pero en código. Controlar bien la visibilidad es clave para mantener tu contrato seguro y organizado, así que vamos a repasar las opciones disponibles y cómo usarlas.
+**Visibility** defines who can see or interact with your contract's variables and functions. Think of visibility like privacy filters on your social networks - do you want your post to be seen by everyone, only your friends, or just yourself? It's the same here, but in code. Controlling visibility well is key to keeping your contract secure and organized, so let's review the available options and how to use them.
 
-### Visibilidad para funciones
+### Visibility for functions
 
-1.  **`public`**: ¡Todo el mundo es bienvenido! Las funciones `public` pueden ser llamadas desde dentro del contrato, por otros contratos y también desde fuera, como por una interfaz de usuario o directamente desde Core. Son como tu perfil público, visible para todos.
+1.  **`public`**: Everyone is welcome! `public` functions can be called from inside the contract, by other contracts, and also from outside, like from a user interface or directly from Core. They're like your public profile, visible to everyone.
 
     ```solidity
-    function saludar() public returns (string memory) {
-        return "¡Hola, mundo!";
+    function greet() public returns (string memory) {
+        return "Hello, world!";
     }
     ```
 
-    Con esta función, cualquiera puede llamarla y obtener el saludo.
-2.  **`private`**: Solo para ti. Las funciones `private` solo pueden ser llamadas desde el mismo contrato. Ni siquiera los contratos que heredan de este pueden acceder a ellas. Son como tus mensajes directos, nadie más puede verlos ni interactuar con ellos.
+    With this function, anyone can call it and get the greeting.
+2.  **`private`**: Only for you. `private` functions can only be called from the same contract. Not even contracts that inherit from this one can access them. They're like your direct messages, no one else can see or interact with them.
 
     ```solidity
-    function calculaSecreto() private view returns (uint) {
+    function calculateSecret() private view returns (uint) {
         return 42;
     }
     ```
-3.  **`internal`**: Solo para la familia. Las funciones `internal` son como las `private`, pero con un poco más de apertura. Pueden ser llamadas desde el mismo contrato y también desde contratos que heredan de él. Imagina un grupo cerrado donde solo los miembros de la familia tienen acceso.
+3.  **`internal`**: Only for the family. `internal` functions are like `private` ones, but with a bit more openness. They can be called from the same contract and also from contracts that inherit from it. Imagine a closed group where only family members have access.
 
     ```solidity
-    function multiplica(uint a, uint b) internal pure returns (uint) {
+    function multiply(uint a, uint b) internal pure returns (uint) {
         return a * b;
     }
     ```
-4.  **`external`**: Solo llamadas desde afuera. Las funciones `external` son como `public`, pero con un twist, solo pueden ser llamadas desde fuera del contrato. Esto las hace un poco más eficientes en cuanto a gas. Es como tener una puerta trasera especial que solo se abre desde el exterior.
+4.  **`external`**: Only calls from outside. `external` functions are like `public` ones, but with a twist - they can only be called from outside the contract. This makes them a bit more gas efficient. It's like having a special back door that only opens from the outside.
 
     ```solidity
-    function obtenerValor() external view returns (uint) {
-        return valor;
+    function getValue() external view returns (uint) {
+        return value;
     }
     ```
 
-### Visibilidad para variables
+### Visibility for variables
 
-La visibilidad de las variables de estado también es importante. Controla cómo y quién puede acceder a los datos almacenados en tu contrato.
+The visibility of state variables is also important. It controls how and who can access the data stored in your contract.
 
-1.  **`public`**: Igual que con las funciones, una variable `public` es visible para todos. Solidity automáticamente crea una función getter para que puedas acceder a su valor desde fuera del contrato.
-
-    ```solidity
-    uint public numeroPublico = 42;
-    ```
-
-    Con esta variable, puedes ver su valor directamente desde fuera del contrato, sin necesidad de una función de lectura adicional.
-2.  **`private`**: Solo para tus ojos. Una variable `private` no puede ser leída ni modificada desde fuera del contrato. Incluso los contratos derivados no pueden acceder directamente a ella. Es como una caja fuerte a la que solo tú tienes la combinación.
+1.  **`public`**: Just like with functions, a `public` variable is visible to everyone. Solidity automatically creates a getter function so you can access its value from outside the contract.
 
     ```solidity
-    uint private numeroSecreto = 123;
+    uint public publicNumber = 42;
     ```
-3.  **`internal`**: Similar a `private`, pero accesible para contratos derivados. Ideal para compartir datos dentro de una familia de contratos. Es como un documento compartido al que solo la familia tiene acceso.
+
+    With this variable, you can see its value directly from outside the contract, without needing an additional read function.
+2.  **`private`**: Only for your eyes. A `private` variable cannot be read or modified from outside the contract. Even derived contracts cannot access it directly. It's like a safe to which only you have the combination.
 
     ```solidity
-    uint internal numeroInterno = 100;
+    uint private secretNumber = 123;
     ```
-4. **Sin especificar**: Si no especificas la visibilidad de una variable, será `internal` por defecto. Así que, si quieres que algo sea público o privado, es mejor que lo declares explícitamente para evitar malentendidos.
+3.  **`internal`**: Similar to `private`, but accessible to derived contracts. Ideal for sharing data within a family of contracts. It's like a shared document that only the family has access to.
 
-### Ejemplo práctico con todo combinado
+    ```solidity
+    uint internal internalNumber = 100;
+    ```
+4. **Unspecified**: If you don't specify a variable's visibility, it will be `internal` by default. So, if you want something to be public or private, it's better to declare it explicitly to avoid misunderstandings.
 
-Vamos a ver cómo se vería todo esto en un contrato con funciones y variables de diferentes niveles de visibilidad:
+### Practical example with everything combined
+
+Let's see how all this would look in a contract with functions and variables of different visibility levels:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract EjemploVisibilidad {
-    // Variable pública: accesible para todos
-    uint public contadorPublico = 0;
+contract VisibilityExample {
+    // Public variable: accessible to everyone
+    uint public publicCounter = 0;
 
-    // Variable interna: solo accesible para este contrato y derivados
-    uint internal contadorInterno = 10;
+    // Internal variable: only accessible to this contract and derived ones
+    uint internal internalCounter = 10;
 
-    // Variable privada: nadie fuera de este contrato puede acceder
-    uint private contadorSecreto = 100;
+    // Private variable: no one outside this contract can access it
+    uint private secretCounter = 100;
 
-    // Función pública: todos pueden llamarla
-    function incrementarPublico() public {
-        contadorPublico += 1;
+    // Public function: everyone can call it
+    function incrementPublic() public {
+        publicCounter += 1;
     }
 
-    // Función privada: solo puede ser llamada dentro del contrato
-    function incrementarSecreto() private {
-        contadorSecreto += 1;
+    // Private function: can only be called within the contract
+    function incrementSecret() private {
+        secretCounter += 1;
     }
 
-    // Función interna: accesible para contratos derivados
-    function incrementarInterno() internal {
-        contadorInterno += 1;
+    // Internal function: accessible to derived contracts
+    function incrementInternal() internal {
+        internalCounter += 1;
     }
 
-    // Función externa: solo llamadas desde fuera
-    function obtenerContadorSecreto() external view returns (uint) {
-        return contadorSecreto;
+    // External function: only calls from outside
+    function getSecretCounter() external view returns (uint) {
+        return secretCounter;
     }
 }
 ```

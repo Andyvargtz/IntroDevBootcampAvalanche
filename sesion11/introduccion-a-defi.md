@@ -13,25 +13,25 @@ layout:
     visible: true
 ---
 
-# Introducción a DeFi
+# Introduction to DeFi
 
-Desde la creación de Bitcoin en 2009, se abrió la puerta a un sistema financiero basado en blockchain. Sin embargo, la visión de **Decentralized Finance (DeFi)**, o finanzas descentralizadas, va más allá de las criptomonedas y se centra en una **revolución del sistema financiero tradicional** mediante la creación de servicios financieros que funcionan sin intermediarios, como bancos o corredores. Este nuevo enfoque permite que personas de cualquier parte del mundo accedan, usen y controlen sus activos sin necesidad de confiar en instituciones centralizadas.
+Since the creation of Bitcoin in 2009, the door was opened to a blockchain-based financial system. However, the vision of **Decentralized Finance (DeFi)** goes beyond cryptocurrencies and focuses on a **revolution of the traditional financial system** by creating financial services that operate without intermediaries, such as banks or brokers. This new approach allows people from anywhere in the world to access, use, and control their assets without needing to trust centralized institutions.
 
-### **¿Qué es DeFi?**
+### **What is DeFi?**
 
-DeFi es un **ecosistema de aplicaciones financieras** que se basa en contratos inteligentes y tecnologías blockchain, permitiendo la creación de productos financieros accesibles para todos. En lugar de depender de intermediarios tradicionales, DeFi opera a través de **protocolos descentralizados** que aseguran transacciones seguras y transparentes en la blockchain. A diferencia del sistema financiero centralizado, donde los intermediarios toman decisiones y gestionan los activos, en DeFi los usuarios interactúan directamente entre ellos o con el protocolo, manteniendo el control sobre sus fondos.
+DeFi is a **financial applications ecosystem** that relies on smart contracts and blockchain technologies, enabling the creation of financial products accessible to everyone. Instead of depending on traditional intermediaries, DeFi operates through **decentralized protocols** that ensure secure and transparent transactions on the blockchain. Unlike the centralized financial system, where intermediaries make decisions and manage assets, in DeFi users interact directly with each other or with the protocol, maintaining control over their funds.
 
-### **Origen y Evolución de DeFi**
+### **Origin and Evolution of DeFi**
 
-Los primeros intentos de descentralizar las finanzas comenzaron con Bitcoin, que proponía una alternativa descentralizada al dinero. Sin embargo, **el verdadero auge de DeFi comenzó con Ethereum**, ya que su plataforma permitió la creación de contratos inteligentes. Estos contratos habilitaron el desarrollo de aplicaciones descentralizadas (dApps) que han hecho posible servicios financieros como préstamos, intercambios y seguros sin intermediarios.
+The first attempts to decentralize finance began with Bitcoin, which proposed a decentralized alternative to money. However, **the true rise of DeFi began with Ethereum**, as its platform enabled the creation of smart contracts. These contracts facilitated the development of decentralized applications (dApps) that have made possible financial services such as loans, exchanges, and insurance without intermediaries.
 
-En 2018 se acuñó oficialmente el término "DeFi" en la comunidad Ethereum, cuando comenzaron a emerger proyectos como **MakerDAO** y **Compound**, pioneros en crear productos financieros descentralizados que permitían a los usuarios prestar y pedir prestado criptoactivos de manera segura. Desde entonces, el ecosistema DeFi ha crecido exponencialmente, con aplicaciones para préstamos, intercambios descentralizados (DEX), aseguradoras y más.
+In 2018, the term "DeFi" was officially coined in the Ethereum community when projects like **MakerDAO** and **Compound** began to emerge, pioneers in creating decentralized financial products that allowed users to lend and borrow cryptoassets securely. Since then, the DeFi ecosystem has grown exponentially, with applications for loans, decentralized exchanges (DEX), insurance, and more.
 
-### **Principios Fundamentales de DeFi**
+### **Fundamental Principles of DeFi**
 
-Los principios fundamentales de DeFi giran en torno a la **transparencia, seguridad y accesibilidad**:
+The fundamental principles of DeFi revolve around **transparency, security, and accessibility**:
 
-* **Descentralización**: DeFi se basa en la premisa de que no debería existir una autoridad central que controle el dinero o los activos. Los contratos inteligentes reemplazan a los intermediarios, y las operaciones se realizan de forma automática y sin permisos.
-* **Transparencia**: Toda transacción realizada en un protocolo DeFi se registra en la blockchain, donde cualquiera puede verificarla. Esto reduce la opacidad que existe en las finanzas tradicionales y fortalece la confianza.
-* **Sin permisos y accesibilidad global**: En el mundo DeFi, cualquier persona con acceso a Internet puede participar, sin importar su ubicación geográfica o estado financiero. Esto hace que DeFi sea accesible para quienes tradicionalmente han estado excluidos del sistema financiero.
-* **Control de los activos**: A diferencia de los bancos, que actúan como custodios de los fondos de los usuarios, en DeFi cada individuo conserva el control total de sus activos mediante el uso de wallets no custodiadas.
+* **Decentralization**: DeFi is based on the premise that there should not be a central authority controlling money or assets. Smart contracts replace intermediaries, and operations are performed automatically and without permission.
+* **Transparency**: Every transaction performed on a DeFi protocol is recorded on the blockchain, where anyone can verify it. This reduces the opacity that exists in traditional finance and strengthens trust.
+* **Permissionless and global accessibility**: In the DeFi world, anyone with internet access can participate, regardless of their geographic location or financial status. This makes DeFi accessible to those who have traditionally been excluded from the financial system.
+* **Asset control**: Unlike banks, which act as custodians of users' funds, in DeFi each individual retains total control of their assets through the use of non-custodial wallets.

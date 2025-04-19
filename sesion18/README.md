@@ -2,5 +2,5 @@
 icon: browser
 ---
 
-# Sesión 18: Conexión FrontEnd
+# Session 18: FrontEnd Connection
 

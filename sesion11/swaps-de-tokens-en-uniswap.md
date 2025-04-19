@@ -13,25 +13,25 @@ layout:
     visible: true
 ---
 
-# Swaps de tokens en Uniswap
+# Token Swaps on Uniswap
 
-El **swap de tokens** es una de las funciones principales de Uniswap, permitiendo a los usuarios intercambiar un token por otro de manera descentralizada y sin intermediarios. Este mecanismo es clave para el funcionamiento de Uniswap, ya que facilita los intercambios de manera rápida, segura y accesible para cualquier usuario, sin importar su experiencia en el mercado de criptomonedas.
+**Token swapping** is one of the main functions of Uniswap, allowing users to exchange one token for another in a decentralized manner without intermediaries. This mechanism is key to Uniswap's operation, as it facilitates exchanges quickly, securely, and accessibly for any user, regardless of their experience in the cryptocurrency market.
 
-### **¿Qué es un Swap de Tokens?**
+### **What is a Token Swap?**
 
-El swap en Uniswap permite a los usuarios intercambiar un token ERC-20 por otro utilizando los pools de liquidez. Cada swap sigue la fórmula de producto constante **(x \* y = k)** para determinar el precio del intercambio, ajustando el valor de los tokens en función de la oferta y demanda dentro del pool.
+The swap in Uniswap allows users to exchange one ERC-20 token for another using liquidity pools. Each swap follows the constant product formula **(x \* y = k)** to determine the exchange price, adjusting the value of tokens based on supply and demand within the pool.
 
-Un swap se realiza a través de un **contrato inteligente**, donde el usuario envía una cantidad de tokens A al contrato y recibe a cambio una cantidad de tokens B, basada en el ratio actual en el pool y teniendo en cuenta la comisión de intercambio.
+A swap is executed through a **smart contract**, where the user sends an amount of token A to the contract and receives in return an amount of token B, based on the current ratio in the pool and taking into account the exchange fee.
 
-### **Realizar un Swap de Tokens en Uniswap**
+### **Performing a Token Swap on Uniswap**
 
-1. **Accede a la Plataforma de Uniswap**: Visita Uniswap y conecta tu wallet (MetaMask o Core) para interactuar con la plataforma.
-2. **Selecciona la Función de Swap**: En la página principal de Uniswap, o selecciona la pestaña de “Swap”, donde podrás elegir los tokens que deseas intercambiar.
-3.  **Escoge los Tokens**: Selecciona el token que quieres intercambiar (por ejemplo, **ETH**) y el token que deseas recibir (por ejemplo, **USDC**). Asegúrate de tener suficiente balance del token inicial en tu wallet.
+1. **Access the Uniswap Platform**: Visit Uniswap and connect your wallet (MetaMask or Core) to interact with the platform.
+2. **Select the Swap Function**: On the main Uniswap page, or select the "Swap" tab, where you can choose the tokens you want to exchange.
+3.  **Choose the Tokens**: Select the token you want to exchange (for example, **ETH**) and the token you want to receive (for example, **USDC**). Make sure you have sufficient balance of the initial token in your wallet.
 
     <figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
-4. **Define la Cantidad y Revisa la Tolerancia al Deslizamiento**: Ingresa la cantidad que deseas intercambiar y revisa el slippage tolerance (haciendo clic en el engranaje), que es la variación de precio aceptable durante la transacción. Esto es especialmente importante en mercados volátiles, ya que protege al usuario de recibir menos de lo esperado si el precio cambia.
-5.  **Confirma el Swap**: Revisa los detalles del intercambio, incluidas las tarifas de gas, y confirma la transacción en tu wallet. Una vez confirmada, el contrato inteligente de Uniswap realiza el intercambio de tokens utilizando el pool de liquidez.
+4. **Define the Amount and Review Slippage Tolerance**: Enter the amount you want to exchange and review the slippage tolerance (by clicking on the gear), which is the acceptable price variation during the transaction. This is especially important in volatile markets, as it protects the user from receiving less than expected if the price changes.
+5.  **Confirm the Swap**: Review the exchange details, including gas fees, and confirm the transaction in your wallet. Once confirmed, the Uniswap smart contract performs the token exchange using the liquidity pool.
 
     <figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
-6. **Recibe los Tokens en tu Wallet**: Una vez procesada la transacción, recibirás los tokens directamente en tu wallet. Puedes verificar la transacción en Etherscan para asegurarte de que se haya completado correctamente.
+6. **Receive the Tokens in your Wallet**: Once the transaction is processed, you will receive the tokens directly in your wallet. You can verify the transaction on Etherscan to ensure it has been completed correctly.

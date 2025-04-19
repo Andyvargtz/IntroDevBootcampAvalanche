@@ -13,82 +13,82 @@ layout:
     visible: true
 ---
 
-# Seguimiento de una Transacción
+# Tracking a Transaction
 
-Ahora que entendemos cómo interactuamos con la blockchain mediante claves criptográficas y wallets, es momento de explorar **qué sucede cuando realizamos una transacción** y cómo podemos seguir cada paso del proceso en la red de **Avalanche**.
+Now that we understand how we interact with the blockchain through cryptographic keys and wallets, it's time to explore **what happens when we make a transaction** and how we can track each step of the process in the **Avalanche** network.
 
-Aquí es donde entran en juego los **exploradores de bloques**. Imagina estos exploradores como ventanas que nos permiten ver dentro de la blockchain. Por ejemplo, si usamos Bitcoin tenemos **Blockchain.info,** para Ethereum está **Etherscan,** y en el caso de **Avalanche** contamos con **SnowTrace**.
+This is where **block explorers** come into play. Think of these explorers as windows that allow us to see inside the blockchain. For example, if we use Bitcoin we have **Blockchain.info**, for Ethereum there's **Etherscan**, and in the case of **Avalanche** we have **SnowTrace**.
 
-Imagina que quieres enviar **AVAX**, la criptomoneda nativa de Avalanche, a un amigo. Desde el momento en que decides hacer esta transacción hasta que se confirma en la blockchain, ocurren varios pasos interesantes que vale la pena conocer.
+Imagine you want to send **AVAX**, the native cryptocurrency of Avalanche, to a friend. From the moment you decide to make this transaction until it's confirmed on the blockchain, several interesting steps occur that are worth knowing.
 
-### Paso 1: Iniciando la transacción desde tu Wallet
+### Step 1: Initiating the transaction from your Wallet
 
-Todo comienza cuando abres tu wallet, por ejemplo, **Core** o **MetaMask**, y decides enviar una cantidad específica de AVAX a la dirección de tu amigo. Ingresas la dirección del destinatario, el monto a enviar y ajustas las configuraciones de la transacción si es necesario, como las tarifas de gas.
+Everything begins when you open your wallet, for example, **Core** or **MetaMask**, and decide to send a specific amount of AVAX to your friend's address. You enter the recipient's address, the amount to send, and adjust the transaction settings if necessary, such as gas fees.
 
-Al presionar el botón de **"Enviar"**, tu wallet crea una **transacción** que incluye:
+When you press the **"Send"** button, your wallet creates a **transaction** that includes:
 
-* **Tu dirección pública** (remitente).
-* **La dirección pública de tu amigo** (destinatario).
-* **El monto** de AVAX que deseas transferir.
-* **Información adicional**, como las tarifas de transacción y un **nonce**, que es un número que garantiza que cada transacción sea única.
+* **Your public address** (sender).
+* **Your friend's public address** (recipient).
+* **The amount** of AVAX you want to transfer.
+* **Additional information**, such as transaction fees and a **nonce**, which is a number that ensures each transaction is unique.
 
-### Paso 2: Firmando la transacción con tu clave privada
+### Step 2: Signing the transaction with your private key
 
-Antes de que la transacción pueda ser enviada a la red, necesita ser **firmada digitalmente**. Tu wallet utiliza tu **clave privada** para generar una firma criptográfica única. Esta firma garantiza que la transacción fue autorizada por ti y que no ha sido alterada en el camino.
+Before the transaction can be sent to the network, it needs to be **digitally signed**. Your wallet uses your **private key** to generate a unique cryptographic signature. This signature ensures that the transaction was authorized by you and hasn't been altered along the way.
 
-Es importante destacar que tu clave privada nunca se envía a la red, solo la firma resultante, lo que mantiene tu información segura.
+It's important to note that your private key is never sent to the network, only the resulting signature, which keeps your information secure.
 
-### Paso 3: Transmisión de la transacción a la red de Avalanche
+### Step 3: Transmitting the transaction to the Avalanche network
 
-Una vez firmada, tu wallet envía la transacción a la red de **Avalanche**. Aquí es donde los **nodos** entran en acción. Los nodos son computadoras que mantienen una copia de la blockchain y validan las transacciones que reciben.
+Once signed, your wallet sends the transaction to the **Avalanche** network. This is where **nodes** come into action. Nodes are computers that maintain a copy of the blockchain and validate the transactions they receive.
 
-### Paso 4: Validación de la transacción por los nodos
+### Step 4: Transaction validation by nodes
 
-Los nodos de Avalanche utilizan el **mecanismo de consenso** de **Avalanche Consensus**, que es conocido por su alta velocidad y eficiencia. Este proceso implica:
+Avalanche nodes use the **consensus mechanism** of **Avalanche Consensus**, which is known for its high speed and efficiency. This process involves:
 
-* **Muestreo aleatorio**: Cada nodo selecciona un pequeño subconjunto aleatorio de otros nodos para consultar sobre la validez de la transacción.
-* **Metastabilidad**: A través de múltiples rondas de consulta, los nodos rápidamente llegan a un acuerdo sobre si la transacción es válida o no.
+* **Random sampling**: Each node selects a small random subset of other nodes to query about the validity of the transaction.
+* **Metastability**: Through multiple rounds of querying, nodes quickly reach an agreement on whether the transaction is valid or not.
 
-Durante este proceso, los nodos verifican que:
+During this process, nodes verify that:
 
-* La firma de la transacción es válida y coincide con la dirección del remitente.
-* El remitente tiene suficientes fondos para cubrir el monto de la transacción y las tarifas.
-* No hay intentos de doble gasto, es decir, que los mismos fondos no se estén utilizando en otra transacción simultáneamente.
+* The transaction signature is valid and matches the sender's address.
+* The sender has sufficient funds to cover the transaction amount and fees.
+* There are no double-spending attempts, meaning the same funds aren't being used in another simultaneous transaction.
 
-### Paso 5: Inclusión de la transacción en un bloque
+### Step 5: Including the transaction in a block
 
-Una vez que la transacción es validada se incluye en un **bloque** junto con otras transacciones. Debido a la eficiencia del mecanismo de consenso de Avalanche este proceso ocurre en menos de un segundo.
+Once the transaction is validated, it's included in a **block** along with other transactions. Due to the efficiency of Avalanche's consensus mechanism, this process occurs in less than a second.
 
-### Paso 6: Confirmación de la transacción
+### Step 6: Transaction confirmation
 
-Después de que el bloque es agregado a la blockchain, la transacción se considera **confirmada**. En Avalanche las transacciones suelen alcanzar la finalización prácticamente instantánea, lo que significa que no necesitas esperar largos períodos para que tu transacción sea irrevocable.
+After the block is added to the blockchain, the transaction is considered **confirmed**. In Avalanche, transactions typically reach finality almost instantly, which means you don't need to wait long periods for your transaction to become irreversible.
 
-### Paso 7: Verificación de la transacción en SnowTrace
+### Step 7: Verifying the transaction in SnowTrace
 
-Para asegurarte de que todo ha salido bien, puedes verificar tu transacción en el explorador de bloques **SnowTrace**. Sigue estos pasos:
+To make sure everything went well, you can verify your transaction in the **SnowTrace** block explorer. Follow these steps:
 
-1. **Obtener el hash de la transacción**: Tu wallet te proporcionará el **hash** o identificador único de la transacción una vez que se haya enviado. En este caso seguiremos una transacción que yo hice enviando 1 AVAX a otra dirección, este fue el hash generado:
+1. **Get the transaction hash**: Your wallet will provide you with the **hash** or unique identifier of the transaction once it's been sent. In this case, we'll follow a transaction I made sending 1 AVAX to another address, this was the generated hash:
 
 ```
 0x2de74e0c605005295d8abef6ce2e7f37f2c39106183e8d3b07665dfb7d1bdab6
 ```
 
-2. Acceder a SnowTrace: En este caso accederemos a la testnet, donde se realizan pruebas sin tener que gastar dinero real.
+2. Access SnowTrace: In this case, we'll access the testnet, where tests are performed without having to spend real money.
 
 {% embed url="https://testnet.snowtrace.io/" %}
 
-3. **Ingresar el hash en el buscador**: Pega el hash de la transacción que te di en el paso 1 en la barra de búsqueda y presiona _Enter_.
-4.  **Revisar los detalles de la transacción**:
+3. **Enter the hash in the search bar**: Paste the transaction hash I gave you in step 1 into the search bar and press _Enter_.
+4. **Review the transaction details**:
 
-    * **Blockchain:** Debería aparecer **Fuji** (red de prueba de Avalanche)
-    * **Estado de la transacción**: Debería aparecer como **Success**.
-    * **Bloque**: Número del bloque en el que se incluyó tu transacción.
-    * **Tiempo de inclusión (timestamp)**: Verás la marca de tiempo que indica cuándo se procesó.
-    * **Direcciones**: Las direcciones del remitente y destinatario.
-    * **Monto y tarifas**: El monto enviado (1.00 AVAX) y las tarifas pagadas (Fee).
+    * **Blockchain:** Should show **Fuji** (Avalanche test network)
+    * **Transaction status**: Should appear as **Success**.
+    * **Block**: Number of the block in which your transaction was included.
+    * **Inclusion time (timestamp)**: You'll see the timestamp indicating when it was processed.
+    * **Addresses**: The sender and recipient addresses.
+    * **Amount and fees**: The amount sent (1.00 AVAX) and the fees paid (Fee).
 
     <figure><img src="../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
-Esta transparencia es uno de los pilares fundamentales de la tecnología blockchain. Todos podemos verificar nuestras transacciones sin necesidad de intermediarios o entidades centralizadas. Además aumentamos nuestra confianza en el sistema y en las operaciones que realizamos.
+This transparency is one of the fundamental pillars of blockchain technology. We can all verify our transactions without the need for intermediaries or centralized entities. Additionally, we increase our trust in the system and in the operations we perform.
 
-Sin embargo es importante mencionar que, aunque las transacciones son públicas, nuestras identidades permanecen anónimas. La blockchain muestra direcciones y montos, pero no revela información personal, manteniendo así nuestra privacidad.
+However, it's important to mention that although transactions are public, our identities remain anonymous. The blockchain shows addresses and amounts, but doesn't reveal personal information, thus maintaining our privacy.

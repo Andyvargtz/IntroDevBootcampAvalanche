@@ -13,65 +13,65 @@ layout:
     visible: true
 ---
 
-# Tipos de Variables
+# Types of Variables
 
-Los **tipos de variables** son fundamentales para definir cómo se almacena y manipula la información en la blockchain. Saber cómo funcionan y las particularidades de cada tipo de variable te permitirá escribir contratos más eficientes y seguros. Vamos a explorar los diferentes tipos de variables y sus características principales.
+**Types of variables** are fundamental to define how information is stored and manipulated on the blockchain. Knowing how they work and the particularities of each variable type will allow you to write more efficient and secure contracts. Let's explore the different types of variables and their main characteristics.
 
-### 1. **Variables de Estado**
+### 1. **State Variables**
 
-Las **variables de estado** se almacenan directamente en la blockchain y mantienen su valor entre llamadas de función y transacciones. Son persistentes y cualquier cambio en su valor implica una modificación permanente en la blockchain.
+**State variables** are stored directly on the blockchain and maintain their value between function calls and transactions. They are persistent, and any change in their value implies a permanent modification on the blockchain.
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract AlmacenamientoDeTipos {
+contract StorageTypes {
 
-<strong>uint256 public totalSuministro; // Se almacena permanentemente en la blockchain
-</strong>address public propietario; // Almacena la dirección del propietario del contrato
+<strong>uint256 public totalSupply; // Permanently stored on the blockchain
+</strong>address public owner; // Stores the address of the contract owner
 
-// resto del contrato...
+// rest of the contract...
 }
 </code></pre>
 
-### 2. **Variables Locales**
+### 2. **Local Variables**
 
-Las **variables locales** solo existen durante la ejecución de una función. Se almacenan en la memoria y no persisten después de que la función ha terminado. No ocupan espacio en la blockchain y, por lo tanto, son más baratas de usar.
+**Local variables** only exist during the execution of a function. They are stored in memory and do not persist after the function has ended. They do not occupy space on the blockchain and are therefore cheaper to use.
 
 ```solidity
-function calcularSuma(uint256 a, uint256 b) public pure returns (uint256) {
-    uint256 suma = a + b; // Variable local
-    return suma;
+function calculateSum(uint256 a, uint256 b) public pure returns (uint256) {
+    uint256 sum = a + b; // Local variable
+    return sum;
 }
 ```
 
-#### 3. **Variables Globales**
+#### 3. **Global Variables**
 
-Solidity ofrece varias **variables globales** que proporcionan información sobre el entorno del contrato, como la dirección del remitente de la transacción o la cantidad de gas disponible. A continuación, te muestro una tabla con todas las variables globales más importantes y su descripción:
+Solidity offers several **global variables** that provide information about the contract environment, such as the address of the transaction sender or the amount of gas available. Below, I show you a table with all the most important global variables and their description:
 
-| **Variable Global**      | **Descripción**                                                                            | **Tipo de Dato** |
+| **Global Variable**      | **Description**                                                                            | **Data Type** |
 | ------------------------ | ------------------------------------------------------------------------------------------ | ---------------- |
-| `msg.sender`             | Dirección de la cuenta que invocó la función.                                              | `address`        |
-| `msg.value`              | Cantidad de Ether (en wei) enviada junto con la transacción.                               | `uint`           |
-| `msg.data`               | Datos completos enviados junto con la llamada a la función.                                | `bytes`          |
-| `msg.sig`                | Primera palabra (4 bytes) de `msg.data`, que identifica la función que se está llamando.   | `bytes4`         |
-| `tx.origin`              | Dirección de la cuenta que inició la transacción (no solo la llamada actual).              | `address`        |
-| `block.timestamp`        | Timestamp actual del bloque en segundos desde el epoch.                                    | `uint`           |
-| `block.number`           | Número del bloque actual.                                                                  | `uint`           |
-| `block.coinbase`         | Dirección del minero que validó el bloque actual.                                          | `address`        |
-| `block.difficulty`       | Dificultad del bloque actual.                                                              | `uint`           |
-| `block.gaslimit`         | Límite de gas del bloque actual.                                                           | `uint`           |
-| `block.chainid`          | ID de la cadena en la que se ejecuta el contrato (disponible desde Solidity 0.8.0).        | `uint`           |
-| `block.basefee`          | Tarifa base de gas del bloque (disponible desde Solidity 0.8.7).                           | `uint`           |
-| `gasleft()`              | Cantidad de gas restante en la transacción actual.                                         | `uint`           |
-| `tx.gasprice`            | Precio del gas de la transacción.                                                          | `uint`           |
-| `tx.origin`              | Dirección de la cuenta que inició la transacción (similar a `msg.sender` pero más amplia). | `address`        |
-| `blockhash(blockNumber)` | Devuelve el hash del bloque dado como argumento (solo para los 256 bloques más recientes). | `bytes32`        |
+| `msg.sender`             | Address of the account that invoked the function.                                              | `address`        |
+| `msg.value`              | Amount of Ether (in wei) sent with the transaction.                               | `uint`           |
+| `msg.data`               | Complete data sent with the function call.                                | `bytes`          |
+| `msg.sig`                | First word (4 bytes) of `msg.data`, which identifies the function being called.   | `bytes4`         |
+| `tx.origin`              | Address of the account that initiated the transaction (not just the current call).              | `address`        |
+| `block.timestamp`        | Current block timestamp in seconds since the epoch.                                    | `uint`           |
+| `block.number`           | Current block number.                                                                  | `uint`           |
+| `block.coinbase`         | Address of the miner who validated the current block.                                          | `address`        |
+| `block.difficulty`       | Difficulty of the current block.                                                              | `uint`           |
+| `block.gaslimit`         | Gas limit of the current block.                                                           | `uint`           |
+| `block.chainid`          | Chain ID where the contract is running (available since Solidity 0.8.0).        | `uint`           |
+| `block.basefee`          | Base gas fee of the block (available since Solidity 0.8.7).                           | `uint`           |
+| `gasleft()`              | Amount of gas remaining in the current transaction.                                         | `uint`           |
+| `tx.gasprice`            | Gas price of the transaction.                                                          | `uint`           |
+| `tx.origin`              | Address of the account that initiated the transaction (similar to `msg.sender` but broader). | `address`        |
+| `blockhash(blockNumber)` | Returns the hash of the block given as an argument (only for the 256 most recent blocks). | `bytes32`        |
 
 ```solidity
-function mostrarInfo() public view returns (address, uint256) {
+function showInfo() public view returns (address, uint256) {
     return (msg.sender, block.timestamp);
 }
 ```
 
-* `msg.sender`: Proporciona la dirección del remitente de la llamada a la función.
-* `block.timestamp`: Muestra el tiempo actual del bloque, útil para funciones que dependen del tiempo.
+* `msg.sender`: Provides the address of the function call sender.
+* `block.timestamp`: Shows the current block time, useful for time-dependent functions.

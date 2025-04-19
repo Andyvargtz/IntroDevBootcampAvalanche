@@ -15,120 +15,120 @@ layout:
 
 # Modifiers
 
-Los **modifiers** en Solidity son como pequeños guardianes de las funciones, encargados de verificar que se cumplan ciertas condiciones antes de que se ejecute el código. Piensa en ellos como un filtro que decide si la función sigue adelante o no. Son súper útiles para evitar repetir código y para asegurarte de que ciertas funciones solo se ejecuten bajo circunstancias específicas.
+**Modifiers** in Solidity are like little guardians of functions, responsible for verifying that certain conditions are met before the code executes. Think of them as a filter that decides whether the function continues or not. They are super useful for avoiding code repetition and ensuring that certain functions only execute under specific circumstances.
 
-### ¿Qué es un modifier?
+### What is a modifier?
 
-Un `modifier` es un fragmento de código que puedes aplicar a una función para agregarle lógica adicional. Es como ponerle un candado a la función, y el modifier es la llave que verifica si tienes permiso para entrar o no. Se definen con la palabra clave `modifier` y, al igual que las funciones, pueden recibir parámetros.
+A `modifier` is a piece of code that you can apply to a function to add additional logic. It's like putting a lock on the function, and the modifier is the key that verifies if you have permission to enter or not. They are defined with the `modifier` keyword and, like functions, can receive parameters.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-modifier nombreDelModifier() {
-    // Lógica antes de ejecutar la función
+modifier modifierName() {
+    // Logic before executing the function
     _;
-    // Lógica después de ejecutar la función (opcional)
+    // Logic after executing the function (optional)
 }
 ```
 
-La palabra `_` (underscore) indica dónde se ejecutará el resto de la función que usa el modifier. Puedes colocarla antes, después o incluso rodearla con código si quieres ejecutar lógica antes y después de la función.
+The word `_` (underscore) indicates where the rest of the function that uses the modifier will execute. You can place it before, after, or even surround it with code if you want to execute logic before and after the function.
 
-Por ejemplo:
+For example:
 
-<pre class="language-solidity"><code class="lang-solidity">modifier soloPropietario() {
-    require(msg.sender == propietario, "No eres el propietario");
+<pre class="language-solidity"><code class="lang-solidity">modifier onlyOwner() {
+    require(msg.sender == owner, "You are not the owner");
 <strong>    _;
 </strong>}
 </code></pre>
 
-### Ejemplo práctico: Solo el Propietario
+### Practical example: Only the Owner
 
-Imaginemos un contrato donde solo el propietario puede ejecutar ciertas funciones. Definimos un modifier `soloPropietario` que verifica si quien llama a la función es el propietario del contrato:
+Let's imagine a contract where only the owner can execute certain functions. We define an `onlyOwner` modifier that verifies if the caller is the owner of the contract:
 
 <pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 <strong>
-</strong><strong>contract SoloPropietario {
-</strong>    address propietario = 0x1234567890123456789012345678901234567890;
+</strong><strong>contract OnlyOwner {
+</strong>    address owner = 0x1234567890123456789012345678901234567890;
    
-    // Modifier para verificar si quien llama es el propietario
-    modifier soloPropietario() {
-        require(msg.sender == propietario, "No eres el propietario");
+    // Modifier to verify if the caller is the owner
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not the owner");
         _;
     }
 
-    // Función protegida con el modifier
-    function cambiarPropietario(address nuevoPropietario) public soloPropietario {
-        propietario = nuevoPropietario;
+    // Function protected with the modifier
+    function changeOwner(address newOwner) public onlyOwner {
+        owner = newOwner;
     }
 
-    // Función solo para el propietario
-    function funcionSoloPropietario() public soloPropietario {
-        // Código exclusivo para el propietario
+    // Function only for the owner
+    function ownerOnlyFunction() public onlyOwner {
+        // Code exclusive to the owner
     }
 }
 </code></pre>
 
-Aquí, el modifier `soloPropietario` comprueba que `msg.sender` (la dirección que llama a la función) sea igual a `propietario`. Si no lo es, la transacción falla con el mensaje "No eres el propietario".
+Here, the `onlyOwner` modifier checks that `msg.sender` (the address calling the function) is equal to `owner`. If it's not, the transaction fails with the message "You are not the owner".
 
-### ¿Para qué sirven los modifiers?
+### What are modifiers used for?
 
-1. **Reutilización de código**: En lugar de escribir la misma lógica de validación en cada función, puedes crear un modifier y aplicarlo a todas las funciones que necesiten esa lógica.
-2. **Mejora la legibilidad**: Al tener la lógica separada en modifiers, las funciones quedan más limpias y fáciles de leer.
-3. **Control de acceso**: Los modifiers son perfectos para restringir quién puede ejecutar una función, cuándo se puede ejecutar o bajo qué condiciones.
+1. **Code reuse**: Instead of writing the same validation logic in each function, you can create a modifier and apply it to all functions that need that logic.
+2. **Improves readability**: By having the logic separated in modifiers, functions become cleaner and easier to read.
+3. **Access control**: Modifiers are perfect for restricting who can execute a function, when it can be executed, or under what conditions.
 
-### Modifiers con parámetros
+### Modifiers with parameters
 
-Los modifiers también pueden recibir parámetros para hacer la validación más específica. Por ejemplo, puedes verificar que una función solo pueda ejecutarse después de una fecha específica:
+Modifiers can also receive parameters to make the validation more specific. For example, you can verify that a function can only be executed after a specific date:
 
 ```solidity
-modifier soloDespues(uint tiempo) {
-    require(block.timestamp >= tiempo, "No puedes ejecutar esta funcion todavia");
+modifier onlyAfter(uint time) {
+    require(block.timestamp >= time, "You cannot execute this function yet");
     _;
 }
 
-function ejecutarDespues(uint _tiempo) public soloDespues(_tiempo) {
-    // Código que solo se ejecuta después del tiempo especificado
+function executeAfter(uint _time) public onlyAfter(_time) {
+    // Code that only executes after the specified time
 }
 ```
 
-En este caso, `soloDespues` comprueba que el tiempo actual (`block.timestamp`) sea mayor o igual al tiempo especificado como parámetro. Si no lo es, la función no se ejecuta.
+In this case, `onlyAfter` checks that the current time (`block.timestamp`) is greater than or equal to the time specified as a parameter. If it's not, the function doesn't execute.
 
-### Ejemplo práctico: Control de acceso avanzado
+### Practical example: Advanced access control
 
-Imaginemos un contrato donde se gestionan fondos, y solo los administradores pueden retirar dinero después de una fecha específica:
+Let's imagine a contract where funds are managed, and only administrators can withdraw money after a specific date:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract FondoSeguro {
-    address public administrador;
-    uint public fechaDesbloqueo;
+contract SecureFund {
+    address public administrator;
+    uint public unlockDate;
 
     constructor() {
-        administrador = msg.sender;
-        fechaDesbloqueo = block.timestamp + 30 days; // Bloqueado por 30 días
+        administrator = msg.sender;
+        unlockDate = block.timestamp + 30 days; // Locked for 30 days
     }
 
-    // Modifier para verificar administrador y fecha de desbloqueo
-    modifier soloAdministradorDespues() {
-        require(msg.sender == administrador, "No eres el administrador");
-        require(block.timestamp >= fechaDesbloqueo, "Fondos bloqueados hasta la fecha de desbloqueo");
+    // Modifier to verify administrator and unlock date
+    modifier onlyAdministratorAfter() {
+        require(msg.sender == administrator, "You are not the administrator");
+        require(block.timestamp >= unlockDate, "Funds locked until unlock date");
         _;
     }
 
-    // Función protegida para retirar fondos
-    function retirarFondos(uint cantidad) public soloAdministradorDespues {
-        // Código para retirar fondos
+    // Protected function to withdraw funds
+    function withdrawFunds(uint amount) public onlyAdministratorAfter {
+        // Code to withdraw funds
     }
 }
 ```
 
-Aquí, `soloAdministradorDespues` asegura que solo el administrador pueda retirar fondos y solo después de la fecha de desbloqueo. Esto evita retiros antes de tiempo y por personas no autorizadas.
+Here, `onlyAdministratorAfter` ensures that only the administrator can withdraw funds and only after the unlock date. This prevents withdrawals before the time and by unauthorized people.
 
-### Cosas a tener en cuenta con los modifiers
+### Things to keep in mind with modifiers
 
-1. **Requieren gas**: Los modifiers, al igual que cualquier otra lógica, consumen gas. Asegúrate de que su uso esté justificado y no aumente innecesariamente el costo de las transacciones.
-2. **No abuses de ellos**: Aunque son útiles, tener demasiados modifiers puede hacer que tu código se vuelva difícil de seguir. Usa modifiers cuando realmente aporten claridad y eficiencia.
-3. **Lógica de limpieza**: Si necesitas ejecutar lógica antes y después de la función, asegúrate de que la estructura del modifier refleje claramente el flujo que deseas.
+1. **They require gas**: Modifiers, like any other logic, consume gas. Make sure their use is justified and doesn't unnecessarily increase transaction costs.
+2. **Don't abuse them**: Although they are useful, having too many modifiers can make your code difficult to follow. Use modifiers when they truly add clarity and efficiency.
+3. **Cleanup logic**: If you need to execute logic before and after the function, make sure the modifier's structure clearly reflects the flow you want.

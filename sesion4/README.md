@@ -13,14 +13,14 @@ layout:
     visible: true
 ---
 
-# Sesión 4: Conociendo Remix
+# Session 4: Getting to Know Remix
 
-Ha llegado el momento de ponernos manos a la obra. Ya tienes todo el contexto suficiente para empezar a crear tus primeros códigos y subirlos a la blockchain. Usaremos Remix, el entorno de desarrollo más facil de usar al principio. Iremos paso a paso, desde la creación del contrato, hasta subirlo exitosamente en la blockchain.
+The time has come to get our hands dirty. You now have enough context to start creating your first codes and uploading them to the blockchain. We'll use Remix, the easiest development environment to use at the beginning. We'll go step by step, from contract creation to successfully uploading it to the blockchain.
 
-### Objetivo:
+### Objective:
 
-Al final de esta sesión podrás:
+By the end of this session, you will be able to:
 
-* Entender como funciona Remix y todas las herramientas que te brinda.
-* Entender la estructura básica de los contratos inteligentes en Solidity.
-* Desplegar tu primer contrato inteligente en la red de prueba de Avalanche (Fuji), verificarlo de manera sencilla, e interactuar con el.
+* Understand how Remix works and all the tools it provides.
+* Understand the basic structure of smart contracts in Solidity.
+* Deploy your first smart contract on the Avalanche test network (Fuji), verify it easily, and interact with it.

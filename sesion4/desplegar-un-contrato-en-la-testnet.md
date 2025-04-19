@@ -13,51 +13,41 @@ layout:
     visible: true
 ---
 
-# Desplegar un Contrato en la Testnet
+# Deploy a Contract to the Testnet
 
-Ya tienes tu contrato inteligente escrito y compilado. Ahora viene la parte emocionante, **desplegarlo en la blockchain**. Cuando hablamos de "desplegar" un contrato, nos referimos al proceso de subir tu contrato a la blockchain para que esté disponible de manera pública y cualquiera pueda interactuar con él.
+You already have your smart contract written and compiled. Now comes the exciting part, **deploying it to the blockchain**. When we talk about "deploying" a contract, we refer to the process of uploading your contract to the blockchain so that it is publicly available and anyone can interact with it.
 
-Ya no puedes cambiar el código una vez que el contrato está desplegado, así que es fundamental asegurarse de que todo funcione correctamente antes de dar este paso.
+You cannot change the code once the contract is deployed, so it is essential to make sure everything works correctly before taking this step.
 
-Además, cada despliegue de un contrato requiere una **transacción** en la blockchain, lo que significa que vas a necesitar pagar **gas fees** (tarifas de transacción) con la criptomoneda de la red que estés usando, como **ETH** en Ethereum o **AVAX** en Avalanche.
+Additionally, each contract deployment requires a **transaction** on the blockchain, which means you will need to pay **gas fees** (transaction fees) with the cryptocurrency of the network you are using, such as **ETH** on Ethereum or **AVAX** on Avalanche's C-Chain.
 
-### Cómo desplegar un contrato en Remix
+### How to deploy a contract in Remix
 
-Aquí te dejo los pasos para desplegar un contrato utilizando **Remix**:
+Here are the steps to deploy a contract using **Remix**:
 
-1.  **Seleccionar la pestaña de "Deploy & Run Transactions"**: En la barra lateral izquierda de Remix, haz clic en el icono de la pestaña que dice **Deploy & Run Transactions**. Esta sección te permitirá configurar cómo y dónde quieres desplegar tu contrato.
-
-
+1. **Select the "Deploy & Run Transactions" tab**: In the left sidebar of Remix, click on the tab icon that says **Deploy & Run Transactions**. This section will allow you to configure how and where you want to deploy your contract.
 
     <figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
-2.  **Ten lista tu wallet**: Si planeas desplegar tu contrato en una red real (ya sea una **Testnet** o la **mainnet**), necesitas conectar una wallet, en este caso **Core**. Asegúrate de tener la wallet configurada y lista, y que esté conectada a la red en la que deseas desplegar tu contrato, en este caso la testnet de Avalanche.
-
-
+2. **Have your wallet ready**: If you plan to deploy your contract on a real network (either a **Testnet** or the **mainnet**), you need to connect a wallet, in this case **Core**. Make sure your wallet is configured and ready, and that it is connected to the network where you want to deploy your contract, in this case the Avalanche testnet.
 
     <figure><img src="../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
-3.  **Elegir el entorno (Environment)**: Remix te permite elegir entre diferentes redes para desplegar tu contrato. Las opciones más comunes son:
+3. **Choose the environment**: Remix allows you to choose between different networks to deploy your contract. The most common options are:
 
-    * **Remix VM**: Es una simulación local. Solo se usa para pruebas dentro de Remix y no implica costos ni despliega el contrato en una blockchain real.
-    * **WalletConnect**: Esta opción se usa cuando estás conectando tu wallet, como **Core**, para desplegar en **Avalanche**.
-
-
+    * **Remix VM**: It's a local simulation. It's only used for testing within Remix and doesn't involve costs or deploy the contract to a real blockchain.
+    * **WalletConnect**: This option is used when you're connecting your wallet, like **Core**, to deploy on **Avalanche**.
 
     <figure><img src="../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
     <figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
-    Es probable que te salga un mensaje diciendo que la app no soporta la red selecciona, pero esto se trata de un error, simplemente dale a la "X" que está en la parte superior derecha.
+    You might get a message saying that the app doesn't support the selected network, but this is an error, just click the "X" in the top right corner.
 
     <figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
-4. **Seleccionar el contrato**: En la misma sección de **Deploy & Run Transactions**, verás un menú donde puedes elegir cuál de tus contratos quieres desplegar (en caso de que tengas más de uno en tu proyecto). En nuestro caso, solo tenemos uno.
-5.  **Desplegar el contrato**: Una vez que hayas seleccionado tu red y el contrato, solo necesitas hacer clic en el botón naranja que dice **"Deploy"**. Esto generará una transacción en la blockchain. Si estás conectado a Avalanche, verás que tu wallet te pedirá confirmar la transacción y te mostrará las **tarifas de gas** que debes pagar.
-
-
+4. **Select the contract**: In the same **Deploy & Run Transactions** section, you'll see a menu where you can choose which of your contracts you want to deploy (in case you have more than one in your project). In our case, we only have one.
+5. **Deploy the contract**: Once you've selected your network and the contract, you just need to click the orange button that says **"Deploy"**. This will generate a transaction on the blockchain. If you're connected to Avalanche, you'll see that your wallet will ask you to confirm the transaction and will show you the **gas fees** you need to pay.
 
     <figure><img src="../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
-6.  **Verificar el despliegue**: Cuando la transacción sea confirmada, tu contrato estará desplegado en la blockchain. En Remix verás una nueva sección que te permitirá interactuar con el contrato directamente. También recibirás la **dirección** del contrato, que es esencialmente su "ubicación" en la blockchain. Con esa dirección cualquiera puede interactuar con tu contrato.
-
-
+6. **Verify the deployment**: When the transaction is confirmed, your contract will be deployed on the blockchain. In Remix, you'll see a new section that will allow you to interact with the contract directly. You'll also receive the **address** of the contract, which is essentially its "location" on the blockchain. With that address, anyone can interact with your contract.
 
     <figure><img src="../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 

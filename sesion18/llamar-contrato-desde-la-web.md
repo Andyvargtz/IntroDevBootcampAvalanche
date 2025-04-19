@@ -2,5 +2,5 @@
 icon: square-small
 ---
 
-# Llamar Contrato desde la Web
+# Calling Contract from the Web
 
