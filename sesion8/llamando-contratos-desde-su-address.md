@@ -13,66 +13,66 @@ layout:
     visible: true
 ---
 
-# Llamando Contratos desde su Address
+# Calling Contracts from their Address
 
-En Solidity, **llamar contratos desde su dirección** es como usar el número de teléfono de alguien para pedirle que haga algo. Tienes la dirección del contrato y, con eso, puedes llamarlo para que ejecute alguna función específica o incluso interactuar con su lógica interna. Esto te permite hacer que diferentes contratos se comuniquen entre sí de manera eficiente y modular.
+In Solidity, **calling contracts from their address** is like using someone's phone number to ask them to do something. You have the contract's address and, with that, you can call it to execute a specific function or even interact with its internal logic. This allows different contracts to communicate with each other efficiently and modularly.
 
-### ¿Cómo funciona?
+### How does it work?
 
-Si conoces la dirección de un contrato y sabes qué funciones tiene, puedes interactuar con ese contrato fácilmente usando una interfaz. Esto te permite realizar llamadas a contratos externos sin necesidad de copiar su código, lo cual es ideal si solo necesitas usar algunas de sus funciones.
+If you know a contract's address and what functions it has, you can easily interact with that contract using an interface. This allows you to make calls to external contracts without needing to copy their code, which is ideal if you only need to use some of their functions.
 
-**Paso a paso:**
+**Step by step:**
 
-1. **Define la interfaz del contrato** con las funciones que necesitas usar.
-2. **Convierte la dirección** del contrato externo a un tipo de interfaz.
-3. **Llama a las funciones** del contrato a través de esa interfaz.
+1. **Define the contract interface** with the functions you need to use.
+2. **Convert the address** of the external contract to an interface type.
+3. **Call the functions** of the contract through that interface.
 
-### Ejemplo práctico
+### Practical example
 
-Supongamos que queremos interactuar con un contrato de tokens que sigue el estándar ERC20, y su dirección es `0x1234...`. Queremos transferir tokens a una cuenta específica. Primero, definimos la interfaz del token:
+Let's say we want to interact with a token contract that follows the ERC20 standard, and its address is `0x1234...`. We want to transfer tokens to a specific account. First, we define the token interface:
 
 ```solidity
 interface IERC20 {
-    function transfer(address destinatario, uint256 cantidad) external returns (bool);
-    function balanceOf(address cuenta) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    function balanceOf(address account) external view returns (uint256);
 }
 ```
 
-Luego, usamos esta interfaz para llamar al contrato desde su dirección:
+Then, we use this interface to call the contract from its address:
 
 ```solidity
-contract InteraccionToken {
-    // Función para transferir tokens a través de la dirección del contrato
-    function enviarTokens(address contratoToken, address destinatario, uint256 cantidad) public {
-        // Convertimos la dirección a la interfaz del token
-        IERC20 token = IERC20(contratoToken);
+contract TokenInteraction {
+    // Function to transfer tokens through the contract address
+    function sendTokens(address tokenContract, address recipient, uint256 amount) public {
+        // Convert the address to the token interface
+        IERC20 token = IERC20(tokenContract);
         
-        // Llamamos a la función transfer del contrato token
-        bool exito = token.transfer(destinatario, cantidad);
+        // Call the transfer function of the token contract
+        bool success = token.transfer(recipient, amount);
         
-        // Verificamos si la transferencia fue exitosa
-        require(exito, "Transferencia fallida");
+        // Verify if the transfer was successful
+        require(success, "Transfer failed");
     }
 
-    // Función para consultar el balance de una cuenta
-    function consultarBalance(address contratoToken, address cuenta) public view returns (uint256) {
-        // Convertimos la dirección a la interfaz del token
-        IERC20 token = IERC20(contratoToken);
+    // Function to query the balance of an account
+    function checkBalance(address tokenContract, address account) public view returns (uint256) {
+        // Convert the address to the token interface
+        IERC20 token = IERC20(tokenContract);
         
-        // Llamamos a la función balanceOf del contrato token
-        return token.balanceOf(cuenta);
+        // Call the balanceOf function of the token contract
+        return token.balanceOf(account);
     }
 }
 ```
 
-¿Qué está pasando aquí?
+What's happening here?
 
-1. **Interfaz `IERC20`**: Define las funciones `transfer` y `balanceOf`, que son las funciones estándar de los tokens ERC20.
-2. **Conversión de la dirección a interfaz**: En la función `enviarTokens`, tomamos la dirección del contrato de tokens (`contratoToken`) y la "convertimos" a la interfaz `IERC20`. Esto nos permite interactuar con el contrato usando las funciones que hemos definido en la interfaz.
-3. **Llamada a `transfer`**: Luego llamamos a la función `transfer` del contrato externo usando la interfaz. Si la transferencia es exitosa, la función devuelve `true`; de lo contrario, lanzamos un error con `require`.
+1. **`IERC20` Interface**: Defines the `transfer` and `balanceOf` functions, which are the standard functions of ERC20 tokens.
+2. **Converting address to interface**: In the `sendTokens` function, we take the token contract's address (`tokenContract`) and "convert" it to the `IERC20` interface. This allows us to interact with the contract using the functions we've defined in the interface.
+3. **Calling `transfer`**: Then we call the `transfer` function of the external contract using the interface. If the transfer is successful, the function returns `true`; otherwise, we throw an error with `require`.
 
-### Ventajas de usar interfaces para llamar a contratos externos
+### Advantages of using interfaces to call external contracts
 
-1. **Modularidad**: No necesitas copiar el código de otros contratos, solo defines una interfaz y llamas las funciones que necesitas.
-2. **Facilidad de actualización**: Si el contrato externo actualiza su lógica pero mantiene la misma interfaz, tu contrato seguirá funcionando sin problemas.
-3. **Simplicidad**: La interfaz te permite mantener tu código limpio y fácil de entender, ya que no necesitas manejar toda la lógica interna del contrato externo.
+1. **Modularity**: You don't need to copy code from other contracts, just define an interface and call the functions you need.
+2. **Easy to update**: If the external contract updates its logic but maintains the same interface, your contract will continue working without problems.
+3. **Simplicity**: The interface allows you to keep your code clean and easy to understand, as you don't need to handle all the internal logic of the external contract.

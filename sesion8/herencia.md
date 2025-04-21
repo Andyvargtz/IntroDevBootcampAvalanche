@@ -13,121 +13,122 @@ layout:
     visible: true
 ---
 
-# Herencia
+# Inheritance
 
-La **herencia** en Solidity es como el “legado” que un contrato deja a otro. Imagina que tienes un contrato base con una serie de funciones y datos, y luego creas otro contrato que hereda todo ese contenido, añadiendo sus propias funciones y datos. Esto te permite reutilizar código, hacer contratos más organizados y hasta crear estructuras más complejas con varias capas de funcionalidades.
+**Inheritance** in Solidity is like a "legacy" that one contract leaves to another. Imagine you have a base contract with a series of functions and data, and then you create another contract that inherits all that content, adding its own functions and data. This allows you to reuse code, make contracts more organized, and even create more complex structures with multiple layers of functionality.
 
-### ¿Qué es la herencia?
+### What is inheritance?
 
-La herencia en Solidity permite que un contrato "hijo" herede las propiedades y funciones de un contrato "padre". Es como cuando heredas el talento para cocinar de tu abuela, pero luego le agregas tu toque personal. En términos técnicos, el contrato hijo puede utilizar funciones y variables del contrato padre, y también puede modificarlas o extenderlas.
+Inheritance in Solidity allows a "child" contract to inherit the properties and functions of a "parent" contract. It's like inheriting your grandmother's cooking talent but then adding your personal touch. In technical terms, the child contract can use functions and variables from the parent contract, and can also modify or extend them.
 
-**Sintaxis básica:**
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract Padre {
-    // Funciones y variables del contrato padre
-}
-
-contract Hijo is Padre {
-    // Funciones y variables adicionales del contrato hijo
-}
-```
-
-En este ejemplo, el contrato `Hijo` hereda todo el contenido de `Padre`, y también puede tener su propia lógica.
-
-### Ejemplo práctico: Contrato Base y Contrato Heredado
-
-Supongamos que tenemos un contrato base que maneja una lista de productos, y queremos crear un contrato heredado que gestione una tienda con esos productos:
+**Basic syntax:**
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-// Contrato base que define productos
-contract Productos {
-    struct Producto {
-        string nombre;
-        uint precio;
-    }
-
-    Producto[] public listaProductos;
-
-    // Función para agregar productos a la lista
-    function agregarProducto(string memory _nombre, uint _precio) public {
-        listaProductos.push(Producto(_nombre, _precio));
-    }
-
-    // Función para obtener el número de productos
-    function obtenerNumeroDeProductos() public view returns (uint) {
-        return listaProductos.length;
-    }
+contract Parent {
+    // Functions and variables of the parent contract
 }
 
-// Contrato que hereda de Productos y añade funcionalidad de tienda
-contract Tienda is Productos {
-    mapping(address => mapping(uint => uint)) public carrito;
-
-    // Función para agregar un producto al carrito
-    function agregarAlCarrito(uint _indiceProducto, uint _cantidad) public {
-        require(_indiceProducto < listaProductos.length, "Producto no existe");
-        carrito[msg.sender][_indiceProducto] += _cantidad;
-    }
-
-    // Función para ver el carrito de un usuario
-    function verCarrito(address _usuario, uint _indiceProducto) public view returns (uint) {
-        return carrito[_usuario][_indiceProducto];
-    }
+contract Child is Parent {
+    // Additional functions and variables of the child contract
 }
 ```
 
-#### ¿Cómo funciona este contrato?
+In this example, the `Child` contract inherits all the content from `Parent`, and can also have its own logic.
 
-1. **Contrato `Productos`**: Define un `struct` para los productos y funciones básicas para agregar y contar productos. Este contrato actúa como la base que contiene la lista de productos.
-2. **Contrato `Tienda`**: Hereda todo el contenido de `Productos` y añade funcionalidad adicional, como un carrito de compras que se gestiona con un mapping doble (`carrito`). Este mapping almacena la cantidad de productos que cada usuario tiene en su carrito.
+### Practical Example: Base Contract and Inherited Contract
 
-### Ventajas de usar herencia
-
-1. **Reutilización de código**: Puedes evitar duplicar funciones y datos comunes en varios contratos, lo que hace tu código más limpio y fácil de mantener.
-2. **Modularidad**: Puedes construir funcionalidades complejas por capas, donde cada contrato añade o modifica comportamientos específicos.
-3. **Facilidad de expansión**: Si necesitas agregar nuevas características, simplemente puedes crear un nuevo contrato que herede de otro, sin necesidad de modificar el contrato base.
-
-### Palabra clave `super`
-
-Si alguna vez necesitas que una función en el contrato hijo llame a la misma función en el contrato padre, puedes usar la palabra clave `super`. Esto es útil cuando quieres extender el comportamiento de una función en lugar de reemplazarlo por completo.
-
-Para que una función pueda ser llamada o modificada en un contrato hijo, debe estar marcada como `virtual` en el contrato padre, y luego como `override` en el contrato hijo.
+Let's say we have a base contract that handles a list of products, and we want to create an inherited contract that manages a store with those products:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Padre {
-    function decirHola() public pure virtual returns (string memory) {
-        return "Hola desde el contrato padre!";
+// Base contract that defines products
+contract Products {
+    struct Product {
+        string name;
+        uint price;
+    }
+
+    Product[] public productList;
+
+    // Function to add products to the list
+    function addProduct(string memory _name, uint _price) public {
+        productList.push(Product(_name, _price));
+    }
+
+    // Function to get the number of products
+    function getNumberOfProducts() public view returns (uint) {
+        return productList.length;
     }
 }
 
-contract Hijo is Padre {
-    function decirHola() public pure override returns (string memory) {
-        return string(abi.encodePacked(super.decirHola(), " Y hola desde el contrato hijo!"));
+// Contract that inherits from Products and adds store functionality
+contract Store is Products {
+    mapping(address => mapping(uint => uint)) public cart;
+
+    // Function to add a product to the cart
+    function addToCart(uint _productIndex, uint _quantity) public {
+        require(_productIndex < productList.length, "Product does not exist");
+        cart[msg.sender][_productIndex] += _quantity;
+    }
+
+    // Function to view a user's cart
+    function viewCart(address _user, uint _productIndex) public view returns (uint) {
+        return cart[_user][_productIndex];
     }
 }
 ```
 
-En este ejemplo, `decirHola` en el contrato hijo llama a `decirHola` del contrato padre usando `super`, y luego añade su propio mensaje. El resultado es una combinación de ambos saludos.
+#### How does this contract work?
 
-### Herencia múltiple
+1. **`Products` Contract**: Defines a `struct` for products and basic functions to add and count products. This contract acts as the base that contains the product list.
+2. **`Store` Contract**: Inherits all content from `Products` and adds additional functionality, like a shopping cart managed with a double mapping (`cart`). This mapping stores the quantity of products that each user has in their cart.
 
-Solidity también permite herencia múltiple, lo que significa que un contrato puede heredar de varios contratos a la vez. Esto suena genial, pero hay que tener cuidado con algo llamado el "Problema del Diamante", donde varios contratos padres pueden tener la misma función, lo que crea ambigüedad. Solidity maneja esto usando un orden de linealización que define qué contrato se prioriza.
+### Advantages of using inheritance
 
-<pre class="language-solidity"><code class="lang-solidity">// SPDX-License-Identifier: MIT
+1. **Code reuse**: You can avoid duplicating common functions and data across multiple contracts, making your code cleaner and easier to maintain.
+2. **Modularity**: You can build complex functionalities in layers, where each contract adds or modifies specific behaviors.
+3. **Ease of expansion**: If you need to add new features, you can simply create a new contract that inherits from another, without needing to modify the base contract.
+
+### The `super` keyword
+
+If you ever need a function in the child contract to call the same function in the parent contract, you can use the `super` keyword. This is useful when you want to extend the behavior of a function rather than completely replace it.
+
+For a function to be called or modified in a child contract, it must be marked as `virtual` in the parent contract, and then as `override` in the child contract.
+
+```solidity
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-<strong>
-</strong><strong>contract A {
-</strong>    function foo() public pure virtual returns (string memory) {
+
+contract Parent {
+    function sayHello() public pure virtual returns (string memory) {
+        return "Hello from the parent contract!";
+    }
+}
+
+contract Child is Parent {
+    function sayHello() public pure override returns (string memory) {
+        return string(abi.encodePacked(super.sayHello(), " And hello from the child contract!"));
+    }
+}
+```
+
+In this example, `sayHello` in the child contract calls `sayHello` from the parent contract using `super`, and then adds its own message. The result is a combination of both greetings.
+
+### Multiple inheritance
+
+Solidity also allows multiple inheritance, which means a contract can inherit from several contracts at once. This sounds great, but you need to be careful with something called the "Diamond Problem," where multiple parent contracts might have the same function, creating ambiguity. Solidity handles this using a linearization order that defines which contract takes priority.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract A {
+    function foo() public pure virtual returns (string memory) {
         return "A";
     }
 }
@@ -146,50 +147,50 @@ contract C is A {
 
 contract D is B, C {
     function foo() public pure override(B, C) returns (string memory) {
-        return super.foo(); // Llama a foo() de C porque C está al final del orden de herencia
+        return super.foo(); // Calls foo() from C because C is at the end of the inheritance order
     }
 }
-</code></pre>
+```
 
-En este ejemplo, el contrato `D` hereda tanto de `B` como de `C`, pero `foo` en `D` llama a la implementación de `C` debido al orden de linealización.
+In this example, contract `D` inherits from both `B` and `C`, but `foo` in `D` calls `C`'s implementation due to the linearization order.
 
-### ¿Qué pasa cuando hay un constructor?
+### What happens when there's a constructor?
 
-Si el contrato padre tiene un constructor con parámetros, debes pasar esos parámetros desde el constructor del contrato hijo. Esto asegura que el contrato padre se inicialice correctamente antes de que el hijo comience a ejecutar su lógica.
+If the parent contract has a constructor with parameters, you must pass those parameters from the child contract's constructor. This ensures that the parent contract is initialized correctly before the child begins executing its logic.
 
-Supongamos que tienes un contrato padre con un constructor que inicializa una variable `nombre`:
+Let's say you have a parent contract with a constructor that initializes a `name` variable:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Padre {
-    string public nombre;
+contract Parent {
+    string public name;
 
-    constructor(string memory _nombre) {
-        nombre = _nombre;
+    constructor(string memory _name) {
+        name = _name;
     }
 }
 
-contract Hijo is Padre {
-    uint8 public edad;
+contract Child is Parent {
+    uint8 public age;
 
-    // Constructor del contrato hijo, que llama al constructor del padre
-    constructor(string memory _nombre, uint8 _edad) Padre(_nombre) {
-        edad = _edad;
+    // Child contract constructor, which calls the parent constructor
+    constructor(string memory _name, uint8 _age) Parent(_name) {
+        age = _age;
     }
 }
 ```
 
-En este ejemplo:
+In this example:
 
-* El contrato `Padre` tiene un constructor que recibe un string `_nombre`.
-* El contrato `Hijo` hereda de `Padre` y también tiene su propio constructor, que recibe un string `_nombre` y un uint `_edad`.
-* En la línea `Padre(_nombre)`, el constructor del contrato `Hijo` llama al constructor del contrato `Padre`, asegurando que el `nombre` se inicialice correctamente antes de que el contrato `Hijo` establezca su propia variable `edad`.
+* The `Parent` contract has a constructor that receives a string `_name`.
+* The `Child` contract inherits from `Parent` and also has its own constructor, which receives a string `_name` and a uint `_age`.
+* In the line `Parent(_name)`, the `Child` contract's constructor calls the `Parent` contract's constructor, ensuring that `name` is initialized correctly before the `Child` contract sets its own `age` variable.
 
-### Herencia múltiple con constructores
+### Multiple inheritance with constructors
 
-Si un contrato hereda de varios contratos padres que tienen constructores, debes especificar cómo llamar a cada uno de ellos. Veamos un ejemplo:
+If a contract inherits from multiple parent contracts that have constructors, you must specify how to call each of them. Let's see an example:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -212,10 +213,10 @@ contract B {
 }
 
 contract C is A, B {
-    // Llama a los constructores de A y B
+    // Calls constructors of A and B
     constructor(uint8 _x, uint8 _y) A(_x) B(_y) {}
 }
 ```
 
-En este caso, el contrato `C` hereda de `A` y `B`, ambos con constructores que requieren parámetros. El constructor de `C` especifica cómo llamar a cada uno de ellos: `A(_x)` y `B(_y)`. Esto asegura que ambos contratos padres se inicialicen correctamente antes de que `C` continúe.
+In this case, contract `C` inherits from `A` and `B`, both with constructors that require parameters. The constructor of `C` specifies how to call each of them: `A(_x)` and `B(_y)`. This ensures that both parent contracts are initialized correctly before `C` continues.
 

@@ -13,5 +13,5 @@ layout:
     visible: true
 ---
 
-# Funciones Extra
+# Extra Functions
 

@@ -15,65 +15,65 @@ layout:
 
 # Call
 
-El método `call` en Solidity te permite enviar datos a cualquier contrato usando su dirección, a diferencia de usar una interfaz, sin importar si conoces o no su estructura. Es súper poderoso, pero también hay que usarlo con cuidado porque, como dice el Tío Ben, "un gran poder conlleva una gran responsabilidad".
+The `call` method in Solidity allows you to send data to any contract using its address, unlike using an interface, regardless of whether you know its structure or not. It's super powerful, but it must be used with care because, as Uncle Ben says, "with great power comes great responsibility."
 
-### ¿Qué es `call`?
+### What is `call`?
 
-El método `call` es una función de bajo nivel que se utiliza para realizar llamadas a otros contratos o para enviar ether a una dirección. Te permite llamar a cualquier función de un contrato externo utilizando su dirección, incluso si no tienes la interfaz o el ABI del contrato. Sin embargo, es un poco arriesgado, ya que no verifica si la función existe o si los parámetros son correctos, lo que puede llevar a errores.
+The `call` method is a low-level function used to make calls to other contracts or to send ether to an address. It allows you to call any function of an external contract using its address, even if you don't have the contract's interface or ABI. However, it's a bit risky since it doesn't verify if the function exists or if the parameters are correct, which can lead to errors.
 
-**Sintaxis básica:**
+**Basic syntax:**
 
 ```solidity
-(bool exito, bytes memory data) = direccion.call{value: cantidad}(abi.encodeWithSignature("nombreFuncion(parametros)"));
+(bool success, bytes memory data) = address.call{value: amount}(abi.encodeWithSignature("functionName(parameters)"));
 ```
 
-* `exito` es un booleano que indica si la llamada fue exitosa.
-* `data` contiene los datos devueltos por la función llamada.
-* `direccion` es la dirección del contrato al que estás llamando.
-* `abi.encodeWithSignature` codifica la firma de la función y sus parámetros.
+* `success` is a boolean indicating if the call was successful.
+* `data` contains the data returned by the called function.
+* `address` is the address of the contract you're calling.
+* `abi.encodeWithSignature` encodes the function signature and its parameters.
 
-### Llamando a otra función con `call`
+### Calling another function with `call`
 
-Imaginemos que queremos llamar a una función `establecerMensaje` en un contrato externo que cambia el mensaje almacenado. Aquí está el código:
+Let's imagine we want to call a `setMessage` function in an external contract that changes the stored message. Here's the code:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract InteraccionCall {
-    // Función para llamar a otra función en un contrato externo usando `call`
-    function cambiarMensaje(address contrato, string memory nuevoMensaje) public {
-        // Creamos la firma de la función que queremos llamar
-        (bool exito, bytes memory data) = contrato.call(
-            abi.encodeWithSignature("establecerMensaje(string)", nuevoMensaje)
+contract CallInteraction {
+    // Function to call another function in an external contract using `call`
+    function changeMessage(address contractAddress, string memory newMessage) public {
+        // Create the signature of the function we want to call
+        (bool success, bytes memory data) = contractAddress.call(
+            abi.encodeWithSignature("setMessage(string)", newMessage)
         );
         
-        // Verificamos si la llamada fue exitosa
-        require(exito, "La llamada a la función falló");
+        // Verify if the call was successful
+        require(success, "Function call failed");
     }
 }
 ```
 
-En este ejemplo:
+In this example:
 
-1. **Construcción de la llamada**: Usamos `abi.encodeWithSignature` para crear la firma de la función que queremos llamar. La firma incluye el nombre de la función `establecerMensaje` y su parámetro `(string)`.
-2. **Llamada con `call`**: Luego, pasamos esta firma al método `call` junto con la dirección del contrato (`contrato`) y el mensaje que queremos enviar (`nuevoMensaje`).
-3. **Verificación del resultado**: Si `exito` es `true`, la llamada fue exitosa. Si no, la transacción falla con el mensaje "La llamada a la función falló".
+1. **Call construction**: We use `abi.encodeWithSignature` to create the signature of the function we want to call. The signature includes the function name `setMessage` and its parameter `(string)`.
+2. **Call with `call`**: Then, we pass this signature to the `call` method along with the contract address (`contractAddress`) and the message we want to send (`newMessage`).
+3. **Result verification**: If `success` is `true`, the call was successful. If not, the transaction fails with the message "Function call failed".
 
-### Ventajas y desventajas de `call`
+### Advantages and disadvantages of `call`
 
-**Ventajas:**
+**Advantages:**
 
-1. **Flexibilidad total**: Puedes llamar a cualquier función de cualquier contrato, sin importar su estructura.
-2. **Envío de Ether**: Te permite enviar ether y ejecutar funciones en un solo paso.
-3. **Compatibilidad**: Funciona incluso si no tienes la interfaz del contrato, siempre que conozcas la firma de la función.
+1. **Total flexibility**: You can call any function of any contract, regardless of its structure.
+2. **Ether sending**: Allows you to send ether and execute functions in a single step.
+3. **Compatibility**: Works even if you don't have the contract's interface, as long as you know the function signature.
 
-**Desventajas:**
+**Disadvantages:**
 
-1. **No verifica la existencia de la función**: Si la firma es incorrecta o la función no existe, `call` simplemente devolverá `false` y la transacción no hará nada útil.
-2. **Sin revertir cambios automáticamente**: A diferencia de `transfer` o `send`, `call` no revierte la transacción completa si falla, a menos que uses `require` o `assert` para verificar su éxito.
-3. **Mayor riesgo de seguridad**: Debido a que `call` no valida la función que estás llamando, es más fácil cometer errores que pueden ser explotados por actores maliciosos.
+1. **No function existence verification**: If the signature is incorrect or the function doesn't exist, `call` will simply return `false` and the transaction won't do anything useful.
+2. **No automatic transaction reversion**: Unlike `transfer` or `send`, `call` doesn't automatically revert the entire transaction if it fails, unless you use `require` or `assert` to verify its success.
+3. **Higher security risk**: Since `call` doesn't validate the function you're calling, it's easier to make mistakes that could be exploited by malicious actors.
 
-### Otras formas de interactuar con contratos
+### Other ways to interact with contracts
 
-Aunque `call` es increíblemente útil, no es la única manera de interactuar con contratos. También puedes usar `delegatecall` para ejecutar el código de otro contrato en el contexto del tuyo, o `staticcall` para realizar llamadas de solo lectura sin modificar el estado. Cada una tiene su propósito específico y sus propias implicaciones de seguridad.
+Although `call` is incredibly useful, it's not the only way to interact with contracts. You can also use `delegatecall` to execute another contract's code in your contract's context, or `staticcall` to make read-only calls without modifying the state. Each has its specific purpose and its own security implications.

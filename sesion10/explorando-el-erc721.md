@@ -13,93 +13,91 @@ layout:
     visible: true
 ---
 
-# Explorando el ERC721
+# Exploring ERC721
 
-El **ERC721** es un estándar que define un conjunto de funciones y eventos para crear y manejar NFTs (tokens no fungibles). Este estándar permite que cada token tenga un identificador único, lo que lo diferencia de otros tokens y asegura su individualidad. Piensa en el ERC721 como un conjunto de reglas que permiten a los NFTs funcionar de manera uniforme en aplicaciones, wallets y marketplaces, asegurando que todos los tokens no fungibles hablen el mismo "idioma".
+**ERC721** is a standard that defines a set of functions and events for creating and managing NFTs (non-fungible tokens). This standard allows each token to have a unique identifier, differentiating it from other tokens and ensuring its individuality. Think of ERC721 as a set of rules that allow NFTs to function uniformly in applications, wallets, and marketplaces, ensuring that all non-fungible tokens speak the same "language".
 
+### Key Components of ERC721
 
+The **ERC721** standard defines several essential functions and events that all token contracts must implement:
 
-### Componentes Clave del ERC721
+**1. Main functions:**
 
-El estándar **ERC721** define varias funciones y eventos esenciales que todos los contratos de tokens deben implementar:
+1. **`constructor`:** Sets the name and symbol of the token when the contract is deployed. These values are immutable and cannot be changed after creation.
+   * **Parameters:** `name_` (token name) and `symbol_` (token symbol).
+   * **Example**: If you create a token with `constructor("MyUniqueToken", "MUT")`, the name will be "MyUniqueToken" and the symbol "MUT".
+2. **`name()`:** Returns the name of the token. It's a read-only function and its value is set during contract construction.
+   * **Returns:** The token name as a string (`string`).
+3. **`symbol()`:** Returns the token symbol, usually an abbreviation or short version of the name.
+   * **Returns:** The token symbol (`string`).
+4. **`tokenURI(uint256 tokenId)`**: Provides a link (URI) to the token's metadata, which typically includes information such as name, description, and images.
+   * **Parameter**: `tokenId` (unique token identifier).
+   * **Returns**: The URI (string) pointing to the token's metadata.
+5. **\_baseURI()**: Internal function that sets the base URI for all tokens.
+   * **Returns**: The base URI (string) for tokens, can be overridden in inherited contracts.
+6. **`balanceOf(address account)`:** Returns the number of tokens owned by a specific address.
+   * **Parameter:** `account` (the address to query).
+   * **Returns:** The number of tokens owned by that address (uint256).
+7. **`ownerOf(uint256 tokenId)`:** Returns the address that owns a specific token.
+   * **Parameter:** `tokenId` (token identifier).
+   * **Returns:** The owner's address (address).
+8. **`safeTransferFrom(address from, address to, uint256 tokenId)`**: Safely transfers a token from the owner to another address.
+   * **Parameters:** `from` (current owner's address), `to` (recipient's address) and `tokenId` (identifier of the token to transfer).
+   * **Requirements:** The sender must own the token or have the owner's approval.
+   * **Returns:** `true` if the transfer was successful.
+9. **`approve(address to, uint256 tokenId)`**: Authorizes another address to transfer a token on behalf of the owner.
+   * **Parameters**: `to` (authorized address) and `tokenId` (token identifier).
+   * **Returns**: `true` if the approval is successful.
+10. **`setApprovalForAll(address operator, bool approved)`**: Allows or revokes authorization for another address to handle all of the owner's tokens.
+    * **Parameters**: `operator` (address to authorize) and `approved` (whether to authorize or revoke).
+    * **Returns**: `true` if the operation is successful.
+11. **`getApproved(uint256 tokenId)`**: Returns the address authorized to transfer a specific token.
+    * **Parameter**: `tokenId` (token identifier).
+    * **Returns**: Authorized address (address).
+12. **`isApprovedForAll(address owner, address operator)`**: Verifies if an address is authorized to handle all tokens of an owner.
+    * **Parameters**: `owner` (token owner) and `operator` (address to verify).
+    * **Returns**: `true` if the address has permission to handle all tokens.
+13. **`_isAuthorized(address owner, address spender, uint256 tokenId)`**: Verifies if an address is authorized to handle a specific token.
+    * **Parameters**: `owner`, `spender`, `tokenId`.
+    * **Returns**: `true` if the address has authorization.
+14. **`_checkAuthorized(address owner, address spender, uint256 tokenId)`**: Verifies and reverts if an address is not authorized to handle a token.
+    * **Parameters**: `owner`, `spender`, `tokenId`.
+    * **Use**: Prevents unauthorized actions on the token.
+15. **`_update(address to, uint256 tokenId, address auth)`**: Transfers `tokenId` to `to` or performs minting/burning if applicable.
+    * **Parameters**: `to`, `tokenId`, `auth`.
+    * **Returns**: The previous owner.
+16. **`_safeMint(address to, uint256 tokenId)`**: Safe version of `_mint` that verifies recipient acceptance.
+    * **Parameter:** `account` (address to which tokens are assigned) and `value` (amount of tokens created).
+17. **`_burn(address account, uint256 value)`**: Destroys tokens from the specified account, reducing the total token supply.
+    * **Parameters**: `to`, `tokenId`.
+18. **`_safeMint(address to, uint256 tokenId)`**: Safe version of `_mint` that verifies recipient acceptance.
+    * **Parameters**: `to`, `tokenId`.
+19. **`_burn(uint256 tokenId)`**: Destroys a token and clears its ownership.
+    * **Parameter**: `tokenId`.
 
-**1. Funciones principales:**
+**2. Main events:**
 
-1. **`constructor`:** Establece el nombre y el símbolo del token cuando se despliega el contrato. Estos valores son inmutables y no pueden cambiarse después de la creación.
-   * **Parámetros:** `name_` (nombre del token) y `symbol_` (símbolo del token).
-   * **Ejemplo**: Si creas un token con `constructor("MiTokenUnico", "MTU")`, el nombre será "MiTokenUnico" y el símbolo "MTU".
-2. **`name()`:** Devuelve el nombre del token. Es una función de solo lectura y su valor se establece durante la construcción del contrato.
-   * **Retorna:** El nombre del token como una cadena de texto (`string`).
-3. **`symbol()`:** Devuelve el símbolo del token, generalmente una abreviatura o versión corta del nombre.
-   * **Retorna:** El símbolo del token (`string`).
-4. **`tokenURI(uint256 tokenId)`**: Proporciona un enlace (URI) a los metadatos del token, que suelen incluir información como el nombre, la descripción e imágenes.
-   * **Parámetro**: `tokenId` (identificador único del token).
-   * **Retorna**: El URI (string) que apunta a los metadatos del token.
-5. **\_baseURI()**: Función interna que establece la URI base para todos los tokens.
-   * **Retorna**: El URI base (string) para los tokens, puede ser sobrescrito en contratos heredados.
-6. **`balanceOf(address account)`:** Devuelve la cantidad de tokens en posesión de una dirección específica.
-   * **Parámetro:** `account` (la dirección a consultar).
-   * **Retorna:** El número de tokens que posee esa dirección (uint256).
-7. **`ownerOf(uint256 tokenId)`:** Devuelve la dirección que posee un token específico.
-   * **Parámetro:** `tokenId` (identificador del token).
-   * **Retorna:** La dirección del propietario (address).
-8. **`safeTransferFrom(address from, address to, uint256 tokenId)`**: Transfiere un token de manera segura desde el propietario a otra dirección.
-   * **Parámetros:** `from` (dirección del propietario actual), `to` (dirección del receptor) y `tokenId` (identificador del token a transferir).
-   * **Requisitos:** El emisor debe poseer el token o tener la aprobación del propietario.
-   * **Retorna:** `true` si la transferencia fue exitosa.
-9. **`approve(address to, uint256 tokenId)`**: Autoriza a otra dirección a transferir un token en nombre del propietario.
-   * **Parámetros**: `to` (dirección autorizada) y `tokenId` (identificador del token).
-   * **Retorna**: `true` si la aprobación es exitosa.
-10. **`setApprovalForAll(address operator, bool approved)`**: Permite o revoca la autorización de otra dirección para manejar todos los tokens del propietario.
-    * **Parámetros**: `operator` (dirección que se desea autorizar) y `approved` (si se autoriza o revoca).
-    * **Retorna**: `true` si la operación es exitosa.
-11. **`getApproved(uint256 tokenId)`**: Devuelve la dirección autorizada para transferir un token específico.
-    * **Parámetro**: `tokenId` (identificador del token).
-    * **Retorna**: Dirección autorizada (address).
-12. **`isApprovedForAll(address owner, address operator)`**: Verifica si una dirección está autorizada para manejar todos los tokens de un propietario.
-    * **Parámetros**: `owner` (propietario de los tokens) y `operator` (dirección a verificar).
-    * **Retorna**: `true` si la dirección tiene permisos para manejar todos los tokens.
-13. **`_isAuthorized(address owner, address spender, uint256 tokenId)`**: Verifica si una dirección está autorizada para manejar un token específico.
-    * **Parámetros**: `owner`, `spender`, `tokenId`.
-    * **Retorna**: `true` si la dirección tiene autorización.
-14. **`_checkAuthorized(address owner, address spender, uint256 tokenId)`**: Verifica y revierte si una dirección no está autorizada para manejar un token.
-    * **Parámetros**: `owner`, `spender`, `tokenId`.
-    * **Uso**: Evita acciones no autorizadas en el token.
-15. **`_update(address to, uint256 tokenId, address auth)`**: Transfiere `tokenId` a `to` o realiza minting/burning si corresponde.
-    * **Parámetros**: `to`, `tokenId`, `auth`.
-    * **Retorna**: El propietario previo.
-16. **`_safeMint(address to, uint256 tokenId)`**: Versión segura de `_mint` que verifica la aceptación del receptor.
-    * **Parámetro:** `account` (dirección a la que se asignan los tokens) y `value` (cantidad de tokens creados).
-17. **`_burn(address account, uint256 value)`**: Destruye tokens de la cuenta especificada, reduciendo la oferta total de tokens.
-    * **Parámetros**: `to`, `tokenId`.
-18. **`_safeMint(address to, uint256 tokenId)`**: Versión segura de `_mint` que verifica la aceptación del receptor.
-    * **Parámetros**: `to`, `tokenId`.
-19. **`_burn(uint256 tokenId)`**: Destruye un token y borra su propiedad.
-    * **Parámetro**: `tokenId`.
+1. **`Transfer(address indexed from, address indexed to, uint256 indexed tokenId)`**: Emitted every time a token is transferred from one address to another.
+2. **Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)**: Emitted when the owner of a token authorizes another address to transfer the token.
+3. **ApprovalForAll(address indexed owner, address indexed operator, bool approved)**: Emitted when the owner allows or revokes authorization for an operator to handle all their tokens.
 
-**2. Eventos principales:**
+### Why is ERC721 so important?
 
-1. **`Transfer(address indexed from, address indexed to, uint256 indexed tokenId)`**: Se emite cada vez que un token se transfiere de una dirección a otra.
-2. **Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)**: Se emite cuando el propietario de un token autoriza a otra dirección a transferir el token.
-3. **ApprovalForAll(address indexed owner, address indexed operator, bool approved)**: Se emite cuando el propietario permite o revoca la autorización de un operador para manejar todos sus tokens.
+* **Interoperability**: By standardizing functions, ERC721-based NFTs can be transferred and used in any wallet or platform that supports this standard.
+* **Uniqueness and Authenticity**: Each ERC721 token is unique, making it an excellent choice for representing exclusive digital assets or collectibles.
+* **Permission Management**: With functions like `approve` and `setApprovalForAll`, ERC721 allows granular control of ownership and delegation of transfer permissions.
 
-### ¿Por qué es tan importante el ERC721?
+### ERC721 Contract
 
-* **Interoperabilidad**: Al estandarizar las funciones, los NFTs basados en ERC721 pueden ser transferidos y utilizados en cualquier wallet o plataforma que soporte este estándar.
-* **Unicidad y Autenticidad**: Cada token ERC721 es único, lo que lo convierte en una excelente opción para representar activos digitales exclusivos o coleccionables.
-* **Gestión de Permisos**: Con funciones como `approve` y `setApprovalForAll`, el ERC721 permite un control granular de la propiedad y la delegación de permisos para transferencias.
-
-### Contrato ERC721
-
-Aquí te muestro cómo se vería un contrato ERC721 básico utilizando OpenZeppelin, una biblioteca que simplifica la implementación de contratos seguros y estándar:
+Here's how a basic ERC721 contract would look using OpenZeppelin, a library that simplifies the implementation of secure and standard contracts:
 
 ```solidity
-// Importamos el contrato ERC721 de OpenZeppelin
+// We import the ERC721 contract from OpenZeppelin
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-// Creamos un contrato ERC721 llamado "ColeccionNFT"
-contract ColeccionNFT is ERC721 {
-    constructor() ERC721("ColeccionNFT", "CNFT") {}
+// We create an ERC721 contract called "NFTCollection"
+contract NFTCollection is ERC721 {
+    constructor() ERC721("NFTCollection", "CNFT") {}
 
     function mintNFT(address recipient, uint256 tokenId) public {
         _safeMint(recipient, tokenId);
@@ -107,5 +105,5 @@ contract ColeccionNFT is ERC721 {
 }
 ```
 
-* **Importación**: Se importa la implementación estándar de ERC721 de OpenZeppelin, asegurando que se sigan todas las reglas del estándar.
-* **Creación del Token**: Se inicializa un token llamado "ColeccionNFT" con el símbolo "CNFT". Este contrato permite acuñar nuevos NFTs de manera segura y asignarlos a una dirección específica con `mintNFT`.
+* **Import**: The standard ERC721 implementation from OpenZeppelin is imported, ensuring all standard rules are followed.
+* **Token Creation**: A token called "NFTCollection" is initialized with the symbol "CNFT". This contract allows minting new NFTs safely and assigning them to a specific address with `mintNFT`.

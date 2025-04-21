@@ -13,90 +13,90 @@ layout:
     visible: true
 ---
 
-# Enviando Ether desde un Contrato
+# Sending Ether from a Contract
 
-Enviar **Ether** desde un contrato en Solidity puede parecer complicado al principio, pero con los métodos correctos, es bastante sencillo. Ya sea que quieras hacer pagos automáticos, distribuir recompensas o simplemente enviar fondos a otra dirección, es importante entender cómo hacerlo de forma segura y eficiente. Vamos a explorar cómo enviar Ether desde un contrato y qué cosas debes tener en cuenta para evitar problemas.
+Sending **Ether** from a contract in Solidity might seem complicated at first, but with the right methods, it's quite simple. Whether you want to make automatic payments, distribute rewards, or simply send funds to another address, it's important to understand how to do it safely and efficiently. Let's explore how to send Ether from a contract and what things you need to keep in mind to avoid problems.
 
-### ¿Cómo se envía Ether desde un contrato?
+### How do you send Ether from a contract?
 
-En Solidity, hay tres maneras principales de enviar Ether:
+In Solidity, there are three main ways to send Ether:
 
-1. **Transfer**: Es la forma más simple y directa. Envía 2300 gas, suficiente para registrar un evento y cambiar el saldo, pero no para ejecutar funciones complejas.
-2. **Send**: Similar a `transfer`, pero en lugar de lanzar un error si la transacción falla, devuelve `true` o `false`. Envía 2300 gas.
-3. **Call**: Es el más versátil y seguro. Permite enviar Ether y ejecutar funciones, además de controlar el gas enviado.
+1. **Transfer**: It's the simplest and most direct way. It sends 2300 gas, enough to record an event and change the balance, but not to execute complex functions.
+2. **Send**: Similar to `transfer`, but instead of throwing an error if the transaction fails, it returns `true` or `false`. It sends 2300 gas.
+3. **Call**: It's the most versatile and secure. It allows you to send Ether and execute functions, plus control the gas sent.
 
-#### Método 1: `transfer`
+#### Method 1: `transfer`
 
-`transfer` es como la transferencia bancaria más directa y segura, pero también la más limitada. Si el envío falla, lanza un error y revierte la transacción.
+`transfer` is like the most direct and secure bank transfer, but also the most limited. If the send fails, it throws an error and reverts the transaction.
 
 ```solidity
-function enviarEtherTransfer(address payable destino) public payable {
-    destino.transfer(msg.value);
+function sendEtherTransfer(address payable destination) public payable {
+    destination.transfer(msg.value);
 }
 ```
 
-* **Ventajas**: Simple y seguro.
-* **Desventajas**: Si el destinatario necesita más de 2300 gas para completar su lógica, la transacción fallará.
+* **Advantages**: Simple and secure.
+* **Disadvantages**: If the recipient needs more than 2300 gas to complete their logic, the transaction will fail.
 
-#### Método 2: `send`
+#### Method 2: `send`
 
-`send` funciona igual que `transfer`, pero en lugar de lanzar un error, simplemente devuelve `false` si la transacción falla. Esto es útil si quieres manejar manualmente los errores, pero debes asegurarte de verificar siempre el valor de retorno.
+`send` works the same as `transfer`, but instead of throwing an error, it simply returns `false` if the transaction fails. This is useful if you want to handle errors manually, but you must make sure to always verify the return value.
 
 ```solidity
-function enviarEtherSend(address payable destino) public payable {
-    bool exito = destino.send(msg.value);
-    require(exito, "Envio de Ether fallido");
+function sendEtherSend(address payable destination) public payable {
+    bool success = destination.send(msg.value);
+    require(success, "Ether send failed");
 }
 ```
 
-* **Ventajas**: Permite manejar errores manualmente.
-* **Desventajas**: Al igual que `transfer`, solo envía 2300 gas, y si no verificas el retorno, podrías no darte cuenta de que la transacción falló.
+* **Advantages**: Allows manual error handling.
+* **Disadvantages**: Like `transfer`, it only sends 2300 gas, and if you don't check the return value, you might not realize the transaction failed.
 
-#### Método 3: `call`
+#### Method 3: `call`
 
-`call` es como el navaja suiza de Solidity. No solo puedes enviar Ether, sino también ejecutar funciones en el contrato de destino, además de controlar cuánto gas se envía. Esta es la forma recomendada para la mayoría de los casos, ya que te da más control y flexibilidad.
+`call` is like the Swiss Army knife of Solidity. Not only can you send Ether, but you can also execute functions in the destination contract, plus control how much gas is sent. This is the recommended way for most cases, as it gives you more control and flexibility.
 
 ```solidity
-function enviarEtherCall(address payable destino) public payable {
-    (bool exito, ) = destino.call{value: msg.value}("");
-    require(exito, "Envio de Ether fallido con call");
+function sendEtherCall(address payable destination) public payable {
+    (bool success, ) = destination.call{value: msg.value}("");
+    require(success, "Ether send failed with call");
 }
 ```
 
-* **Ventajas**: Control total sobre el gas y puede ejecutar funciones en el destino.
-* **Desventajas**: Debes ser muy cuidadoso con su uso, porque mal configurado puede permitir ataques como **reentrancy**.
+* **Advantages**: Total control over gas and can execute functions in the destination.
+* **Disadvantages**: You must be very careful with its use, because if misconfigured it can allow attacks like **reentrancy**.
 
-### Ejemplo práctico: Reparto de ganancias
+### Practical Example: Profit Distribution
 
-Vamos a ver un ejemplo donde usamos `call` para repartir Ether entre varios destinatarios:
+Let's look at an example where we use `call` to distribute Ether among multiple recipients:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Reparto {
-    address payable[] public beneficiarios;
+contract Distribution {
+    address payable[] public beneficiaries;
     
-    // Añade un beneficiario
-    function agregarBeneficiario(address payable _nuevoBeneficiario) public {
-        beneficiarios.push(_nuevoBeneficiario);
+    // Add a beneficiary
+    function addBeneficiary(address payable _newBeneficiary) public {
+        beneficiaries.push(_newBeneficiary);
     }
     
-    // Función para repartir Ether equitativamente entre todos los beneficiarios
-    function repartirGanancias() public payable {
-        uint256 cantidadPorPersona = msg.value / beneficiarios.length;
-        for (uint256 i = 0; i < beneficiarios.length; i++) {
-            (bool exito, ) = beneficiarios[i].call{value: cantidadPorPersona}("");
-            require(exito, "Envio de Ether fallido");
+    // Function to distribute Ether equally among all beneficiaries
+    function distributeProfit() public payable {
+        uint256 amountPerPerson = msg.value / beneficiaries.length;
+        for (uint256 i = 0; i < beneficiaries.length; i++) {
+            (bool success, ) = beneficiaries[i].call{value: amountPerPerson}("");
+            require(success, "Ether send failed");
         }
     }
 }
 ```
 
-En este contrato, `repartirGanancias` distribuye el Ether enviado a la función entre todos los beneficiarios almacenados. Usa `call` para enviar el Ether, asegurando que cada transacción se complete correctamente.
+In this contract, `distributeProfit` distributes the Ether sent to the function among all stored beneficiaries. It uses `call` to send the Ether, ensuring that each transaction completes correctly.
 
-### Cosas que debes tener en cuenta
+### Things to keep in mind
 
-1. **Ataques de Reentrancia**: Cuando usas `call` para enviar Ether, asegúrate de que tu lógica esté bien estructurada para evitar ataques de reentrancia. Un atacante podría intentar llamar a tu contrato nuevamente antes de que la primera llamada termine, lo que podría causar problemas graves. Usa siempre el patrón **Checks-Effects-Interactions**: primero verifica las condiciones, luego actualiza el estado, y finalmente realiza la interacción externa (enviar Ether).
-2. **Uso de gas**: `transfer` y `send` solo envían 2300 gas, lo que no es suficiente para funciones complejas en el contrato receptor. Si necesitas más gas, usa `call` y especifica la cantidad necesaria.
-3. **Direcciones `payable`**: Solo puedes enviar Ether a direcciones marcadas como `payable`. Asegúrate de usar `address payable` para los destinatarios.
+1. **Reentrancy Attacks**: When using `call` to send Ether, make sure your logic is well structured to prevent reentrancy attacks. An attacker could try to call your contract again before the first call finishes, which could cause serious problems. Always use the **Checks-Effects-Interactions** pattern: first verify conditions, then update state, and finally perform external interaction (sending Ether).
+2. **Gas Usage**: `transfer` and `send` only send 2300 gas, which is not enough for complex functions in the receiving contract. If you need more gas, use `call` and specify the necessary amount.
+3. **`payable` Addresses**: You can only send Ether to addresses marked as `payable`. Make sure to use `address payable` for recipients.

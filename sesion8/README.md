@@ -2,5 +2,5 @@
 icon: rectangle-code
 ---
 
-# Sesión 8: Explorando Solidity IV
+# Session 8: Exploring Solidity IV
 

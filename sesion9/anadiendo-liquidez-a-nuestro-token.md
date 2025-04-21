@@ -13,5 +13,5 @@ layout:
     visible: true
 ---
 
-# Añadiendo Liquidez a nuestro Token
+# Adding Liquidity to our Token
 

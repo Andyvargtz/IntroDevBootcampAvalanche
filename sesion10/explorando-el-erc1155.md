@@ -13,77 +13,73 @@ layout:
     visible: true
 ---
 
-# Explorando el ERC1155
+# Exploring ERC1155
 
-El **ERC1155** es un estándar de Ethereum que define un conjunto de funciones y eventos para crear y manejar múltiples tipos de tokens en un solo contrato. A diferencia de los estándares ERC20 y ERC721, **ERC1155** permite tanto tokens fungibles (intercambiables) como no fungibles (únicos) bajo el mismo contrato, lo cual optimiza los costos de gas y simplifica el almacenamiento y la transferencia de estos tokens.
+**ERC1155** is an Ethereum standard that defines a set of functions and events for creating and managing multiple types of tokens in a single contract. Unlike the ERC20 and ERC721 standards, **ERC1155** allows both fungible (interchangeable) and non-fungible (unique) tokens under the same contract, which optimizes gas costs and simplifies the storage and transfer of these tokens.
 
+### Key Components of ERC1155
 
+The **ERC1155** standard defines several essential functions and events that all token contracts must implement:
 
-### Componentes Clave del ERC721
+**1. Main functions:**
 
-El estándar **ERC721** define varias funciones y eventos esenciales que todos los contratos de tokens deben implementar:
+1. **`constructor`:** Initializes the contract by setting a base URI for all token types. The base URI uses a token `id` substitution mechanism, allowing each token to point to its corresponding metadata.
+   * **Parameters:** `uri_` (base URI of the tokens, where `{id}` will be replaced by the specific token ID).
+   * **Example**: [`ipfs://QmZTsFjJGALEVPHcMYGdS1F3xgpAnELUC8KwjijXqXrdNM/1.json`](https://ipfs.io/ipfs/QmZTsFjJGALEVPHcMYGdS1F3xgpAnELUC8KwjijXqXrdNM/1.json)
+2. **`uri(uint256 id)`**: Returns the URI for a specific token type. The URI uses `{id}` as a placeholder that will be replaced by the token identifier in compatible applications.
+   * **Parameter**: `id` (unique identifier of the token type).
+   * **Returns**: The token's URI as a string.
+3. **`balanceOf(address account, uint256 id)`**: Returns the balance of tokens of a specific type for a given address.
+   * **Parameter:** `account` (the address to query).
+   * **Returns:** The number of tokens owned by that address (uint256).
+4. **`balanceOfBatch(address[] memory accounts, uint256[] memory ids)`**: Returns the balance of multiple token types for multiple addresses in a single call.
+   * **Parameters**: `accounts` (addresses to query) and `ids` (token type identifiers).
+   * **Returns**: An array with the balances corresponding to each address and token type.
+5. **`setApprovalForAll(address operator, bool approved)`**: Allows or revokes authorization for another address to handle all of the owner's tokens.
+   * **Parameters**: `operator` (address to authorize) and `approved` (whether to authorize or revoke).
+   * **Returns**: `true` if the operation is successful.
+6. **`isApprovedForAll(address owner, address operator)`**: Verifies if an address is authorized to handle all tokens of an owner.
+   * **Parameters**: `owner` (token owner) and `operator` (address to verify).
+   * **Returns**: `true` if the address has permission to handle all tokens.
+7. **`safeTransferFrom(address from, address to, uint256 id, uint256 value, bytes memory data)`**: Transfers a specific amount of tokens of one type from one address to another.
+   * **Parameters**: `from`, `to`, `id`, `value`, and `data` (additional data, optional).
+   * **Requirements**: `from` must have sufficient token balance and `to` must not be the zero address.
+8. **`safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory values, bytes memory data)`**: Transfers multiple token types in a single operation.
+   * **Parameters**: `from`, `to`, `ids`, `values`, and `data`.
+   * **Requirements**: `from` must have sufficient balance of each token type in `ids`.
+9. **\_setURI(string memory newuri)**: Internal function that sets a new URI for all token types, applying the `id` substitution mechanism.
+   * **Parameter**: `newuri` (new base URI).
+10. **`_mint(address to, uint256 id, uint256 value, bytes memory data)`**: Creates a specific amount of tokens of a given type and assigns them to an address.
+    * **Parameters**: `to`, `id`, `value`, and `data`.
+    * **Requirements**: `to` must not be the zero address
+11. **`_mintBatch(address to, uint256[] memory ids, uint256[] memory values, bytes memory data)`**: Creates multiple token types in a single call and assigns them to an address.
+    * **Parameters**: `to`, `ids`, `values`, and `data`.
+12. **`_burn(address from, uint256 id, uint256 value)`**: Destroys a specific amount of tokens of one type for a given address.
+    * **Parameters**: `from`, `id`, `value`.
+13. **`_burnBatch(address from, uint256[] memory ids, uint256[] values)`**: Destroys multiple token types in a single call.
+    * **Parameters**: `from`, `ids`, and `values`.
 
-**1. Funciones principales:**
+**2. Main events:**
 
-1. **`constructor`:** Inicializa el contrato estableciendo un URI base para todos los tipos de token. El URI base utiliza un mecanismo de sustitución por el `id` del token, lo que permite que cada token apunte a su metadato correspondiente.
-   * **Parámetros:** `uri_` (URI base de los tokens, donde `{id}` se sustituirá por el ID específico del token).
-   * **Ejemplo**: [`ipfs://QmZTsFjJGALEVPHcMYGdS1F3xgpAnELUC8KwjijXqXrdNM/1.json`](https://ipfs.io/ipfs/QmZTsFjJGALEVPHcMYGdS1F3xgpAnELUC8KwjijXqXrdNM/1.json)
-2. **`uri(uint256 id)`**: Devuelve la URI para un tipo específico de token. La URI usa `{id}` como marcador que será reemplazado por el identificador del token en las aplicaciones compatibles.
-   * **Parámetro**: `id` (identificador único del tipo de token).
-   * **Retorna**: La URI del token como una cadena de texto (string).
-3. **`balanceOf(address account, uint256 id)`**: Devuelve el balance de tokens de un tipo específico para una dirección dada.
-   * **Parámetro:** `account` (la dirección a consultar).
-   * **Retorna:** El número de tokens que posee esa dirección (uint256).
-4. **`balanceOfBatch(address[] memory accounts, uint256[] memory ids)`**: Devuelve el balance de varios tipos de tokens para múltiples direcciones en una sola llamada.
-   * **Parámetros**: `accounts` (direcciones a consultar) y `ids` (identificadores de los tipos de tokens).
-   * **Retorna**: Un arreglo con los balances correspondientes a cada dirección y tipo de token.
-5. **`setApprovalForAll(address operator, bool approved)`**: Permite o revoca la autorización de otra dirección para manejar todos los tokens del propietario.
-   * **Parámetros**: `operator` (dirección que se desea autorizar) y `approved` (si se autoriza o revoca).
-   * **Retorna**: `true` si la operación es exitosa.
-6. **`isApprovedForAll(address owner, address operator)`**: Verifica si una dirección está autorizada para manejar todos los tokens de un propietario.
-   * **Parámetros**: `owner` (propietario de los tokens) y `operator` (dirección a verificar).
-   * **Retorna**: `true` si la dirección tiene permisos para manejar todos los tokens.
-7. **`safeTransferFrom(address from, address to, uint256 id, uint256 value, bytes memory data)`**: Transfiere una cantidad específica de tokens de un tipo desde una dirección a otra.
-   * **Parámetros**: `from`, `to`, `id`, `value`, y `data` (datos adicionales, opcional).
-   * **Requisitos**: `from` debe tener suficiente balance de tokens y `to` no debe ser la dirección cero.
-8. **`safeBatchTransferFrom(address from, address to, uint256[] memory ids, uint256[] memory values, bytes memory data)`**: Transfiere múltiples tipos de tokens en una sola operación.
-   * **Parámetros**: `from`, `to`, `ids`, `values`, y `data`.
-   * **Requisitos**: `from` debe tener suficiente balance de tokens de cada tipo en `ids`.
-9. **\_setURI(string memory newuri)**: Función interna que establece un nuevo URI para todos los tipos de tokens, aplicando el mecanismo de sustitución por `id`.
-   * **Parámetro**: `newuri` (nuevo URI base).
-10. **`_mint(address to, uint256 id, uint256 value, bytes memory data)`**: Crea una cantidad específica de tokens de un tipo determinado y los asigna a una dirección.
-    * **Parámetros**: `to`, `id`, `value`, y `data`.
-    * **Requisitos**: `to` no debe ser la dirección cero
-11. **`_mintBatch(address to, uint256[] memory ids, uint256[] memory values, bytes memory data)`**: Crea múltiples tipos de tokens en una sola llamada y los asigna a una dirección.
-    * **Parámetros**: `to`, `ids`, `values`, y `data`.
-12. **`_burn(address from, uint256 id, uint256 value)`**: Destruye una cantidad específica de tokens de un tipo para una dirección determinada.
-    * **Parámetros**: `from`, `id`, `value`.
-13. **`_burnBatch(address from, uint256[] memory ids, uint256[] memory values)`**: Destruye múltiples tipos de tokens en una sola llamada.
-    * **Parámetros**: `from`, `ids`, y `values`.
+1. **`TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)`**: Emitted each time a single token type is transferred from one address to another.
+2. **`TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)`**: Emitted when multiple token types are transferred in a single operation.
+3. **`ApprovalForAll(address indexed account, address indexed operator, bool approved)`**: Emitted when an address allows or revokes token handling to an operator.
 
-**2. Eventos principales:**
+### Why is ERC1155 so important?
 
-1. **`TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)`**: Se emite cada vez que un token de un solo tipo es transferido de una dirección a otra.
-2. **`TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)`**: Se emite cuando múltiples tipos de tokens son transferidos en una sola operación.
-3. **`ApprovalForAll(address indexed account, address indexed operator, bool approved)`**: Se emite cuando una dirección permite o revoca el manejo de sus tokens a un operador.
+* **Gas Cost Efficiency**: By grouping multiple token types in a single contract, **ERC1155** reduces gas costs, especially when performing batch transfers.
+* **Flexibility**: Supports both fungible and non-fungible tokens in the same contract, making it ideal for applications like video games, where players can have multiple assets (coins, unique items, etc.).
+* **Simplified Management**: By using a common structure for various token types, **ERC1155** allows for simpler and more efficient management of large amounts of digital assets.
 
+### Example of ERC1155 Contract
 
-
-### ¿Por qué es tan importante el ERC1155?
-
-* **Eficiencia en Costos de Gas**: Al agrupar múltiples tipos de tokens en un solo contrato, **ERC1155** reduce los costos de gas, especialmente cuando se realizan transferencias en lote.
-* **Flexibilidad**: Soporta tanto tokens fungibles como no fungibles en el mismo contrato, lo que lo hace ideal para aplicaciones como videojuegos, donde los jugadores pueden tener múltiples activos (monedas, ítems únicos, etc.).
-* **Gestión Simplificada**: Al utilizar una estructura común para varios tipos de tokens, **ERC1155** permite una administración más sencilla y eficiente de grandes cantidades de activos digitales.
-
-### Ejemplo de Contrato ERC1155
-
-Aquí tienes un ejemplo básico de un contrato ERC1155 utilizando OpenZeppelin:
+Here's a basic example of an ERC1155 contract using OpenZeppelin:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
-contract MiTokenMulti is ERC1155 {
+contract MyMultiToken is ERC1155 {
     constructor() ERC1155("ipfs://QmZTsFjJGALEVPHcMYGdS1F3xgpAnELUC8KwjijXqXrdNM/1.json") {}
 
     function mint(address account, uint256 id, uint256 amount, bytes memory data) public {
@@ -96,5 +92,5 @@ contract MiTokenMulti is ERC1155 {
 }
 ```
 
-* **Importación**: Se importa el contrato ERC1155 de OpenZeppelin, lo que asegura que se sigan todas las reglas del estándar.
-* **URI Base**: Al implementar `ERC1155`, se establece un URI que incluye `{id}`, el cual se reemplazará con el `id` del token correspondiente en cada solicitud de URI.
+* **Import**: The ERC1155 contract from OpenZeppelin is imported, ensuring all standard rules are followed.
+* **Base URI**: When implementing `ERC1155`, a URI is set that includes `{id}`, which will be replaced with the corresponding token's `id` in each URI request.
